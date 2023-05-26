@@ -2,40 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokemonMasterminds.MainPage">
-
-    <ScrollView>
-        <VerticalStackLayout
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="LightBlue"
+                          Offset="0.1"/>
+            <GradientStop Color="LightGreen"
+                          Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <Grid
+         Padding="15,0">
+        <Image
+                Source="pokeball.png"
+                SemanticProperties.Description="pokeball"
+                Aspect="AspectFit"
+                Opacity="0.5"/>
+        <ScrollView>
+            <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                <Image
+                Source="pokemon.png"
+                SemanticProperties.Description="Pokemon"
+                HeightRequest="80"
+                HorizontalOptions="Center" />
+
+                <Label
+                Text="masterminds"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Masterminds text"
+                FontSize="50"
+                FontFamily="Cascadia Code"
+                HorizontalOptions="Center" />
+
+                <Image
+                Source="pikachublack.png"
+                SemanticProperties.Description="Pokemon"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                <Button
+                x:Name="RedirectBtn"
+                Text="Play game"
+                SemanticProperties.Hint="Redirects to the lobby page"
+                Clicked="OnButtonClicked"
+                HorizontalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"/>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
-
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

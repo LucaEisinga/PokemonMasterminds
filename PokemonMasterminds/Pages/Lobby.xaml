@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PokemonMasterminds.Pages.Lobby"
+             Title="Lobby">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Color="LightBlue"
+                                  Offset="0.1"/>
+                <GradientStop Color="LightGreen"
+                                  Offset="1.0"/>
+            </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        Margin="20"
+        Spacing="10">
+            <Label
+                Text="Pokemon masterminds"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Masterminds text"
+                FontSize="50"
+                FontFamily="Cascadia Code"
+                HorizontalOptions="Center" />
+            <Label
+                Text="Players"
+                SemanticProperties.HeadingLevel="Level3"
+                SemanticProperties.Description="Masterminds text"
+                FontSize="30"
+                FontFamily="Cascadia Code"
+                HorizontalOptions="Center"
+                HeightRequest="100"/>
+            <Grid HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame BorderColor="DarkCyan"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Text="Player 1"
+                    SemanticProperties.Description="Text player one"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
+                    />
+                </Frame>
+
+                <Frame BorderColor="DarkCyan"
+                       Grid.Row="1"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Grid.Row="1"
+                    Text="Player 2"
+                    SemanticProperties.Description="Text player two"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"/>
+                </Frame>
+
+                <Frame BorderColor="DarkCyan"
+                       Grid.Row="2"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Grid.Row="2"
+                    Text="Player 3"
+                    SemanticProperties.Description="Text player three"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"/>
+                </Frame>
+
+                <Frame BorderColor="DarkCyan"
+                       Grid.Row="3"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Grid.Row="3"
+                    Text="Player 4"
+                    SemanticProperties.Description="Text player four"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"/>
+                </Frame>
+
+                <Frame BorderColor="DarkCyan"
+                       Grid.Column="1"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Grid.Column="1"
+                    Text="Luca"
+                    SemanticProperties.Description="Name player one"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"/>
+                </Frame>
+
+                <Frame BorderColor="DarkCyan"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="Esmee"
+                    SemanticProperties.Description="Name player two"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"/>
+                </Frame>
+
+                <Frame BorderColor="DarkCyan"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="Yaëll"
+                    SemanticProperties.Description="Name player three"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"/>
+                </Frame>
+
+                <Frame BorderColor="DarkCyan"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       Padding="8">
+                    <Label
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Text="Peter"
+                    SemanticProperties.Description="Name player four"
+                    FontSize="25"
+                    FontFamily="Cascadia Code"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"/>
+                </Frame>
+
+            </Grid>
+            <Button
+                x:Name="RedirectBtn"
+                Text="Start game"
+                SemanticProperties.Hint="Goes to start of the game"
+                SemanticProperties.HeadingLevel="Level5"
+                Clicked="OnRedirectClicked"
+                HorizontalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

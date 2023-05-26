@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PokemonMasterminds.Pages.GamePage"
+             Title="GamePage">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="LightBlue"
+                                  Offset="0.1"/>
+            <GradientStop Color="LightGreen"
+                                  Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        Margin="20"
+        Spacing="10">
+        <Label
+                Text="Who is this pokemon!"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Who is this pokemon text"
+                FontSize="50"
+                FontFamily="Cascadia Code"
+                HorizontalOptions="Center"
+                HeightRequest="100"/>
+        <Image
+                Source="who.jpg"
+                SemanticProperties.Description="Pokemon"
+                HeightRequest="250"
+                HorizontalOptions="Center"/>
+        <Grid HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="AnswerOne"
+                Text="Snivy"
+                SemanticProperties.Hint="Submits answer one"
+                Clicked="OnAnswerOneClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"/>
+            <Button
+                Grid.Column="1"
+                x:Name="AnswerTwo"
+                Text="Machamp"
+                SemanticProperties.Hint="Submits answer two"
+                Clicked="OnAnswerTwoClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"/>
+            <Button
+                Grid.Row="1"
+                x:Name="AnswerThree"
+                Text="Pikachu"
+                SemanticProperties.Hint="Submits answer three"
+                Clicked="OnAnswerThreeClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"/>
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                x:Name="AnswerFour"
+                Text="Snubbull"
+                SemanticProperties.Hint="Submits answer four"
+                Clicked="OnAnswerFourClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"/>
+        </Grid>
+        
+    </VerticalStackLayout>
+</ContentPage>
