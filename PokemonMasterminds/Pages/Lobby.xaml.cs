@@ -1,14 +1,25 @@
-namespace PokemonMasterminds.Pages;
+using Microsoft.Maui.Controls;
+using PokemonMasterminds.ViewModels;
 
-public partial class Lobby : ContentPage
+namespace PokemonMasterminds.Pages
 {
-	public Lobby()
-	{
-		InitializeComponent();
-	}
-
-    async void OnRedirectClicked(object sender, EventArgs e)
+    public partial class Lobby : ContentPage
     {
-        await Navigation.PushAsync(new Pages.GamePage());
+        public Lobby()
+        {
+            InitializeComponent();
+            BindingContext = new LobbyViewModel();
+        }
+
+        // Handle button click event or any other logic here
+        private void OnRedirectClicked(object sender, EventArgs e)
+        {
+            // Access player names through the view model
+            var viewModel = (LobbyViewModel)BindingContext;
+            string player1Name = viewModel.Player1Name;
+            string player2Name = viewModel.Player2Name;
+
+           
+        }
     }
 }
