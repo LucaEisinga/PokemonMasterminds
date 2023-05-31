@@ -1,24 +1,26 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace PokemonMasterminds;
-
-public static class MauiProgram
+namespace PokemonMasterminds
 {
-    public static MauiApp CreateMauiApp()
+
+    public static class MauiProgram
     {
-        var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                });
 
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
 
-        return builder.Build();
+            return builder.Build();
+        }
     }
 }
