@@ -9,21 +9,21 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.GamePage());
+        await Navigation.PushAsync(new Pages.Scoreboard());
     }
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.GamePage());
+        await Navigation.PushAsync(new Pages.Scoreboard());
     }
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.GamePage());
+        await Navigation.PushAsync(new Pages.Scoreboard());
     }
 
     async void OnAnswerFourClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.GamePage());
+        await Navigation.PushAsync(new Pages.Scoreboard());
     }
 }

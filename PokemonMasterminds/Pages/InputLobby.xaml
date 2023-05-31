@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PokemonMasterminds.Pages.InputLobby"
+             Title="InputLobby">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="LightBlue"
+                                  Offset="0.1"/>
+            <GradientStop Color="LightGreen"
+                                  Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        Margin="20"
+        Spacing="10">
+        <Label
+                Text="Pokemon masterminds"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Masterminds text"
+                FontSize="50"
+                FontFamily="Cascadia Code"
+                HorizontalOptions="Center" />
+        <Image
+                Source="pikachublack.png"
+                SemanticProperties.Description="Pokemon"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+        <Button
+                x:Name="CreateLobby"
+                Text="Create lobby"
+                SemanticProperties.Hint="Goes to new lobby"
+                SemanticProperties.HeadingLevel="Level5"
+                Clicked="CreateLobbyClicked"
+                HorizontalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"/>
+        <Button
+                x:Name="JoinLobby"
+                Text="Join lobby"
+                SemanticProperties.Hint="Goes to existing lobby"
+                SemanticProperties.HeadingLevel="Level5"
+                Clicked="JoinLobbyClicked"
+                HorizontalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"/>
+    </VerticalStackLayout>
+</ContentPage>

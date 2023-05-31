@@ -11,6 +11,6 @@ public partial class MainPage : ContentPage
 
     async void OnButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Lobby());
+        await Navigation.PushAsync(new Pages.InputLobby());
     }
 }

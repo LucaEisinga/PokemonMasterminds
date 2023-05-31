@@ -24,7 +24,7 @@
                 HorizontalOptions="Center"
                 HeightRequest="100"/>
         <Image
-                Source="who.jpg"
+                Source="questionmarkpokemon.png"
                 SemanticProperties.Description="Pokemon"
                 HeightRequest="250"
                 HorizontalOptions="Center"/>
