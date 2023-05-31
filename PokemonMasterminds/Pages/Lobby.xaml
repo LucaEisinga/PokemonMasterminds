@@ -34,8 +34,6 @@
                        VerticalOptions="Center" />
             </StackLayout>
 
-            <!-- Repeat the above StackLayout for other players -->
-            <!-- Player 2 -->
             <StackLayout HorizontalOptions="Center" HeightRequest="100" Orientation="Horizontal">
                 <Label Text="Player 2"
                        SemanticProperties.Description="Text player two"
@@ -52,7 +50,38 @@
                        VerticalOptions="Center" />
             </StackLayout>
 
-            <!-- Repeat for Player 3 and Player 4 -->
+            <StackLayout HorizontalOptions="Center" HeightRequest="100" Orientation="Horizontal">
+                <Label Text="Player 3"
+                       SemanticProperties.Description="Text player two"
+                       FontSize="25"
+                       FontFamily="Cascadia Code"
+                       WidthRequest="100"
+                       VerticalOptions="Center" />
+
+                <Entry Placeholder="Enter player name"
+                       Text="{Binding Player3Name}"
+                       FontSize="25"
+                       FontFamily="Cascadia Code"
+                       WidthRequest="200"
+                       VerticalOptions="Center" />
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Center" HeightRequest="100" Orientation="Horizontal">
+                <Label Text="Player 4"
+                       SemanticProperties.Description="Text player two"
+                       FontSize="25"
+                       FontFamily="Cascadia Code"
+                       WidthRequest="100"
+                       VerticalOptions="Center" />
+
+                <Entry Placeholder="Enter player name"
+                       Text="{Binding Player4Name}"
+                       FontSize="25"
+                       FontFamily="Cascadia Code"
+                       WidthRequest="200"
+                       VerticalOptions="Center" />
+            </StackLayout>
+
 
             <Button x:Name="RedirectBtn"
                     Text="Start game"

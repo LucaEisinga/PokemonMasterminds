@@ -18,8 +18,10 @@ namespace PokemonMasterminds.Pages
             var viewModel = (LobbyViewModel)BindingContext;
             string player1Name = viewModel.Player1Name;
             string player2Name = viewModel.Player2Name;
+            string player3Name = viewModel.Player3Name;
+            string player4Name = viewModel.Player4Name;
 
-           
+
         }
     }
 }
