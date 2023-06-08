@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PokemonMasterminds.ViewModels"
              x:Class="PokemonMasterminds.Pages.InputLobby"
+             xmlns:model="clr-namespace:PokemonMasterminds.Model"
+             xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
+             x:DataType="viewmodel:InputLobbyViewModel"
              Title="InputLobby">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
@@ -27,23 +31,70 @@
                 SemanticProperties.Description="Pokemon"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
-        <Button
+
+        <CollectionView
+            ItemsSource="{Binding Players}">
+            <CollectionView.ItemTemplate
+                x:DataType="model:Player">
+                <DataTemplate
+                    x:DataType="model:Player">
+                <Label WidthRequest="200"
+               Text="{Binding Name}"
+               FontSize="20"
+               FontAttributes="None"/>
+            </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid   Margin="5"
+                Padding="5"
+                HorizontalOptions="Center"
+                ColumnSpacing="5"
+                RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Entry
+                Text="{Binding PlayerName}"
+                WidthRequest="200"/>
+            <Button
+                Grid.Column="1"
+                x:Name="SaveName"
+                Text="Save name"
+                SemanticProperties.Hint="Saves name"
+                SemanticProperties.HeadingLevel="Level5"
+                HorizontalOptions="Center"
+                BorderColor="DarkCyan"
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"
+                Command="{Binding SaveName}"/>
+            <Button
+                Grid.Row="1"
                 x:Name="CreateLobby"
                 Text="Create lobby"
                 SemanticProperties.Hint="Goes to new lobby"
                 SemanticProperties.HeadingLevel="Level5"
-                Clicked="CreateLobbyClicked"
                 HorizontalOptions="Center"
                 BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"/>
-        <Button
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"
+                Command="{Binding CreateLobby}"/>
+            <Button
+                Grid.Column="1"
+                Grid.Row="1"
                 x:Name="JoinLobby"
                 Text="Join lobby"
                 SemanticProperties.Hint="Goes to existing lobby"
                 SemanticProperties.HeadingLevel="Level5"
-                Clicked="JoinLobbyClicked"
                 HorizontalOptions="Center"
                 BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"/>
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"
+                Command="{Binding JoinLobby}"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

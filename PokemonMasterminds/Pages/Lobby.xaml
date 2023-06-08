@@ -177,7 +177,8 @@
                 Clicked="OnRedirectClicked"
                 HorizontalOptions="Center"
                 BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"/>
+                BackgroundColor="DarkCyan"
+                WidthRequest="200"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

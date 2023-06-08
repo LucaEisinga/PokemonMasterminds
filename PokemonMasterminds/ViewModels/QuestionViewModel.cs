@@ -6,13 +6,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PokemonMasterminds.Model;
 
 namespace PokemonMasterminds.ViewModels
 {
     class QuestionViewModel: INotifyPropertyChanged
-
     {
-
         //GetQuestionCommand : ICommand
         public ICommand GetQuestionCommand { private set; get; }
 
@@ -32,6 +31,11 @@ namespace PokemonMasterminds.ViewModels
             field = value;
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        public QuestionViewModel(Game game)
+        {
+
         }
     }
 }

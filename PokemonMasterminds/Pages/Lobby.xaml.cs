@@ -1,11 +1,16 @@
+using PokemonMasterminds.ViewModels;
+using PokemonMasterminds.Model;
+
 namespace PokemonMasterminds.Pages;
 
-public partial class Lobby : ContentPage
+public partial class Lobby
 {
-	public Lobby()
+	public Lobby(Game game)
 	{
-		InitializeComponent();
-	}
+        LobbyViewModel viewmodel = new(game);
+        BindingContext = viewmodel;
+        InitializeComponent();
+    }
 
     async void OnRedirectClicked(object sender, EventArgs e)
     {
