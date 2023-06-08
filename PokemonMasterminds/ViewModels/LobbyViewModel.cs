@@ -1,7 +1,9 @@
 ﻿using PokemonMasterminds.Model;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
 
 
@@ -9,6 +11,8 @@ namespace PokemonMasterminds.ViewModels
 {
     class LobbyViewModel: INotifyPropertyChanged
     {
+        public List<Player> PlayerList { get; set; }
+
         //StartGameCommand : ICommand
         public ICommand StartGameCommand { private set; get; }
 
@@ -33,7 +37,11 @@ namespace PokemonMasterminds.ViewModels
         public LobbyViewModel(Game game)
         {
             INavigation navigation = App.Current.MainPage.Navigation;
-
+            
+            PlayerList = game.Players.ToList();
         }
+
+        public ObservableCollection<Player> Players { get; private set; }
+
     }
 }

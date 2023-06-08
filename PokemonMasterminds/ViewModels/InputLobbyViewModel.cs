@@ -15,7 +15,6 @@ public partial class InputLobbyViewModel : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public ICommand SaveName { get; private set; }
     public ICommand CreateLobby { get; private set; }
     public ICommand JoinLobby { get; private set; }
 
@@ -34,7 +33,7 @@ public partial class InputLobbyViewModel : INotifyPropertyChanged
     {
         INavigation navigation = App.Current.MainPage.Navigation;
 
-        SaveName = new Command(() =>
+        CreateLobby = new Command(async () =>
         {
             if (PlayerName is null or "")
             {
@@ -42,10 +41,6 @@ public partial class InputLobbyViewModel : INotifyPropertyChanged
             }
             Players.Add(new Player(PlayerName));
             PlayerName = "";
-        });
-
-        CreateLobby = new Command(async () =>
-        {
             if (Players.Count == 0)
             {
                 return;
@@ -59,6 +54,12 @@ public partial class InputLobbyViewModel : INotifyPropertyChanged
 
         JoinLobby = new Command(async () =>
         {
+            if (PlayerName is null or "")
+            {
+                return;
+            }
+            Players.Add(new Player(PlayerName));
+            PlayerName = "";
             if (Players.Count == 0)
             {
                 return;
@@ -72,8 +73,6 @@ public partial class InputLobbyViewModel : INotifyPropertyChanged
     }
 
     public ObservableCollection<Player> Players { get; } = new();
-
-    
 
     bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
