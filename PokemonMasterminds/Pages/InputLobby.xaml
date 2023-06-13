@@ -20,6 +20,7 @@
         VerticalOptions="Center"
         Margin="20"
         Spacing="10">
+        <Entry Text="{Binding LobbyCode}" Placeholder="Enter Lobby Code" />
         <Label
                 Text="Pokemon masterminds"
                 SemanticProperties.HeadingLevel="Level2"
@@ -58,7 +59,7 @@
                 BorderColor="DarkCyan"
                 BackgroundColor="DarkCyan"
                 WidthRequest="200"
-                Command="{Binding CreateLobby}"/>
+               />
             <Button
                 Grid.Column="1"
                 Grid.Row="1"

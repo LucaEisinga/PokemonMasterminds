@@ -1,91 +1,86 @@
-
-using Microsoft.Maui.Controls;
 using PokemonMasterminds.Model;
 using PokemonMasterminds.Pages;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace PokemonMasterminds.ViewModels;
-
-public partial class InputLobbyViewModel : INotifyPropertyChanged
+namespace PokemonMasterminds.ViewModels
 {
-    private string playerName;
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    public ICommand CreateLobby { get; private set; }
-    public ICommand JoinLobby { get; private set; }
-
-    public string PlayerName
+    public class InputLobbyViewModel : LobbyViewModel
     {
-        get => playerName;
-        set
+        private string lobbyCode;
+        private string playerName;
+        private ICommand joinLobbyCommand;
+        private ICommand createLobbyCommand;
+        private ObservableCollection<Player> players = new ObservableCollection<Player>();
+
+        public string LobbyCode
         {
-            playerName = value;
-            OnPropertyChanged(nameof(PlayerName));
+            get { return lobbyCode; }
+            set { SetProperty(ref lobbyCode, value); }
         }
 
-    }
-
-    public InputLobbyViewModel()
-    {
-        INavigation navigation = App.Current.MainPage.Navigation;
-
-        CreateLobby = new Command(async () =>
+        public string PlayerName
         {
-            if (PlayerName is null or "")
+            get { return playerName; }
+            set { SetProperty(ref playerName, value); }
+        }
+
+        public ICommand JoinLobbyCommand => joinLobbyCommand ?? (joinLobbyCommand = new Command(JoinLobby));
+
+        public ObservableCollection<Player> Player
+        {
+            get { return players; }
+            set { SetProperty(ref players, value); }
+        }
+
+        private readonly INavigation navigation;
+
+        public InputLobbyViewModel(INavigation navigation, Game game)
+            : base(game)
+        {
+            this.navigation = navigation;
+        }
+
+        private async void JoinLobby()
+        {
+            if (string.IsNullOrEmpty(PlayerName))
             {
                 return;
             }
+
             Players.Add(new Player(PlayerName));
             PlayerName = "";
+
             if (Players.Count == 0)
             {
                 return;
             }
-            Game game = new()
+
+            Game game = new Game
             {
                 Players = Players
             };
-            await navigation.PushAsync(new Lobby(game));
-        });
 
-        JoinLobby = new Command(async () =>
+            await navigation.PushAsync(new Lobby(game));
+        }
+        public ICommand CreateLobbyCommand => createLobbyCommand ?? (createLobbyCommand = new Command(CreateLobby));
+
+        private void CreateLobby()
         {
-            if (PlayerName is null or "")
+            // Logic to create a lobby
+        }
+
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (Equals(storage, value))
             {
-                return;
+                return false;
             }
-            Players.Add(new Player(PlayerName));
-            PlayerName = "";
-            if (Players.Count == 0)
-            {
-                return;
-            }
-            Game game = new()
-            {
-                Players = Players
-            };
-            await navigation.PushAsync(new Lobby(game));
-        });
-    }
 
-    public ObservableCollection<Player> Players { get; } = new();
-
-    bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
-    {
-        if (Object.Equals(storage, value))
-            return false;
-
-        storage = value;
-        OnPropertyChanged(propertyName);
-        return true;
-    }
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            storage = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
     }
 }

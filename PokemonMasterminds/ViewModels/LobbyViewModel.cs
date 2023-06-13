@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
-    class LobbyViewModel: INotifyPropertyChanged
+    public class LobbyViewModel: INotifyPropertyChanged
     {
         public List<Player> PlayerList { get; set; }
 
