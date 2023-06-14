@@ -1,14 +1,15 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
 using System.Net;
-using System.Net.Sockets;
+using System.Net.WebSockets;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MultiplayerLobby
 {
     public class MainPage : ContentPage
     {
-        private TcpListener serverSocket;
+        private HttpListener httpListener;
 
         public MainPage()
         {
@@ -22,41 +23,56 @@ namespace MultiplayerLobby
             StartServer();
         }
 
-        private void StartServer()
+        private async void StartServer()
         {
-            serverSocket = new TcpListener(IPAddress.Any, 8888);
-            serverSocket.Start();
+            httpListener = new HttpListener();
+            httpListener.Prefixes.Add("http://localhost:8888/");
+            httpListener.Start();
             Console.WriteLine("Server started. Waiting for connections...");
 
             while (true)
             {
-                TcpClient clientSocket = serverSocket.AcceptTcpClient();
-                Console.WriteLine("Client connected!");
+                HttpListenerContext context = await httpListener.GetContextAsync();
+                if (context.Request.IsWebSocketRequest)
+                {
+                    HttpListenerWebSocketContext webSocketContext = await context.AcceptWebSocketAsync(null);
+                    Console.WriteLine("WebSocket client connected!");
 
-                // Handle the client connection in a separate thread or asynchronously
-                HandleClient(clientSocket);
+                    // Handle the WebSocket client connection asynchronously
+                    HandleClient(webSocketContext);
+                }
             }
         }
 
-        private void HandleClient(TcpClient clientSocket)
+        private async void HandleClient(HttpListenerWebSocketContext webSocketContext)
         {
-            // Handle client communication here
-            NetworkStream stream = clientSocket.GetStream();
+            WebSocket webSocket = webSocketContext.WebSocket;
 
             // Example: Send a message to the client
             string message = "Welcome to the server!";
-            byte[] buffer = Encoding.ASCII.GetBytes(message);
-            stream.Write(buffer, 0, buffer.Length);
+            byte[] buffer = Encoding.UTF8.GetBytes(message);
+            await webSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
 
-            // Example: Receive a message from the client
-            buffer = new byte[1024];
-            int bytesRead = stream.Read(buffer, 0, buffer.Length);
-            message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-            Console.WriteLine("Received message from client: " + message);
+            // Example: Receive messages from the client
+            byte[] receiveBuffer = new byte[1024];
+            WebSocketReceiveResult result = await webSocket.ReceiveAsync(new ArraySegment<byte>(receiveBuffer), CancellationToken.None);
+            while (!result.CloseStatus.HasValue)
+            {
+                string receivedMessage = Encoding.UTF8.GetString(receiveBuffer, 0, result.Count);
+                Console.WriteLine("Received message from client: " + receivedMessage);
 
-            // Close the client connection
-            clientSocket.Close();
-            Console.WriteLine("Client disconnected!");
+                // Example: Send a response to the client
+                string responseMessage = "Server received: " + receivedMessage;
+                byte[] responseBuffer = Encoding.UTF8.GetBytes(responseMessage);
+                await webSocket.SendAsync(new ArraySegment<byte>(responseBuffer), WebSocketMessageType.Text, true, CancellationToken.None);
+
+                // Receive the next message
+                result = await webSocket.ReceiveAsync(new ArraySegment<byte>(receiveBuffer), CancellationToken.None);
+            }
+
+            // Close the WebSocket connection
+            await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+            Console.WriteLine("WebSocket client disconnected!");
         }
     }
 

@@ -59,19 +59,19 @@
                 BorderColor="DarkCyan"
                 BackgroundColor="DarkCyan"
                 WidthRequest="200"
-               />
+                Command="{Binding CreateLobbyCommand}" />
             <Button
-                Grid.Column="1"
-                Grid.Row="1"
-                x:Name="JoinLobby"
-                Text="Join lobby"
-                SemanticProperties.Hint="Goes to existing lobby"
-                SemanticProperties.HeadingLevel="Level5"
-                HorizontalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
-                WidthRequest="200"
-                Command="{Binding JoinLobby}"/>
+    Grid.Column="1"
+    Grid.Row="1"
+    x:Name="JoinLobby"
+    Text="Join lobby"
+    SemanticProperties.Hint="Goes to existing lobby"
+    SemanticProperties.HeadingLevel="Level5"
+    HorizontalOptions="Center"
+    BorderColor="DarkCyan"
+    BackgroundColor="DarkCyan"
+    WidthRequest="200"
+    Command="{Binding JoinLobbyCommand}" />
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Security.Cryptography.X509Certificates;
 
 namespace PokemonMasterminds.Model;
@@ -11,4 +12,5 @@ public class Player
 		Name = name;
 		Score = 0;
 	}
+    public ObservableCollection<Player> Players { get; set; }
 }

@@ -6,15 +6,14 @@ namespace PokemonMasterminds
 {
     partial class MainPage : ContentPage
     {
-         MainPage()
+       public MainPage()
         {
             InitializeComponent();
         }
 
         async void OnButtonClicked(object sender, EventArgs e)
         {
-            var game = new Game(); // Create a new Game object
-            var viewModel = new InputLobbyViewModel(Navigation, game); // Pass the Game object to the constructor
+            var viewModel = new InputLobbyViewModel(Navigation);
             await Navigation.PushAsync(new InputLobby(viewModel));
         }
     }

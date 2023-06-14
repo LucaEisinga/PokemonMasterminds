@@ -1,6 +1,7 @@
 using PokemonMasterminds.Model;
 using Microsoft.Maui.Controls;
 using PokemonMasterminds.ViewModels;
+using System.Windows.Input;
 
 namespace PokemonMasterminds.Pages
 {
@@ -9,7 +10,11 @@ namespace PokemonMasterminds.Pages
         public InputLobby(InputLobbyViewModel viewModel)
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = new InputLobbyViewModel(Navigation);
         }
+
+        public InputLobbyViewModel ViewModel => (InputLobbyViewModel)BindingContext;
+
+        public ICommand JoinLobbyCommand => ViewModel?.JoinLobbyCommand;
     }
 }

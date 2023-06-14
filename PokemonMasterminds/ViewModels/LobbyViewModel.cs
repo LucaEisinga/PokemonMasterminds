@@ -36,11 +36,14 @@ namespace PokemonMasterminds.ViewModels
 
         public LobbyViewModel(Game game)
         {
-            INavigation navigation = App.Current.MainPage.Navigation;
-            
-            PlayerList = game.Players.ToList();
-        }
+            if (game == null)
+                throw new ArgumentNullException(nameof(game));
 
+            INavigation navigation = App.Current.MainPage.Navigation;
+
+            PlayerList = game.Players?.ToList() ?? new List<Player>();
+            Players = new ObservableCollection<Player>(PlayerList);
+        }
         public ObservableCollection<Player> Players { get; private set; }
 
     }
