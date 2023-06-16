@@ -6,7 +6,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Dispatching;
 using PokemonMasterminds.Model;
+using PokemonMasterminds.Pages;
+using Timer = System.Timers.Timer;
 
 namespace PokemonMasterminds.ViewModels
 {
@@ -33,9 +36,30 @@ namespace PokemonMasterminds.ViewModels
             return true;
         }
 
+        private string MyPlayerName;
+
         public QuestionViewModel(Game game)
         {
+            INavigation navigation = App.Current.MainPage.Navigation;
+
+            MyPlayerName = game.Players[0].Name;
+
+            OnAnswerSelectedCommand = new Command((isCorrect) =>
+            {
+                if ((bool)isCorrect)
+                {
+                    game.Players[0].Score++;
+                }
+            });
+
+            void NextQuestion()
+            {
+                navigation.PushAsync(new GamePage());
+                return;
+            }
 
         }
+            
+
     }
 }

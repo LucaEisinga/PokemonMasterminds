@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
              x:Class="PokemonMasterminds.Pages.GamePage"
+             x:DataType="viewmodel:QuestionViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="GamePage">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
@@ -11,6 +14,17 @@
                                   Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IntToBoolConverter x:Key="TimerToBoolConverter"/>
+            <toolkit:MultiConverter x:Key="TimerInvertedBoolConverter">
+                <toolkit:IntToBoolConverter/>
+                <toolkit:InvertedBoolConverter/>
+            </toolkit:MultiConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <VerticalStackLayout
         VerticalOptions="Center"
         Margin="20"
@@ -82,6 +96,11 @@
                 BackgroundColor="DarkCyan"
                 WidthRequest="200"/>
         </Grid>
-        
+        <Label
+            x:Name="timerLabel"
+            Text=""
+            FontSize="20"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
     </VerticalStackLayout>
 </ContentPage>
