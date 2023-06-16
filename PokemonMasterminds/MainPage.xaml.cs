@@ -1,21 +1,21 @@
-﻿using PokemonMasterminds.Pages;
+﻿using PokemonMasterminds.Model;
+using PokemonMasterminds.Pages;
+using PokemonMasterminds.ViewModels;
+
 namespace PokemonMasterminds
 {
-
-    public partial class MainPage : ContentPage
+    partial class MainPage : ContentPage
     {
-        public MainPage()
+         MainPage()
         {
             InitializeComponent();
         }
 
-        
-
         async void OnButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new InputLobby(new ViewModels.InputLobbyViewModel()));
+            var game = new Game(); // Create a new Game object
+            var viewModel = new InputLobbyViewModel(Navigation, game); // Pass the Game object to the constructor
+            await Navigation.PushAsync(new InputLobby(viewModel));
         }
     }
-
-    
 }
