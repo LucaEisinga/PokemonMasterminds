@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
-    public class LobbyViewModel: INotifyPropertyChanged
+    class LobbyViewModel: INotifyPropertyChanged
     {
         public List<Player> PlayerList { get; set; }
 
@@ -36,14 +36,11 @@ namespace PokemonMasterminds.ViewModels
 
         public LobbyViewModel(Game game)
         {
-            if (game == null)
-                throw new ArgumentNullException(nameof(game));
-
             INavigation navigation = App.Current.MainPage.Navigation;
-
-            PlayerList = game.Players?.ToList() ?? new List<Player>();
-            Players = new ObservableCollection<Player>(PlayerList);
+            
+            PlayerList = game.Players.ToList();
         }
+
         public ObservableCollection<Player> Players { get; private set; }
 
     }
