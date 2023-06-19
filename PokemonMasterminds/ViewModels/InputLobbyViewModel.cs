@@ -13,13 +13,13 @@ namespace PokemonMasterminds.ViewModels
 {
     public class InputLobbyViewModel : INotifyPropertyChanged
     {
-        private LobbyWebSocketClient webSocketClient;
         private string lobbyCode;
         private string playerName;
         private Command createLobbyCommand;
         private Command joinLobbyCommand;
 
         private ObservableCollection<Player> players = new ObservableCollection<Player>();
+         private Dictionary<string, ObservableCollection<Player>> lobbyPlayers = new Dictionary<string, ObservableCollection<Player>>();
 
         public string LobbyCode
         {
@@ -41,6 +41,7 @@ namespace PokemonMasterminds.ViewModels
 
         private readonly INavigation navigation;
         private readonly Game game;
+        private readonly LobbyWebSocketClient webSocketClient;
 
         public InputLobbyViewModel(INavigation navigation)
         {
@@ -50,13 +51,15 @@ namespace PokemonMasterminds.ViewModels
         }
 
         public ICommand JoinLobbyCommand => joinLobbyCommand ?? (joinLobbyCommand = new Command<object>(JoinLobby));
-
         private async void JoinLobby(object parameter)
         {
-            if (string.IsNullOrEmpty(PlayerName))
+            if (string.IsNullOrEmpty(PlayerName) || string.IsNullOrEmpty(LobbyCode))
             {
                 return;
             }
+
+            var filteredPlayers = lobbyPlayers.ContainsKey(LobbyCode) ? lobbyPlayers[LobbyCode] : new ObservableCollection<Player>();
+            Players = new ObservableCollection<Player>(filteredPlayers);
 
             Players.Add(new Player(PlayerName));
             PlayerName = "";
@@ -68,33 +71,31 @@ namespace PokemonMasterminds.ViewModels
 
             game.Players = new ObservableCollection<Player>(Players.ToList());
 
-            await CreateLobby();
+            if (!lobbyPlayers.ContainsKey(LobbyCode))
+            {
+                lobbyPlayers[LobbyCode] = new ObservableCollection<Player>(Players.ToList());
+            }
+
+            await CreateLobby(LobbyCode);
             await navigation.PushAsync(new Lobby(game));
         }
 
-        public ICommand CreateLobbyCommand => createLobbyCommand ?? (createLobbyCommand = new Command(async () =>
+        public ICommand CreateLobbyCommand => createLobbyCommand ?? (createLobbyCommand = new Command<string>(async (code) =>
         {
-            await CreateLobby();
+            string lobbyCode = code;
 
-            game.Players = new ObservableCollection<Player>(Players.ToList());
-
-            await navigation.PushAsync(new Lobby(game));
+            await CreateLobby(lobbyCode);
         }));
 
-        private async Task CreateLobby()
+
+        private async Task CreateLobby(string lobbyCode)
         {
             try
             {
-                // Disconnect from the WebSocket server if already connected
-                if (webSocketClient.State == WebSocketState.Open)
-                {
-                    await webSocketClient.DisconnectAsync();
-                }
-
                 // Connect to the WebSocket server
                 await webSocketClient.ConnectAsync(new Uri("ws://localhost"), System.Threading.CancellationToken.None);
-                // Send a message to create the lobby
-                await webSocketClient.SendAsync("create_lobby", System.Threading.CancellationToken.None);
+                // Send a message to create the lobby with the lobby code
+                await webSocketClient.SendAsync($"create_lobby {lobbyCode}", System.Threading.CancellationToken.None);
 
                 // Send additional messages or perform other operations as needed
                 var message = "Your additional message";
