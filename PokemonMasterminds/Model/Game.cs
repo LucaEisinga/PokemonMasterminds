@@ -1,13 +1,14 @@
 using System.Collections.ObjectModel;
 
-namespace PokemonMasterminds.Model;
-
-public class Game
+namespace PokemonMasterminds.Model
 {
-	public ObservableCollection<Player> Players;
+    public class Game
+    {
+        public ObservableCollection<Player> Players { get; set; }
 
-	public Game()
-	{
-		Players = new ObservableCollection<Player>();
-	}
+        public Game()
+        {
+            Players = new ObservableCollection<Player>();
+        }
+    }
 }
