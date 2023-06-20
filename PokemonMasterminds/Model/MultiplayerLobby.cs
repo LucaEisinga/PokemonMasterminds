@@ -33,7 +33,7 @@ namespace MultiplayerLobby
 
             try
             {
-                await ws.ConnectAsync(new Uri("ws://localhost"), tokenSource.Token);
+                await ws.ConnectAsync(new Uri("ws://192.168.56.1:8000"), tokenSource.Token);
 
                 await Task.Run(async () =>
                 {

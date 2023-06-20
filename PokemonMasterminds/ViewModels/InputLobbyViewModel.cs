@@ -73,7 +73,12 @@ namespace PokemonMasterminds.ViewModels
 
             if (!lobbyPlayers.ContainsKey(LobbyCode))
             {
-                lobbyPlayers[LobbyCode] = new ObservableCollection<Player>(Players.ToList());
+                lobbyPlayers[LobbyCode] = new ObservableCollection<Player>();
+            }
+            lobbyPlayers[LobbyCode].Clear();
+            foreach (var player in Players)
+            {
+                lobbyPlayers[LobbyCode].Add(player);
             }
 
             await CreateLobby(LobbyCode);
@@ -93,7 +98,7 @@ namespace PokemonMasterminds.ViewModels
             try
             {
                 // Connect to the WebSocket server
-                await webSocketClient.ConnectAsync(new Uri("ws://localhost"), System.Threading.CancellationToken.None);
+                await webSocketClient.ConnectAsync(new Uri("ws://192.168.56.1:8000"), System.Threading.CancellationToken.None);
                 // Send a message to create the lobby with the lobby code
                 await webSocketClient.SendAsync($"create_lobby {lobbyCode}", System.Threading.CancellationToken.None);
 

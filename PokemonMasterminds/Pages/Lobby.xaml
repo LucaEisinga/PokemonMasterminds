@@ -26,8 +26,8 @@
                 FontSize="50"
                 FontFamily="Cascadia Code"
                 HorizontalOptions="Center" />
-            <Label
-                Text="Lobby number:"
+            <Label 
+                Text="Waiting for players"  
                 SemanticProperties.HeadingLevel="Level3"
                 SemanticProperties.Description="Masterminds text"
                 FontSize="25"
@@ -65,16 +65,15 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button
-                x:Name="RedirectBtn"
-                Text="Start game"
-                SemanticProperties.Hint="Goes to start of the game"
-                SemanticProperties.HeadingLevel="Level5"
-                Clicked="OnRedirectClicked"
-                HorizontalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
-                WidthRequest="200"/>
+            <Button x:Name="RedirectBtn"
+                    Text="Start game"
+                    SemanticProperties.Hint="Goes to start of the game"
+                    SemanticProperties.HeadingLevel="Level5"
+                    Command="{Binding StartGameCommand}"
+                    HorizontalOptions="Center"
+                    BorderColor="DarkCyan"
+                    BackgroundColor="DarkCyan"
+                    WidthRequest="200" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
