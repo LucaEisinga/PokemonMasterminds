@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<<<<<<< Updated upstream
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
-             x:Class="PokemonMasterminds.Pages.GamePage"
-             x:DataType="viewmodel:QuestionViewModel"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="GamePage">
-=======
+
 <ContentPage
     Title="GamePage"
     x:Class="PokemonMasterminds.Pages.GamePage"
+    x:DataType="viewmodel:QuestionViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:viewModels="clr-namespace:PokemonMasterminds.ViewModels"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
     <ContentPage.BindingContext>
-        <viewModels:QuestionViewModel />
+        <viewmodel:QuestionViewModel />
     </ContentPage.BindingContext>
->>>>>>> Stashed changes
+
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Color="LightBlue" Offset="0.1" />
             <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <toolkit:IntToBoolConverter x:Key="TimerToBoolConverter"/>
+            <toolkit:IntToBoolConverter x:Key="TimerToBoolConverter" />
             <toolkit:MultiConverter x:Key="TimerInvertedBoolConverter">
-                <toolkit:IntToBoolConverter/>
-                <toolkit:InvertedBoolConverter/>
+                <toolkit:IntToBoolConverter />
+                <toolkit:InvertedBoolConverter />
             </toolkit:MultiConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <VerticalStackLayout
         Margin="20"
         Spacing="10"
@@ -106,14 +102,13 @@
                 WidthRequest="200"
                 x:Name="AnswerFour" />
         </Grid>
-<<<<<<< Updated upstream
+
         <Label
-            x:Name="timerLabel"
-            Text=""
             FontSize="20"
             HorizontalOptions="Center"
-            VerticalOptions="Center"/>
-=======
->>>>>>> Stashed changes
+            Text=""
+            VerticalOptions="Center"
+            x:Name="timerLabel" />
+
     </VerticalStackLayout>
 </ContentPage>

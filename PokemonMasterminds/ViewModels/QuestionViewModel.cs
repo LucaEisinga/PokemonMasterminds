@@ -61,7 +61,6 @@ namespace PokemonMasterminds.ViewModels
             return true;
         }
 
-<<<<<<< Updated upstream
         private string MyPlayerName;
 
         public QuestionViewModel(Game game)
@@ -85,9 +84,7 @@ namespace PokemonMasterminds.ViewModels
             }
 
         }
-            
-
-=======
+        
         public QuestionViewModel() //did remove game param should just be one instance
         {
         Question question = new WhoIsThatPokemon();
@@ -127,6 +124,5 @@ namespace PokemonMasterminds.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         
->>>>>>> Stashed changes
     }
 }

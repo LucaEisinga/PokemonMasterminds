@@ -1,9 +1,8 @@
-<<<<<<< Updated upstream
+
 using System.Diagnostics;
-=======
+
 using PokemonMasterminds.ViewModels;
 
->>>>>>> Stashed changes
 namespace PokemonMasterminds.Pages;
 
 public partial class GamePage : ContentPage

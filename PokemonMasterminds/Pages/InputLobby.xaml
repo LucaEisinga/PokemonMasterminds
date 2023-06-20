@@ -1,77 +1,74 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:local="clr-namespace:PokemonMasterminds.ViewModels"
-             x:Class="PokemonMasterminds.Pages.InputLobby"
-             xmlns:model="clr-namespace:PokemonMasterminds.Model"
-             xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
-             x:DataType="viewmodel:InputLobbyViewModel"
-             Title="InputLobby">
+<ContentPage
+    Title="InputLobby"
+    x:Class="PokemonMasterminds.Pages.InputLobby"
+    x:DataType="viewmodel:InputLobbyViewModel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:local="clr-namespace:PokemonMasterminds.ViewModels"
+    xmlns:model="clr-namespace:PokemonMasterminds.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Color="LightBlue"
-                                  Offset="0.1"/>
-            <GradientStop Color="LightGreen"
-                                  Offset="1.0"/>
+            <GradientStop Color="LightBlue" Offset="0.1" />
+            <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
     <VerticalStackLayout
-        VerticalOptions="Center"
         Margin="20"
-        Spacing="10">
-        <Entry Text="{Binding LobbyCode}" Placeholder="Enter Lobby Code" />
+        Spacing="10"
+        VerticalOptions="Center">
+        <Entry Placeholder="Enter Lobby Code" Text="{Binding LobbyCode}" />
         <Label
-                Text="Pokemon masterminds"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Masterminds text"
-                FontSize="50"
-                FontFamily="Cascadia Code"
-                HorizontalOptions="Center" />
+            FontFamily="Cascadia Code"
+            FontSize="50"
+            HorizontalOptions="Center"
+            SemanticProperties.Description="Masterminds text"
+            SemanticProperties.HeadingLevel="Level2"
+            Text="Pokemon masterminds" />
         <Image
-                Source="pikachublack.png"
-                SemanticProperties.Description="Pokemon"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-        <Entry
-                Text="{Binding PlayerName}"
-                WidthRequest="200"/>
-        <Grid   Margin="5"
-                Padding="5"
-                HorizontalOptions="Center"
-                ColumnSpacing="5"
-                RowSpacing="15">
+            HeightRequest="200"
+            HorizontalOptions="Center"
+            SemanticProperties.Description="Pokemon"
+            Source="pikachublack.png" />
+        <Entry Text="{Binding PlayerName}" WidthRequest="200" />
+        <Grid
+            ColumnSpacing="5"
+            HorizontalOptions="Center"
+            Margin="5"
+            Padding="5"
+            RowSpacing="15">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="250" />
             </Grid.ColumnDefinitions>
 
             <Button
-                Grid.Row="1"
-                x:Name="CreateLobby"
-                Text="Create lobby"
-                SemanticProperties.Hint="Goes to new lobby"
-                SemanticProperties.HeadingLevel="Level5"
-                HorizontalOptions="Center"
-                BorderColor="DarkCyan"
                 BackgroundColor="DarkCyan"
+                BorderColor="DarkCyan"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level5"
+                SemanticProperties.Hint="Goes to new lobby"
+                Text="Create lobby"
                 WidthRequest="200"
-               />
+                x:Name="CreateLobby" />
             <Button
+                BackgroundColor="DarkCyan"
+                BorderColor="DarkCyan"
+                Command="{Binding}"
                 Grid.Column="1"
                 Grid.Row="1"
-                x:Name="JoinLobby"
-                Text="Join lobby"
-                SemanticProperties.Hint="Goes to existing lobby"
-                SemanticProperties.HeadingLevel="Level5"
                 HorizontalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
+                SemanticProperties.HeadingLevel="Level5"
+                SemanticProperties.Hint="Goes to existing lobby"
+                Text="Join lobby"
                 WidthRequest="200"
-                Command="{Binding JoinLobby}"/>
+                x:Name="JoinLobby" />
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
