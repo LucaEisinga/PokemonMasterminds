@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 using System.Diagnostics;
+=======
+using PokemonMasterminds.ViewModels;
+
+>>>>>>> Stashed changes
 namespace PokemonMasterminds.Pages;
 
 public partial class GamePage : ContentPage
@@ -11,6 +16,7 @@ public partial class GamePage : ContentPage
 
 	public GamePage()
 	{
+        BindingContext = new QuestionViewModel();
 		InitializeComponent();
 
         startTime = DateTime.Now;

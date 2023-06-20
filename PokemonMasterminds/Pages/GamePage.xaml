@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<<<<<<< Updated upstream
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
@@ -6,12 +7,21 @@
              x:DataType="viewmodel:QuestionViewModel"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="GamePage">
+=======
+<ContentPage
+    Title="GamePage"
+    x:Class="PokemonMasterminds.Pages.GamePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:viewModels="clr-namespace:PokemonMasterminds.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.BindingContext>
+        <viewModels:QuestionViewModel />
+    </ContentPage.BindingContext>
+>>>>>>> Stashed changes
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Color="LightBlue"
-                                  Offset="0.1"/>
-            <GradientStop Color="LightGreen"
-                                  Offset="1.0"/>
+            <GradientStop Color="LightBlue" Offset="0.1" />
+            <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
     
@@ -26,81 +36,84 @@
     </ContentPage.Resources>
     
     <VerticalStackLayout
-        VerticalOptions="Center"
         Margin="20"
-        Spacing="10">
+        Spacing="10"
+        VerticalOptions="Center">
         <Label
-                Text="Who is this pokemon!"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Who is this pokemon text"
-                FontSize="50"
-                FontFamily="Cascadia Code"
-                HorizontalOptions="Center"
-                HeightRequest="100"/>
+            FontFamily="Cascadia Code"
+            FontSize="50"
+            HeightRequest="100"
+            HorizontalOptions="Center"
+            SemanticProperties.Description="Who is this pokemon text"
+            SemanticProperties.HeadingLevel="Level2"
+            Text="Who is this pokemon!" />
         <Image
-                Source="questionmarkpokemon.png"
-                SemanticProperties.Description="Pokemon"
-                HeightRequest="250"
-                HorizontalOptions="Center"/>
+            HeightRequest="250"
+            HorizontalOptions="Center"
+            SemanticProperties.Description="Pokemon"
+            Source="questionmarkpokemon.png" />
         <Grid HorizontalOptions="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="250" />
             </Grid.ColumnDefinitions>
             <Button
-                x:Name="AnswerOne"
-                Text="Snivy"
-                SemanticProperties.Hint="Submits answer one"
+                BackgroundColor="DarkCyan"
+                BorderColor="DarkCyan"
                 Clicked="OnAnswerOneClicked"
                 HorizontalOptions="Center"
+                SemanticProperties.Hint="Submits answer one"
+                Text="{Binding AnswerOneText}"
                 VerticalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
-                WidthRequest="200"/>
+                WidthRequest="200"
+                x:Name="AnswerOne" />
             <Button
-                Grid.Column="1"
-                x:Name="AnswerTwo"
-                Text="Machamp"
-                SemanticProperties.Hint="Submits answer two"
+                BackgroundColor="DarkCyan"
+                BorderColor="DarkCyan"
                 Clicked="OnAnswerTwoClicked"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
-                WidthRequest="200"/>
-            <Button
-                Grid.Row="1"
-                x:Name="AnswerThree"
-                Text="Pikachu"
-                SemanticProperties.Hint="Submits answer three"
-                Clicked="OnAnswerThreeClicked"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
-                WidthRequest="200"/>
-            <Button
-                Grid.Row="1"
                 Grid.Column="1"
-                x:Name="AnswerFour"
-                Text="Snubbull"
-                SemanticProperties.Hint="Submits answer four"
-                Clicked="OnAnswerFourClicked"
                 HorizontalOptions="Center"
+                SemanticProperties.Hint="Submits answer two"
+                Text="{Binding AnswerTwoText}"
                 VerticalOptions="Center"
-                BorderColor="DarkCyan"
+                WidthRequest="200"
+                x:Name="AnswerTwo" />
+            <Button
                 BackgroundColor="DarkCyan"
-                WidthRequest="200"/>
+                BorderColor="DarkCyan"
+                Clicked="OnAnswerThreeClicked"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                SemanticProperties.Hint="Submits answer three"
+                Text="{Binding AnswerThreeText}"
+                VerticalOptions="Center"
+                WidthRequest="200"
+                x:Name="AnswerThree" />
+            <Button
+                BackgroundColor="DarkCyan"
+                BorderColor="DarkCyan"
+                Clicked="OnAnswerFourClicked"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                SemanticProperties.Hint="Submits answer four"
+                Text="{Binding AnswerFourText}"
+                VerticalOptions="Center"
+                WidthRequest="200"
+                x:Name="AnswerFour" />
         </Grid>
+<<<<<<< Updated upstream
         <Label
             x:Name="timerLabel"
             Text=""
             FontSize="20"
             HorizontalOptions="Center"
             VerticalOptions="Center"/>
+=======
+>>>>>>> Stashed changes
     </VerticalStackLayout>
 </ContentPage>
