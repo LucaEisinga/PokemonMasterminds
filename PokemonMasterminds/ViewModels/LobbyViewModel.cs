@@ -11,6 +11,7 @@ namespace PokemonMasterminds.ViewModels
 {
     class LobbyViewModel: INotifyPropertyChanged
     {
+        public InputLobbyViewModel InputViewModel { get; }
         public List<Player> PlayerList { get; set; }
 
         //StartGameCommand : ICommand
@@ -37,9 +38,32 @@ namespace PokemonMasterminds.ViewModels
         public LobbyViewModel(Game game)
         {
             INavigation navigation = App.Current.MainPage.Navigation;
-            
+            StartGameCommand = new Command(StartGame);
             PlayerList = game.Players.ToList();
         }
+
+       
+        private void StartGame()
+        {
+            // Start the game for all players in the same lobby
+
+            // Here, you can access the lobby code or any other identifier for the lobby
+            // and use it to determine the players in the same lobby
+
+            // Example: Starting the game for all players in the PlayerList
+            foreach (Player player in PlayerList)
+            {
+                // Start the game for the player
+                StartPlayerGame(player);
+            }
+        }
+
+        private void StartPlayerGame(Player player)
+        {
+            // Implement the logic to start the game for a specific player
+        }
+
+
 
         public ObservableCollection<Player> Players { get; private set; }
 

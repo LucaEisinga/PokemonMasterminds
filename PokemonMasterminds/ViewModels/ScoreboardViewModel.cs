@@ -29,5 +29,73 @@ namespace PokemonMasterminds.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+        /*
+             * 
+        public class ScoreCalculator
+        {
+            private const int BasePoints = 10;
+            private const int StreakBonus = 5;
+            private const double MaxResponseTime = 10.0;
+
+            public int CalculateScore(int streakCount, double responseTime)
+            {
+                int streakPoints = streakCount * StreakBonus;
+                double timeFactor = (MaxResponseTime - responseTime) / MaxResponseTime;
+                int bonusPoints = (int)(BasePoints * timeFactor);
+                int totalScore = BasePoints + streakPoints + bonusPoints;
+                return totalScore;
+            }
+            public class GameViewModel : INotifyPropertyChanged
+{
+    private ScoreCalculator scoreCalculator;
+    private int streakCount;
+    private double responseTime;
+    private int score;
+
+    public int StreakCount
+    {
+        get { return streakCount; }
+        set
+        {
+            streakCount = value;
+            UpdateScore();
+            OnPropertyChanged();
+        }
+    }
+
+    public double ResponseTime
+    {
+        get { return responseTime; }
+        set
+        {
+            responseTime = value;
+            UpdateScore();
+            OnPropertyChanged();
+        }
+    }
+
+    public int Score
+    {
+        get { return score; }
+        set
+        {
+            score = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public GameViewModel()
+    {
+        scoreCalculator = new ScoreCalculator();
+    }
+
+    private void UpdateScore()
+    {
+        Score = scoreCalculator.CalculateScore(streakCount, responseTime);
+    }
+
+}
+            */
     }
 }
+
