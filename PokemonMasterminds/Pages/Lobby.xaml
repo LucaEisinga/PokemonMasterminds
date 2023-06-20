@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PokemonMasterminds.Pages.Lobby"
-             xmlns:model="clr-namespace:PokemonMasterminds.Model"
-             xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
-             x:DataType="viewmodel:LobbyViewModel"
-             Title="Lobby">
+<ContentPage
+    Title="Lobby"
+    x:Class="PokemonMasterminds.Pages.Lobby"
+    x:DataType="viewmodel:LobbyViewModel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:model="clr-namespace:PokemonMasterminds.Model"
+    xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-                <GradientStop Color="LightBlue"
-                                  Offset="0.1"/>
-                <GradientStop Color="LightGreen"
-                                  Offset="1.0"/>
-            </LinearGradientBrush>
+            <GradientStop Color="LightBlue" Offset="0.1" />
+            <GradientStop Color="LightGreen" Offset="1.0" />
+        </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
         <VerticalStackLayout
-        VerticalOptions="Center"
-        Margin="20"
-        Spacing="10">
+            Margin="20"
+            Spacing="10"
+            VerticalOptions="Center">
             <Label
-                Text="Pokemon masterminds"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Masterminds text"
+                FontFamily="Cascadia Code"
                 FontSize="50"
-                FontFamily="Cascadia Code"
-                HorizontalOptions="Center" />
-            <Label
-                Text="Lobby number:"
-                SemanticProperties.HeadingLevel="Level3"
+                HorizontalOptions="Center"
                 SemanticProperties.Description="Masterminds text"
+                SemanticProperties.HeadingLevel="Level2"
+                Text="Pokemon masterminds" />
+            <Label
+                FontFamily="Cascadia Code"
                 FontSize="25"
-                FontFamily="Cascadia Code"
+                HeightRequest="50"
                 HorizontalOptions="Center"
-                HeightRequest="50"/>
-            <Label
-                Text="Players"
-                SemanticProperties.HeadingLevel="Level3"
                 SemanticProperties.Description="Masterminds text"
-                FontSize="30"
+                SemanticProperties.HeadingLevel="Level3"
+                Text="Lobby number:" />
+            <Label
                 FontFamily="Cascadia Code"
+                FontSize="30"
+                HeightRequest="60"
                 HorizontalOptions="Center"
-                HeightRequest="60"/>
+                SemanticProperties.Description="Masterminds text"
+                SemanticProperties.HeadingLevel="Level3"
+                Text="Players" />
 
-            <CollectionView ItemsSource="{Binding PlayerList}"
-                        HorizontalOptions="Center">
-                <CollectionView.ItemTemplate
-                    x:DataType="model:Player">
-                    <DataTemplate
-                        x:DataType="model:Player">
+            <CollectionView HorizontalOptions="Center" ItemsSource="{Binding PlayerList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Player">
                         <HorizontalStackLayout>
-                            <Frame BorderColor="DarkCyan"
+                            <Frame
                                 BackgroundColor="Transparent"
+                                BorderColor="DarkCyan"
                                 CornerRadius="0"
                                 Padding="8"
                                 WidthRequest="200">
                                 <Label
-                                Text="{Binding Name}"
-                                FontSize="20"
-                                FontFamily="Cascadia Code"
-                                Margin="5"/>
+                                    FontFamily="Cascadia Code"
+                                    FontSize="20"
+                                    Margin="5"
+                                    Text="{Binding Name}" />
                             </Frame>
                         </HorizontalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <Button
-                x:Name="RedirectBtn"
-                Text="Start game"
-                SemanticProperties.Hint="Goes to start of the game"
-                SemanticProperties.HeadingLevel="Level5"
+                BackgroundColor="DarkCyan"
+                BorderColor="DarkCyan"
                 Clicked="OnRedirectClicked"
                 HorizontalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
-                WidthRequest="200"/>
+                SemanticProperties.HeadingLevel="Level5"
+                SemanticProperties.Hint="Goes to start of the game"
+                Text="Start game"
+                WidthRequest="200" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
