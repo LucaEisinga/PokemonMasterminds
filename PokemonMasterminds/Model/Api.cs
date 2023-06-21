@@ -1,18 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace PokemonMasterminds.Model
 {
-    public class Api
+    public class Api : IDisposable
     {
         private const string BaseUrl = "https://pokeapi.co/api/v2/";
-        private static readonly HttpClient Client = new();
-        private HttpResponseMessage responex;
-
-        //private readonly Dictionary<int, Pokemon> _cachedPokemon = new();
+        private static readonly HttpClient Client = new HttpClient();
 
         private static Api _instance;
 
@@ -20,32 +13,47 @@ namespace PokemonMasterminds.Model
 
         public async Task<Pokemon> FetchPokemonData(int id)
         {
-            var apiUrl = $"{BaseUrl}pokemon/{id}";
+            string apiUrl = $"{BaseUrl}pokemon/{id}";
 
             try
             {
                 HttpResponseMessage response = await Client.GetAsync(apiUrl);
 
-                this.responex = response;
-                
-                if (response.IsSuccessStatusCode)
-                {
-                    using var responseStream = await response.Content.ReadAsStreamAsync();
-                    var pokemon = await JsonSerializer.DeserializeAsync<Pokemon>(responseStream);
+                Console.WriteLine($"Response Status Code: {response.StatusCode}");
 
-                    return pokemon;
-                }
-                else
-                {
-                    Console.WriteLine($"Error: {response.StatusCode}");
-                }
+                // Add a delay of 0,1 second before fetching the response content
+                await Task.Delay(100);
+
+                string json = await Client.GetStringAsync(apiUrl);
+
+                Console.WriteLine($"Response Content: {json}");
+
+                Console.WriteLine(json); // Print the received JSON to verify its structure
+                // Deserialize JSON into Pokemon object
+                Pokemon pokemon = JsonSerializer.Deserialize<Pokemon>(json);
+
+                return pokemon;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"HTTP Request Error: {ex.Message}");
+                throw;
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"JSON Deserialization Error: {ex.Message}");
+                throw;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+                throw;
             }
+        }
 
-            return null;
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

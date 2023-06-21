@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using PokemonMasterminds.Model;
 using PokemonMasterminds.Model.Questions;
-using PokemonMasterminds.Pages;
 
 namespace PokemonMasterminds.ViewModels
 {
@@ -57,58 +56,55 @@ namespace PokemonMasterminds.ViewModels
 
         private string MyPlayerName;
 
-        public QuestionViewModel(Game game)
+ // public QuestionViewModel(Game game)
+ // {
+ //     INavigation navigation = App.Current.MainPage.Navigation;
+
+ //     MyPlayerName = game.Players[0].Name;
+
+ //     OnAnswerSelectedCommand = new Command((isCorrect) =>
+ //     {
+ //         if ((bool)isCorrect)
+ //         {
+ //             game.Players[0].Score++;
+ //         }
+ //     });
+
+ //       void NextQuestion()
+ //      {
+ //           navigation.PushAsync(new GamePage());
+ //           return;
+ //       }
+
+ // }
+        
+        public QuestionViewModel()
         {
-            INavigation navigation = App.Current.MainPage.Navigation;
+            LoadQuestionAsync(); //.Wait();
+        }
 
-            MyPlayerName = game.Players[0].Name;
+        private async Task LoadQuestionAsync()
+        {
+            Question question = new WhoIsThatPokemon();
+            await question.CreateQuestion();
 
-            OnAnswerSelectedCommand = new Command((isCorrect) =>
+            if (question.Answers.Count >= 4)
             {
-                if ((bool)isCorrect)
-                {
-                    game.Players[0].Score++;
-                }
-            });
-
-            void NextQuestion()
-            {
-                navigation.PushAsync(new GamePage());
-                return;
+                AnswerOneText = question.Answers[0].Value;
+                AnswerTwoText = question.Answers[1].Value;
+                AnswerThreeText = question.Answers[2].Value;
+                AnswerFourText = question.Answers[3].Value;
             }
+            else
+            {
+                // Handle the case when there are not enough answers available
+                // You can assign default values or display an error message
 
-        }
-        
-        public QuestionViewModel() //did remove game param should just be one instance
-        {
-        Question question = new WhoIsThatPokemon();
-        question.CreateQuestion();
-        //Question question = new DumyQuestion(); 
-        
-        if (question.Answers.Count >= 4)
-        {
-            AnswerOneText = question.Answers[0].Value;
-            AnswerTwoText = question.Answers[1].Value;
-            AnswerThreeText = question.Answers[2].Value;
-            AnswerFourText = question.Answers[3].Value;
-        }
-        else
-        {
-            // Handle the case when there are not enough answers available
-            // You can assign default values or display an error message
-          
-            AnswerOneText = "Default answer 1";
-            AnswerTwoText = "Default answer 2";
-            AnswerThreeText = "Default answer 3";
-            AnswerFourText = "Default answer 4";
-        }
-        
-        
-        /*AnswerOneText = "Hans";
-        AnswerTwoText = "Hans";
-        AnswerThreeText = "Hans";
-        AnswerFourText = "Hans"; */
-            
+                AnswerOneText = "Default answer 1";
+                AnswerTwoText = "Default answer 2";
+                AnswerThreeText = "Default answer 3";
+                AnswerFourText = "Default answer 4";
+            }
         }
         
         public event PropertyChangedEventHandler PropertyChanged;

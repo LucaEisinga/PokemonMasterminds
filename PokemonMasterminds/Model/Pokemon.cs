@@ -8,9 +8,9 @@ public class Pokemon
     public string name { get; set; }
     //private List<Type> types;     could perhaps be implemented for generating other questions
 
-    public Pokemon(int id, string name)
-    {
-        this.id = id;
-        this.name = name;
-    }
+  //  public Pokemon(int id, string name)
+  //  {
+  //      this.id = id;
+  //      this.name = name;
+  //  }
 }
