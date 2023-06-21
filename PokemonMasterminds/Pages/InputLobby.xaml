@@ -20,7 +20,7 @@
         VerticalOptions="Center"
         Margin="20"
         Spacing="10">
-        <Entry x:Name="LobbyCodeTextBox" Text="{Binding LobbyCode}" Placeholder="Enter Lobby Code" />
+        
         <Label
                 Text="Pokemon masterminds"
                 SemanticProperties.HeadingLevel="Level2"
@@ -33,12 +33,18 @@
                 SemanticProperties.Description="Pokemon"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
-        <Entry Text="{Binding LobbyCode}"
-               Placeholder="Enter Lobby Code"
-               WidthRequest="200"/>
-        <Entry
-                Text="{Binding PlayerName}"
+        <Entry  x:Name="LobbyCodeTextBox"
+                Text="{Binding LobbyCode}"
+                Placeholder="Enter Lobby Code"
                 WidthRequest="200"/>
+        <Entry  Text="{Binding PlayerName}"
+                WidthRequest="200"/>
+        <Label  x:Name="LobbyFull"
+                Text="{Binding FullLobbyText}"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="PaleVioletRed"/>
         <Grid   Margin="5"
                 Padding="5"
                 HorizontalOptions="Center"

@@ -17,9 +17,10 @@ namespace PokemonMasterminds.ViewModels
         private string playerName;
         private Command createLobbyCommand;
         private Command joinLobbyCommand;
+        private string fullLobbyText;
 
         private ObservableCollection<Player> players = new ObservableCollection<Player>();
-         private Dictionary<string, ObservableCollection<Player>> lobbyPlayers = new Dictionary<string, ObservableCollection<Player>>();
+        private Dictionary<string, ObservableCollection<Player>> lobbyPlayers = new Dictionary<string, ObservableCollection<Player>>();
 
         public string LobbyCode
         {
@@ -37,6 +38,12 @@ namespace PokemonMasterminds.ViewModels
         {
             get { return players; }
             set { SetProperty(ref players, value); }
+        }
+
+        public string FullLobbyText
+        {
+            get { return fullLobbyText; }
+            set { SetProperty(ref fullLobbyText, value); }
         }
 
         private readonly INavigation navigation;
@@ -61,7 +68,16 @@ namespace PokemonMasterminds.ViewModels
             var filteredPlayers = lobbyPlayers.ContainsKey(LobbyCode) ? lobbyPlayers[LobbyCode] : new ObservableCollection<Player>();
             Players = new ObservableCollection<Player>(filteredPlayers);
 
-            Players.Add(new Player(PlayerName));
+            if (filteredPlayers.Count > 3)
+            {
+                FullLobbyText = "Deze lobby zit vol";
+                return;
+            }
+            else
+            {
+                Players.Add(new Player(PlayerName));
+            }
+            
             PlayerName = "";
 
             if (Players.Count == 0)
