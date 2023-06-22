@@ -65,7 +65,7 @@ namespace PokemonMasterminds.ViewModels
 
         private string MyPlayerName;
 
-        public QuestionViewModel(Game game)
+        /*public QuestionViewModel(Game game)
         {
             INavigation navigation = App.Current.MainPage.Navigation;
 
@@ -84,7 +84,7 @@ namespace PokemonMasterminds.ViewModels
                 navigation.PushAsync(new GamePage());
                 return;
             }
-        }
+        }*/
 
  // public QuestionViewModel(Game game)
  // {

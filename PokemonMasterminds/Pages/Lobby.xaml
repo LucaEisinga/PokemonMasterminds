@@ -31,14 +31,6 @@
                 HorizontalOptions="Center" />
             <Label
                 FontFamily="Cascadia Code"
-                FontSize="25"
-                HeightRequest="50"
-                HorizontalOptions="Center"
-                SemanticProperties.Description="Masterminds text"
-                SemanticProperties.HeadingLevel="Level3"
-                Text="Lobby number:" />
-            <Label
-                FontFamily="Cascadia Code"
                 FontSize="20"
                 HeightRequest="60"
                 HorizontalOptions="Center"

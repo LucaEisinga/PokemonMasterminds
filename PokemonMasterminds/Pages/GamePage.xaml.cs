@@ -7,7 +7,7 @@ public partial class GamePage : ContentPage
 {
     public IDispatcherTimer timer;
     private DateTime startTime;
-    private readonly int duration = 15;
+    private readonly int duration = 16;
     private double progress;
     private CancellationTokenSource cancellationTokenSource = new();
 
@@ -23,7 +23,7 @@ public partial class GamePage : ContentPage
 
     private async void UpdateArc()
     {
-        while(!cancellationTokenSource.IsCancellationRequested)
+        while (!cancellationTokenSource.IsCancellationRequested)
         {
             TimeSpan elapsedTime = DateTime.Now - startTime;
             int secondsRemaining = (int)(duration - elapsedTime.TotalSeconds);
@@ -32,11 +32,16 @@ public partial class GamePage : ContentPage
 
             progress = Math.Ceiling(elapsedTime.TotalSeconds);
             progress %= duration;
-            
-            if (secondsRemaining == 0)
+
+            for (int i = 0; i < 10; i++)
             {
-                cancellationTokenSource.Cancel();
-                return;
+                if (secondsRemaining == 0)
+                {
+                    await Navigation.PushAsync(new Pages.GamePage());
+                    await Task.Delay(800);
+                    cancellationTokenSource.Cancel();
+                    return;
+                }
             }
 
             await Task.Delay(500);
@@ -51,10 +56,12 @@ public partial class GamePage : ContentPage
         timerLabel.Text = duration.ToString();
     }
 
+
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard());
-        cancellationTokenSource.Cancel();
+
+        await Navigation.PushAsync(new Pages.GamePage());
+
     }
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
