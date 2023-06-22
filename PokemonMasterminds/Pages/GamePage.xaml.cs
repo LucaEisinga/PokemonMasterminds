@@ -15,7 +15,7 @@ public partial class GamePage : ContentPage
    public GamePage()
    {
         BindingContext = new QuestionViewModel();
-      InitializeComponent();
+        InitializeComponent();
 
         startTime = DateTime.Now;
         cancellationTokenSource = new CancellationTokenSource();

@@ -1,3 +1,5 @@
+using PokemonMasterminds.Model.ApiModels;
+
 namespace PokemonMasterminds.Model.Questions
 {
     public class WhoIsThatPokemon : Question

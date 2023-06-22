@@ -1,4 +1,4 @@
-namespace PokemonMasterminds.Model.Questions;
+/*namespace PokemonMasterminds.Model.Questions;
 
 public class DumyQuestion : Question
 {
@@ -17,3 +17,4 @@ public class DumyQuestion : Question
         return null;
     }
 }
+*/
