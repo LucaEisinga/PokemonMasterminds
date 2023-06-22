@@ -15,6 +15,7 @@ namespace PokemonMasterminds.ViewModels
         private string _answerTwoText;
         private string _answerThreeText;
         private string _answerFourText;
+        private string _pokeImage;
         
         public string AnswerOneText
         {
@@ -40,6 +41,11 @@ namespace PokemonMasterminds.ViewModels
             set { _answerFourText = value; OnPropertyChanged(); }
         }
         
+        public string PokeImage
+        {
+            get { return _pokeImage; }
+            set { _pokeImage = value; OnPropertyChanged(); }
+        }
         
         
         //GetQuestionCommand : ICommand
@@ -48,7 +54,7 @@ namespace PokemonMasterminds.ViewModels
         //OnAnswerSelectedCommand : ICommand
 
         public ICommand OnAnswerSelectedCommand { private set; get; }
-       
+
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
@@ -114,10 +120,20 @@ namespace PokemonMasterminds.ViewModels
 
             if (question.Answers.Count >= 4)
             {
-                AnswerOneText = question.Answers[0].Value;
-                AnswerTwoText = question.Answers[1].Value;
-                AnswerThreeText = question.Answers[2].Value;
-                AnswerFourText = question.Answers[3].Value;
+                AnswerOneText = question.Answers[0].pokemon.name;
+                AnswerTwoText = question.Answers[1].pokemon.name;
+                AnswerThreeText = question.Answers[2].pokemon.name;
+                AnswerFourText = question.Answers[3].pokemon.name;
+
+                foreach (Answer a in question.Answers)
+                {
+                    if (a.CorrectAnswer)
+                    {
+                        PokeImage = a.pokemon.sprites.front_default;
+                        break;
+                    }
+                }
+                
             }
             else
             {
