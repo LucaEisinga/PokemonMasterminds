@@ -49,7 +49,7 @@ namespace PokemonMasterminds.Model
             return pokemon;
         }
 
-        public async Task SavePokemonsAsync(PokemonResult pokemon, bool isNewItem = false)
+        /*public async Task SavePokemonsAsync(PokemonResult pokemon, bool isNewItem = false)
         {
             string apiUrl = $"{BaseUrl}pokemon/1";
             try
@@ -70,7 +70,7 @@ namespace PokemonMasterminds.Model
             {
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
-        }
+        }*/
 
         public void Dispose()
         {

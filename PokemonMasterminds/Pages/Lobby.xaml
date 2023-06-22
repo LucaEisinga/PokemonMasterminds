@@ -19,17 +19,16 @@
             Spacing="10"
             VerticalOptions="Center">
             <Label
+                SemanticProperties.Description="Masterminds text"
+                HorizontalOptions="Center"
                 FontFamily="Cascadia Code"
                 FontSize="50"
-                FontFamily="Cascadia Code"
-                HorizontalOptions="Center" />
-            <Label 
-                Text="Waiting for players"  
-                SemanticProperties.HeadingLevel="Level3"
-                SemanticProperties.Description="Masterminds text"
-                SemanticProperties.HeadingLevel="Level2"
-                HorizontalOptions="Center"
                 Text="Pokemon masterminds" />
+            <Label
+                Text="Waiting for players"
+                FontFamily="Cascadia Code"
+                FontSize="30"
+                HorizontalOptions="Center" />
             <Label
                 FontFamily="Cascadia Code"
                 FontSize="25"
@@ -40,7 +39,7 @@
                 Text="Lobby number:" />
             <Label
                 FontFamily="Cascadia Code"
-                FontSize="30"
+                FontSize="20"
                 HeightRequest="60"
                 HorizontalOptions="Center"
                 SemanticProperties.Description="Masterminds text"

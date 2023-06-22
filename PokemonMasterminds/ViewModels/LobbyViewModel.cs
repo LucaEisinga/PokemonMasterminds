@@ -1,4 +1,6 @@
-﻿using PokemonMasterminds.Model;
+﻿using Microsoft.Maui.Controls;
+using PokemonMasterminds.Model;
+using PokemonMasterminds.Pages;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -43,8 +45,9 @@ namespace PokemonMasterminds.ViewModels
         }
 
        
-        private void StartGame()
+        private async void StartGame()
         {
+            INavigation navigation = App.Current.MainPage.Navigation;
             // Start the game for all players in the same lobby
 
             // Here, you can access the lobby code or any other identifier for the lobby
@@ -56,6 +59,8 @@ namespace PokemonMasterminds.ViewModels
                 // Start the game for the player
                 StartPlayerGame(player);
             }
+
+            await navigation.PushAsync(new GamePage());
         }
 
         private void StartPlayerGame(Player player)

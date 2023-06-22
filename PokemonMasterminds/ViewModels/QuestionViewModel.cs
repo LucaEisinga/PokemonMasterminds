@@ -78,6 +78,7 @@ namespace PokemonMasterminds.ViewModels
                 navigation.PushAsync(new GamePage());
                 return;
             }
+        }
 
  // public QuestionViewModel(Game game)
  // {
