@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using PokemonMasterminds.ViewModels;
+
 namespace PokemonMasterminds.Pages;
 
 public partial class GamePage : ContentPage
@@ -9,9 +11,10 @@ public partial class GamePage : ContentPage
     private double progress;
     private CancellationTokenSource cancellationTokenSource = new();
 
-	public GamePage()
-	{
-		InitializeComponent();
+   public GamePage()
+   {
+        BindingContext = new QuestionViewModel();
+        InitializeComponent();
 
         startTime = DateTime.Now;
         cancellationTokenSource = new CancellationTokenSource();
