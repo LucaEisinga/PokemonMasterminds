@@ -43,11 +43,30 @@
             SemanticProperties.Description="Who is this pokemon text"
             SemanticProperties.HeadingLevel="Level2"
             Text="Who is this pokemon!" />
-        <Image
-            HeightRequest="250"
-            HorizontalOptions="Center"
-            SemanticProperties.Description="Pokemon"
-            Source="questionmarkpokemon.png" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Image
+                Grid.Row="0"
+                HeightRequest="250"
+                HorizontalOptions="Center"
+                SemanticProperties.Description="PokemonBackground"
+                Source="questionmarkpokemon.png" />
+
+            <Image
+                Grid.Row="0"
+                HeightRequest="200"
+                HorizontalOptions="Start"
+                Margin="0,0,0,0"
+                SemanticProperties.Description="Pokemon"
+                Source="{Binding PokeImage}" />
+
+            <!--  Rest of the XAML code  -->
+
+        </Grid>
         <Grid HorizontalOptions="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />

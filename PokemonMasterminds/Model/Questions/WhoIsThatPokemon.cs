@@ -29,7 +29,7 @@ namespace PokemonMasterminds.Model.Questions
 
                     fetchedPokemon.Add(pokemon);
                     
-                    Answers.Add(new Answer(pokemon.name, i == 0));
+                    Answers.Add(new Answer(pokemon, i == 0));
                 }
             }
         }

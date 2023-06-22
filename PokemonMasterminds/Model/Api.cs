@@ -17,6 +17,7 @@ namespace PokemonMasterminds.Model
         public static Api Instance => _instance ??= new Api();
         public Api()
         {
+            
             Client = new HttpClient();
             SerializerOptions = new JsonSerializerOptions
             {
@@ -47,7 +48,7 @@ namespace PokemonMasterminds.Model
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
             return pokemon;
-        }
+        } 
 
         public async Task SavePokemonsAsync(PokemonResult pokemon, bool isNewItem = false)
         {

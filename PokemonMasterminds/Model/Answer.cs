@@ -2,12 +2,12 @@ namespace PokemonMasterminds.Model;
 
 public class Answer
 {
-	public string Value { get; private set; }
+	public Pokemon pokemon { get; private set; }
 	public bool CorrectAnswer { get; private set; }
 
-	public Answer(string Answer, bool CorrectAnswer)
+	public Answer(Pokemon pokemon, bool CorrectAnswer)
 	{
-		Value = Answer;
+		this.pokemon = pokemon;
 		this.CorrectAnswer = CorrectAnswer;
 	}
 }
