@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PokemonMasterminds.Pages.Scoreboard"
-             Title="Scoreboard">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:PokemonMasterminds.Model"
+    xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
+    x:DataType="viewmodel:ScoreboardViewModel"
+    x:Class="PokemonMasterminds.Pages.Scoreboard"
+    Title="Scoreboard">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Color="LightBlue"
@@ -15,6 +19,26 @@
         VerticalOptions="Center"
         Margin="20"
         Spacing="10">
+        <CollectionView HorizontalOptions="Center" ItemsSource="{Binding PlayerList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Player">
+                    <HorizontalStackLayout>
+                        <Frame
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkCyan"
+                                CornerRadius="0"
+                                Padding="8"
+                                WidthRequest="200">
+                            <Label
+                                    FontFamily="Cascadia Code"
+                                    FontSize="20"
+                                    Margin="5"
+                                    Text="{Binding Name}" />
+                        </Frame>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <Label
                 Text="Pokemon masterminds"
                 SemanticProperties.HeadingLevel="Level2"

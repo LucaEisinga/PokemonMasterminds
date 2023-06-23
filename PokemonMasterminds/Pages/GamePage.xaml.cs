@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using PokemonMasterminds.ViewModels;
+using PokemonMasterminds.Model;
 
 namespace PokemonMasterminds.Pages;
 
@@ -11,9 +12,9 @@ public partial class GamePage : ContentPage
     private double progress;
     private CancellationTokenSource cancellationTokenSource = new();
 
-   public GamePage()
+   public GamePage(Game game)
    {
-        BindingContext = new QuestionViewModel();
+        BindingContext = new QuestionViewModel(game);
         InitializeComponent();
 
         startTime = DateTime.Now;
@@ -37,12 +38,14 @@ public partial class GamePage : ContentPage
             {
                 if (secondsRemaining == 0)
                 {
-                    await Navigation.PushAsync(new Pages.GamePage());
+                    Game game = new Game();
+                    await Navigation.PushAsync(new Pages.GamePage(game));
                     await Task.Delay(800);
                     cancellationTokenSource.Cancel();
                     return;
                 }
             }
+            
 
             await Task.Delay(500);
         }
@@ -54,14 +57,6 @@ public partial class GamePage : ContentPage
     {
         progress = 0;
         timerLabel.Text = duration.ToString();
-    }
-
-
-    async void OnAnswerOneClicked(object sender, EventArgs e)
-    {
-
-        await Navigation.PushAsync(new Pages.GamePage());
-
     }
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)

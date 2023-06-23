@@ -46,14 +46,22 @@ namespace PokemonMasterminds.ViewModels
             get { return _pokeImage; }
             set { _pokeImage = value; OnPropertyChanged(); }
         }
-        
-        
+
         //GetQuestionCommand : ICommand
         public ICommand GetQuestionCommand { private set; get; }
 
         //OnAnswerSelectedCommand : ICommand
 
         public ICommand OnAnswerSelectedCommand { private set; get; }
+        public ICommand NextQuestionCommand { get; }
+        public List<Player> PlayerList { get; set; }
+        public LobbyViewModel lobbyViewModel { get; set; }
+
+        public QuestionViewModel()
+        {
+            LoadQuestionAsync(); //.Wait();
+        }
+
 
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
@@ -65,11 +73,13 @@ namespace PokemonMasterminds.ViewModels
 
         private string MyPlayerName;
 
-        /*public QuestionViewModel(Game game)
+        public QuestionViewModel(Game game)
         {
+            LoadQuestionAsync();
+
             INavigation navigation = App.Current.MainPage.Navigation;
 
-            MyPlayerName = game.Players[0].Name;
+            PlayerList = game.Players.ToList();
 
             OnAnswerSelectedCommand = new Command((isCorrect) =>
             {
@@ -81,10 +91,17 @@ namespace PokemonMasterminds.ViewModels
 
             void NextQuestion()
             {
-                navigation.PushAsync(new GamePage());
+                navigation.PushAsync(new GamePage(game));
                 return;
             }
-        }*/
+
+            NextQuestionCommand = new Command(() =>
+            {
+                NextQuestion();
+            });
+        }
+
+        
 
  // public QuestionViewModel(Game game)
  // {
@@ -108,10 +125,7 @@ namespace PokemonMasterminds.ViewModels
 
  // }
         
-        public QuestionViewModel()
-        {
-            LoadQuestionAsync(); //.Wait();
-        }
+        
 
         private async Task LoadQuestionAsync()
         {
@@ -133,7 +147,6 @@ namespace PokemonMasterminds.ViewModels
                         break;
                     }
                 }
-                
             }
             else
             {
