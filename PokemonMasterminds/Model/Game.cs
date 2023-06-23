@@ -4,7 +4,6 @@ namespace PokemonMasterminds.Model
 {
     public class Game
     {
-      //  public ObservableCollection<Player> Players { get; set; }
         public LobbyList Lobby { get; set; }
 
         private static Game _instance;
@@ -12,7 +11,6 @@ namespace PokemonMasterminds.Model
         
         public Game()
         {
-           // Players = new ObservableCollection<Player>();
             Lobby = new LobbyList();
         }
         

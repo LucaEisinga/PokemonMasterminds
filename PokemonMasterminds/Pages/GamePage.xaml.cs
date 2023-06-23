@@ -61,7 +61,7 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
-        AnswerOne.BackgroundColor = Colors.Blue;
+        AnswerOne.BackgroundColor = Colors.DarkGray;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
@@ -70,7 +70,7 @@ public partial class GamePage : ContentPage
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
         AnswerOne.BackgroundColor = Colors.DarkCyan;
-        AnswerTwo.BackgroundColor = Colors.Blue;
+        AnswerTwo.BackgroundColor = Colors.DarkGray;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
     }
@@ -79,7 +79,7 @@ public partial class GamePage : ContentPage
     {
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
-        AnswerThree.BackgroundColor = Colors.Blue;
+        AnswerThree.BackgroundColor = Colors.DarkGray;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
     }
 
@@ -88,7 +88,7 @@ public partial class GamePage : ContentPage
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
-        AnswerFour.BackgroundColor = Colors.Blue;
+        AnswerFour.BackgroundColor = Colors.DarkGray;
     }
 
     async void OnScoreBoardClicked(object sender, EventArgs e)
