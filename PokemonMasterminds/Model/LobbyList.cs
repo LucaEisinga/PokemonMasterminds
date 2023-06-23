@@ -11,4 +11,9 @@ public class LobbyList
 	{
 		Players = new ObservableCollection<Player>();
 	}
+
+	public void AddPlayer(Player player)
+	{
+		Players.Add(player);
+	}
 }

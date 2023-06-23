@@ -1,261 +1,270 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    Title="Scoreboard"
+    x:Class="PokemonMasterminds.Pages.Scoreboard"
+    x:DataType="viewmodel:ScoreboardViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:PokemonMasterminds.Model"
     xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
-    x:DataType="viewmodel:ScoreboardViewModel"
-    x:Class="PokemonMasterminds.Pages.Scoreboard"
-    Title="Scoreboard">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Color="LightBlue"
-                                  Offset="0.1"/>
-            <GradientStop Color="LightGreen"
-                                  Offset="1.0"/>
+            <GradientStop Color="LightBlue" Offset="0.1" />
+            <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
     <VerticalStackLayout
-        VerticalOptions="Center"
         Margin="20"
-        Spacing="10">
+        Spacing="10"
+        VerticalOptions="Center">
         <CollectionView HorizontalOptions="Center" ItemsSource="{Binding PlayerList}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Player">
                     <HorizontalStackLayout>
                         <Frame
-                                BackgroundColor="Transparent"
-                                BorderColor="DarkCyan"
-                                CornerRadius="0"
-                                Padding="8"
-                                WidthRequest="200">
+                            BackgroundColor="Transparent"
+                            BorderColor="DarkCyan"
+                            CornerRadius="0"
+                            Padding="8"
+                            WidthRequest="200">
                             <Label
-                                    FontFamily="Cascadia Code"
-                                    FontSize="20"
-                                    Margin="5"
-                                    Text="{Binding Name}" />
+                                FontFamily="Cascadia Code"
+                                FontSize="20"
+                                Margin="5"
+                                Text="{Binding Name}" />
                         </Frame>
                     </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Label
-                Text="Pokemon masterminds"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Masterminds text"
-                FontSize="50"
-                FontFamily="Cascadia Code"
-                HorizontalOptions="Center" />
+            FontFamily="Cascadia Code"
+            FontSize="50"
+            HorizontalOptions="Center"
+            SemanticProperties.Description="Masterminds text"
+            SemanticProperties.HeadingLevel="Level2"
+            Text="Pokemon masterminds" />
         <Label
-                Text="Scoreboard"
-                SemanticProperties.HeadingLevel="Level3"
-                SemanticProperties.Description="Masterminds text"
-                FontSize="30"
-                FontFamily="Cascadia Code"
-                HorizontalOptions="Center"
-                HeightRequest="100"/>
+            FontFamily="Cascadia Code"
+            FontSize="30"
+            HeightRequest="100"
+            HorizontalOptions="Center"
+            SemanticProperties.Description="Masterminds text"
+            SemanticProperties.HeadingLevel="Level3"
+            Text="Scoreboard" />
         <Grid HorizontalOptions="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
 
-            <Frame BorderColor="DarkCyan"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Padding="8">
                 <Label
-                    Text="Player 1"
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Text player one"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"
-                    />
+                    Text="Player 1"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Row="1"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Row="1"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Row="1"
-                    Text="Player 2"
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Text player two"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    Text="Player 2"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Row="2"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Row="2"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Row="2"
-                    Text="Player 3"
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Text player three"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    Text="Player 3"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Row="3"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Row="3"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Row="3"
-                    Text="Player 4"
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Text player four"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    Text="Player 4"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="1"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="1"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="1"
-                    Text="Luca"
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Name player one"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    Text="{Binding Player1Text}"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="1"
-                       Grid.Row="1"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="1"
+                Grid.Row="1"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="1"
                     Grid.Row="1"
-                    Text="Esmee"
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Name player two"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    Text="{Binding Player2Text}"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="1"
-                       Grid.Row="2"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="1"
+                Grid.Row="2"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="1"
                     Grid.Row="2"
-                    Text="Yaëll"
-                    SemanticProperties.Description="Name player three"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
                     HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    SemanticProperties.Description="Name player three"
+                    Text="{Binding Player3Text}"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="1"
-                       Grid.Row="3"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="1"
+                Grid.Row="3"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="1"
                     Grid.Row="3"
-                    Text="Peter"
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Name player four"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    Text="{Binding Player4Text}"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="2"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="2"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="2"
-                    Text="20"
-                    SemanticProperties.Description="Score player one"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
                     HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    SemanticProperties.Description="Score player one"
+                    Text="{Binding Player1Score}"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="2"
-                       Grid.Row="1"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="2"
+                Grid.Row="1"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="2"
                     Grid.Row="1"
-                    Text="30"
-                    SemanticProperties.Description="Score player two"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
                     HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    SemanticProperties.Description="Score player two"
+                    Text="{Binding Player2Score}"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="2"
-                       Grid.Row="2"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="2"
+                Grid.Row="2"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="2"
                     Grid.Row="2"
-                    Text="10"
-                    SemanticProperties.Description="Score player three"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
                     HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    SemanticProperties.Description="Score player three"
+                    Text="{Binding Player3Score}"
+                    WidthRequest="200" />
             </Frame>
 
-            <Frame BorderColor="DarkCyan"
-                       Grid.Column="2"
-                       Grid.Row="3"
-                       BackgroundColor="Transparent"
-                       CornerRadius="0"
-                       Padding="8">
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="DarkCyan"
+                CornerRadius="0"
+                Grid.Column="2"
+                Grid.Row="3"
+                Padding="8">
                 <Label
+                    FontFamily="Cascadia Code"
+                    FontSize="25"
                     Grid.Column="2"
                     Grid.Row="3"
-                    Text="40"
-                    SemanticProperties.Description="Score player four"
-                    FontSize="25"
-                    FontFamily="Cascadia Code"
                     HorizontalOptions="Center"
-                    WidthRequest="200"/>
+                    SemanticProperties.Description="Score player four"
+                    Text="{Binding Player4Score}"
+                    WidthRequest="200" />
             </Frame>
 
         </Grid>

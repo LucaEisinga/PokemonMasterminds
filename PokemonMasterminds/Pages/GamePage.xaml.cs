@@ -11,9 +11,11 @@ public partial class GamePage : ContentPage
     private readonly int duration = 16;
     private double progress;
     private CancellationTokenSource cancellationTokenSource = new();
+    private Game game;
 
    public GamePage(Game game)
    {
+       this.game = game;
         BindingContext = new QuestionViewModel(game);
         InitializeComponent();
 
@@ -61,19 +63,19 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard());
+        await Navigation.PushAsync(new Pages.Scoreboard(game));
         cancellationTokenSource.Cancel();
     }
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard());
+        await Navigation.PushAsync(new Pages.Scoreboard(game));
         cancellationTokenSource.Cancel();
     }
 
     async void OnAnswerFourClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard());
+        await Navigation.PushAsync(new Pages.Scoreboard(game));
         cancellationTokenSource.Cancel();
     }
 }
