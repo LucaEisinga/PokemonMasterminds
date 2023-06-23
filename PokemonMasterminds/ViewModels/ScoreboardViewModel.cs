@@ -35,7 +35,7 @@ namespace PokemonMasterminds.ViewModels
 
         public ScoreboardViewModel(Game game) 
         {
-            PlayerList = game.Players.ToList();
+            PlayerList = game.Lobby.Players.ToList();
         }
         /*
              * 

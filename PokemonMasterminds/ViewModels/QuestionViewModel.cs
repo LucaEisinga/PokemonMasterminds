@@ -79,13 +79,13 @@ namespace PokemonMasterminds.ViewModels
 
             INavigation navigation = App.Current.MainPage.Navigation;
 
-            PlayerList = game.Players.ToList();
+            PlayerList = game.Lobby.Players.ToList();
 
             OnAnswerSelectedCommand = new Command((isCorrect) =>
             {
                 if ((bool)isCorrect)
                 {
-                    game.Players[0].Score++;
+                    game.Lobby.Players[0].Score++;
                 }
             });
 
