@@ -61,19 +61,14 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard(game));
-        cancellationTokenSource.Cancel();
     }
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard(game));
-        cancellationTokenSource.Cancel();
     }
 
     async void OnAnswerFourClicked(object sender, EventArgs e)
     {
-
     }
 
     async void OnScoreBoardClicked(object sender, EventArgs e)

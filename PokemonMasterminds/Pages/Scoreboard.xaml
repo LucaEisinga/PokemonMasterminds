@@ -268,5 +268,15 @@
             </Frame>
 
         </Grid>
+        <Button
+            x:Name="StartPageButton"
+            Clicked="OnStartPageClicked"
+            BackgroundColor="DarkCyan"
+            BorderColor="DarkCyan"
+            HorizontalOptions="Center"
+            SemanticProperties.Hint="Goes to input lobby"
+            Text="StartPage"
+            VerticalOptions="Center"
+            WidthRequest="200" />
     </VerticalStackLayout>
 </ContentPage>
