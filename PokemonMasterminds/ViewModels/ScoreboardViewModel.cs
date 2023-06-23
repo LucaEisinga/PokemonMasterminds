@@ -93,8 +93,8 @@ namespace PokemonMasterminds.ViewModels
 
         public ScoreboardViewModel(Game game)
         {
-            PlayerList = game.Lobby.Players.ToList();
-
+            //Bij werkende websockets zou er een player naam en score opgehaald worden
+            
             Player1Score = "4";
             Player1Text = "henk"; //game.Lobby.Players[0].Name;
         }
