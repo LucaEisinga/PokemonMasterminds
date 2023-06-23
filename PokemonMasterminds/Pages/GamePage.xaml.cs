@@ -61,6 +61,7 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
+        
     }
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)

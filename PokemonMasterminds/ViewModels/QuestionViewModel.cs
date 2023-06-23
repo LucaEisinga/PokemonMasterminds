@@ -109,6 +109,8 @@ namespace PokemonMasterminds.ViewModels
             Question question = new WhoIsThatPokemon();
             await question.CreateQuestion();
 
+            question.ShuffleAnswers();
+            
             if (question.Answers.Count >= 4)
             {
                 AnswerOneText = question.Answers[0].pokemon.name;
