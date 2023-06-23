@@ -32,6 +32,16 @@
         Margin="20"
         Spacing="10"
         VerticalOptions="Center">
+        <Button
+            x:Name="ScoreboardButton"
+            Clicked="OnScoreBoardClicked"
+            BackgroundColor="DarkCyan"
+            BorderColor="DarkCyan"
+            HorizontalOptions="End"
+            SemanticProperties.Hint="Goes to score board"
+            Text="Scoreboard"
+            VerticalOptions="Center"
+            WidthRequest="200" />
         <Label
             FontFamily="Cascadia Code"
             FontSize="50"

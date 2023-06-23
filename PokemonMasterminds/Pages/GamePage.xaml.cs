@@ -11,6 +11,7 @@ public partial class GamePage : ContentPage
     private readonly int duration = 16;
     private double progress;
     private CancellationTokenSource cancellationTokenSource = new();
+    private int Count;
 
    public GamePage(Game game)
    {
@@ -19,6 +20,7 @@ public partial class GamePage : ContentPage
 
         startTime = DateTime.Now;
         cancellationTokenSource = new CancellationTokenSource();
+
         UpdateArc();
     }
 
@@ -33,20 +35,16 @@ public partial class GamePage : ContentPage
 
             progress = Math.Ceiling(elapsedTime.TotalSeconds);
             progress %= duration;
-
-            for (int i = 0; i < 10; i++)
-            {
                 if (secondsRemaining == 0)
                 {
                     Game game = new Game();
                     await Navigation.PushAsync(new Pages.GamePage(game));
                     await Task.Delay(800);
                     cancellationTokenSource.Cancel();
+                    Count++;
+                    Debug.WriteLine(Count.ToString());
                     return;
                 }
-            }
-            
-
             await Task.Delay(500);
         }
 
@@ -61,17 +59,18 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard());
-        cancellationTokenSource.Cancel();
     }
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard());
-        cancellationTokenSource.Cancel();
     }
 
     async void OnAnswerFourClicked(object sender, EventArgs e)
+    {
+
+    }
+
+    async void OnScoreBoardClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Pages.Scoreboard());
         cancellationTokenSource.Cancel();

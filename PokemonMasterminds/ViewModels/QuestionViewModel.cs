@@ -16,6 +16,7 @@ namespace PokemonMasterminds.ViewModels
         private string _answerThreeText;
         private string _answerFourText;
         private string _pokeImage;
+        public int Count { get; set; }
         
         public string AnswerOneText
         {
@@ -100,30 +101,6 @@ namespace PokemonMasterminds.ViewModels
                 NextQuestion();
             });
         }
-
-        
-
- // public QuestionViewModel(Game game)
- // {
- //     INavigation navigation = App.Current.MainPage.Navigation;
-
- //     MyPlayerName = game.Players[0].Name;
-
- //     OnAnswerSelectedCommand = new Command((isCorrect) =>
- //     {
- //         if ((bool)isCorrect)
- //         {
- //             game.Players[0].Score++;
- //         }
- //     });
-
- //       void NextQuestion()
- //      {
- //           navigation.PushAsync(new GamePage());
- //           return;
- //       }
-
- // }
         
         
 
