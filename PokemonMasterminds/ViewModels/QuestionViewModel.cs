@@ -80,13 +80,13 @@ namespace PokemonMasterminds.ViewModels
 
             INavigation navigation = App.Current.MainPage.Navigation;
 
-            PlayerList = game.Players.ToList();
+            PlayerList = game.Lobby.Players.ToList();
 
             OnAnswerSelectedCommand = new Command((isCorrect) =>
             {
                 if ((bool)isCorrect)
                 {
-                    game.Players[0].Score++;
+                    game.Lobby.Players[0].Score++;
                 }
             });
 
@@ -127,9 +127,6 @@ namespace PokemonMasterminds.ViewModels
             }
             else
             {
-                // Handle the case when there are not enough answers available
-                // You can assign default values or display an error message
-
                 AnswerOneText = "Default answer 1";
                 AnswerTwoText = "Default answer 2";
                 AnswerThreeText = "Default answer 3";

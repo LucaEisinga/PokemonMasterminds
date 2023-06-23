@@ -43,7 +43,7 @@ namespace PokemonMasterminds.ViewModels
         {
             INavigation navigation = App.Current.MainPage.Navigation;
             StartGameCommand = new Command(StartGame);
-            PlayerList = game.Players.ToList();
+            PlayerList = game.Lobby.Players.ToList();
         }
 
        

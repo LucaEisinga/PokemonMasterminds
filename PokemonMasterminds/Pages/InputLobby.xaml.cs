@@ -1,5 +1,3 @@
-using PokemonMasterminds.Model;
-using Microsoft.Maui.Controls;
 using PokemonMasterminds.ViewModels;
 using System.Windows.Input;
 
