@@ -1,9 +1,11 @@
 ﻿using Microsoft.Maui.Controls;
 using PokemonMasterminds.Model;
+using PokemonMasterminds.Model.Questions;
 using PokemonMasterminds.Pages;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
@@ -58,9 +60,12 @@ namespace PokemonMasterminds.ViewModels
             {
                 // Start the game for the player
                 StartPlayerGame(player);
+                Debug.WriteLine(player.Name);
             }
 
-            await navigation.PushAsync(new GamePage());
+            Game game = new Game();
+
+            await navigation.PushAsync(new GamePage(game));
         }
 
         private void StartPlayerGame(Player player)

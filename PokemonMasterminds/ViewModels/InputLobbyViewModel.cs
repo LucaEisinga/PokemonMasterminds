@@ -47,7 +47,7 @@ namespace PokemonMasterminds.ViewModels
         }
 
         private readonly INavigation navigation;
-        private readonly Game game;
+        public readonly Game game;
         private readonly LobbyWebSocketClient webSocketClient;
 
         public InputLobbyViewModel(INavigation navigation)

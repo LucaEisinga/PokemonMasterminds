@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokemonMasterminds.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace PokemonMasterminds.ViewModels
     class ScoreboardViewModel: INotifyPropertyChanged
 
     {
+        public LobbyViewModel Lobby { get; }
         //GetScoreboardCommand : ICommand
         public ICommand GetScoreboardCommand { private set; get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public List<Player> PlayerList { get; set; }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -28,6 +31,11 @@ namespace PokemonMasterminds.ViewModels
             field = value;
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        public ScoreboardViewModel(Game game) 
+        {
+            PlayerList = game.Players.ToList();
         }
         /*
              * 
