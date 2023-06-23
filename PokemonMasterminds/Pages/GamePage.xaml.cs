@@ -59,17 +59,36 @@ public partial class GamePage : ContentPage
         timerLabel.Text = duration.ToString();
     }
 
+    async void OnAnswerOneClicked(object sender, EventArgs e)
+    {
+        AnswerOne.BackgroundColor = Colors.Blue;
+        AnswerTwo.BackgroundColor = Colors.DarkCyan;
+        AnswerThree.BackgroundColor = Colors.DarkCyan;
+        AnswerFour.BackgroundColor = Colors.DarkCyan;
+    }
+
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
-        
+        AnswerOne.BackgroundColor = Colors.DarkCyan;
+        AnswerTwo.BackgroundColor = Colors.Blue;
+        AnswerThree.BackgroundColor = Colors.DarkCyan;
+        AnswerFour.BackgroundColor = Colors.DarkCyan;
     }
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)
     {
+        AnswerOne.BackgroundColor = Colors.DarkCyan;
+        AnswerTwo.BackgroundColor = Colors.DarkCyan;
+        AnswerThree.BackgroundColor = Colors.Blue;
+        AnswerFour.BackgroundColor = Colors.DarkCyan;
     }
 
     async void OnAnswerFourClicked(object sender, EventArgs e)
     {
+        AnswerOne.BackgroundColor = Colors.DarkCyan;
+        AnswerTwo.BackgroundColor = Colors.DarkCyan;
+        AnswerThree.BackgroundColor = Colors.DarkCyan;
+        AnswerFour.BackgroundColor = Colors.Blue;
     }
 
     async void OnScoreBoardClicked(object sender, EventArgs e)

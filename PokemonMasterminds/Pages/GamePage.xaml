@@ -89,6 +89,7 @@
             <Button
                 BackgroundColor="DarkCyan"
                 BorderColor="DarkCyan"
+                Clicked="OnAnswerOneClicked"
                 HorizontalOptions="Center"
                 SemanticProperties.Hint="Submits answer one"
                 Text="{Binding AnswerOneText}"
