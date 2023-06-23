@@ -85,7 +85,7 @@ namespace PokemonMasterminds.ViewModels
                 return;
             }
 
-            game.Players = new ObservableCollection<Player>(Players.ToList());
+            game.Lobby.Players = new ObservableCollection<Player>(Players.ToList());
 
             if (!lobbyPlayers.ContainsKey(LobbyCode))
             {
@@ -131,7 +131,7 @@ namespace PokemonMasterminds.ViewModels
                 Game game = new Game();
                 foreach (var player in Players)
                 {
-                    game.Players.Add(player);
+                    game.Lobby.Players.Add(player);
                 }
 
                 await navigation.PushAsync(new Lobby(game));
