@@ -36,8 +36,11 @@
         <Entry  x:Name="LobbyCodeTextBox"
                 Text="{Binding LobbyCode}"
                 Placeholder="Enter Lobby Code"
+                PlaceholderColor="Black"
                 WidthRequest="200"/>
         <Entry  Text="{Binding PlayerName}"
+                Placeholder="Enter Player Name"
+                PlaceholderColor="Black"
                 WidthRequest="200"/>
         <Label  x:Name="LobbyFull"
                 Text="{Binding FullLobbyText}"
