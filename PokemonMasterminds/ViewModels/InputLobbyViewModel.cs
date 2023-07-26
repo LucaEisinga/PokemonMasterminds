@@ -1,12 +1,8 @@
 using PokemonMasterminds.Model;
 using PokemonMasterminds.Pages;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels

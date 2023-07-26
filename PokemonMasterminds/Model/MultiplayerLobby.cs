@@ -1,7 +1,4 @@
-﻿using System.Net.WebSockets;
-using System.Text;
-
-namespace MultiplayerLobby
+﻿namespace PokemonMasterminds.Model
 {
     public class MainPage : ContentPage
     {
