@@ -113,20 +113,6 @@ namespace PokemonMasterminds.ViewModels
         {
             try
             {
-                // Connect to the WebSocket server
-                await webSocketClient.ConnectAsync(new Uri("ws://192.168.56.1:8000"), System.Threading.CancellationToken.None);
-                // Send a message to create the lobby with the lobby code
-                await webSocketClient.SendAsync($"create_lobby {lobbyCode}", System.Threading.CancellationToken.None);
-
-                // Send additional messages or perform other operations as needed
-                var message = "Your additional message";
-                await webSocketClient.SendAsync(message, System.Threading.CancellationToken.None);
-
-                // Wait for the server response or handle the response in the ReceiveLoopAsync method
-
-                // Disconnect from the WebSocket server
-                await webSocketClient.DisconnectAsync();
-
                 // Create the game object with the players
                 Game game = new Game();
                 foreach (var player in Players)
