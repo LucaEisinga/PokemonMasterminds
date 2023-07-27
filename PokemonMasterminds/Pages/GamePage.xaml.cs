@@ -25,6 +25,23 @@ public partial class GamePage : ContentPage
 
         UpdateArc();
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Start the timer when the page appears on the screen
+        startTime = DateTime.Now;
+        cancellationTokenSource = new CancellationTokenSource();
+        UpdateArc();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        // Stop the timer when the page is removed from the screen
+        cancellationTokenSource.Cancel();
+    }
 
     private async void UpdateArc()
     {
