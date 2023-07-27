@@ -89,7 +89,7 @@ public partial class GamePage : ContentPage
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkGray;
     }
-
+    
     async void OnScoreBoardClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Pages.Scoreboard(game));

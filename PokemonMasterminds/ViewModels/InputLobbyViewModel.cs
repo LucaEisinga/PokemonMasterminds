@@ -44,13 +44,11 @@ namespace PokemonMasterminds.ViewModels
 
         private readonly INavigation navigation;
         public readonly Game game;
-        private readonly LobbyWebSocketClient webSocketClient;
 
         public InputLobbyViewModel(INavigation navigation)
         {
             this.navigation = navigation;
             game = new Game();
-            webSocketClient = new LobbyWebSocketClient();
         }
 
         public ICommand JoinLobbyCommand => joinLobbyCommand ?? (joinLobbyCommand = new Command<object>(JoinLobby));
