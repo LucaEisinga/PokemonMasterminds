@@ -9,7 +9,7 @@ public partial class Scoreboard : ContentPage
 
     public Scoreboard()
 	{
-		BindingContext = new ScoreboardViewModel(Game.Instance);
+		BindingContext = new ScoreboardViewModel();
 		InitializeComponent();
 	}
 

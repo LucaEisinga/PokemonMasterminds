@@ -19,16 +19,16 @@
             Spacing="10"
             VerticalOptions="Center">
             <Label
-                SemanticProperties.Description="Masterminds text"
-                HorizontalOptions="Center"
                 FontFamily="Cascadia Code"
                 FontSize="50"
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Masterminds text"
                 Text="Pokemon masterminds" />
             <Label
-                Text="Waiting for players"
                 FontFamily="Cascadia Code"
                 FontSize="30"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Text="Waiting for players" />
             <Label
                 FontFamily="Cascadia Code"
                 FontSize="20"
@@ -38,7 +38,7 @@
                 SemanticProperties.HeadingLevel="Level3"
                 Text="Players" />
 
-            <CollectionView HorizontalOptions="Center" ItemsSource="{Binding PlayerList}">
+            <CollectionView HorizontalOptions="Center">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Player">
                         <HorizontalStackLayout>
@@ -58,15 +58,16 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button x:Name="RedirectBtn"
-                    Text="Start game"
-                    SemanticProperties.Hint="Goes to start of the game"
-                    SemanticProperties.HeadingLevel="Level5"
-                    Command="{Binding StartGameCommand}"
-                    HorizontalOptions="Center"
-                    BorderColor="DarkCyan"
-                    BackgroundColor="DarkCyan"
-                    WidthRequest="200" />
+            <Button
+                BackgroundColor="DarkCyan"
+                BorderColor="DarkCyan"
+                Command="{Binding StartGameCommand}"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level5"
+                SemanticProperties.Hint="Goes to start of the game"
+                Text="Start game"
+                WidthRequest="200"
+                x:Name="RedirectBtn" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -78,7 +78,7 @@ namespace PokemonMasterminds.ViewModels
                 return;
             }
 
-            _game.Lobby.Players = new ObservableCollection<Player>(Players.ToList());
+            //_game.Lobby.Players = new ObservableCollection<Player>(Players.ToList());
 
             if (!_lobbyPlayers.ContainsKey(LobbyCode))
             {
@@ -107,11 +107,10 @@ namespace PokemonMasterminds.ViewModels
             try
             {
                 // Create the game object with the players
-                foreach (var player in Players)
-                {
-                    _game.Lobby.AddPlayer(player);
-                }
-
+                Player player = new Player(PlayerName);
+                
+                _game.Lobby.AddPlayer(player);
+                
                 await _navigation.PushAsync(new Lobby(_game));
             }
             catch (Exception ex)
