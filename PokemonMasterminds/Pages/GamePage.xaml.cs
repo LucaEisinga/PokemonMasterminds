@@ -10,7 +10,6 @@ public partial class GamePage : ContentPage
     private DateTime startTime;
     private readonly int duration = 16;
     private double progress;
-    private CancellationTokenSource cancellationTokenSource = new();
     private int Count;
     private Game game;
 
@@ -21,16 +20,17 @@ public partial class GamePage : ContentPage
         InitializeComponent();
 
         startTime = DateTime.Now;
-        cancellationTokenSource = new CancellationTokenSource();
 
         UpdateArc();
     }
 
     private async void UpdateArc()
     {
-        while (!cancellationTokenSource.IsCancellationRequested)
+        TimeSpan elapsedTime = DateTime.Now - startTime;
+        
+        while(elapsedTime.TotalSeconds <= 16)
         {
-            TimeSpan elapsedTime = DateTime.Now - startTime;
+            elapsedTime = DateTime.Now - startTime;
             int secondsRemaining = (int)(duration - elapsedTime.TotalSeconds);
 
             timerLabel.Text = $"{secondsRemaining}";
@@ -42,14 +42,13 @@ public partial class GamePage : ContentPage
                     Game game = new Game();
                     await Navigation.PushAsync(new Pages.GamePage(game));
                     await Task.Delay(800);
-                    cancellationTokenSource.Cancel();
                     Count++;
                     Debug.WriteLine(Count.ToString());
                     return;
                 }
             await Task.Delay(500);
         }
-
+            
         ResetView();
     }
 
@@ -90,10 +89,9 @@ public partial class GamePage : ContentPage
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkGray;
     }
-
+    
     async void OnScoreBoardClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Pages.Scoreboard(game));
-        cancellationTokenSource.Cancel();
     }
 }

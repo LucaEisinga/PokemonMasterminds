@@ -1,5 +1,4 @@
 namespace PokemonMasterminds.Model.ApiModels;
-using System.Collections.Generic;
 
 public class PokemonResult
 {

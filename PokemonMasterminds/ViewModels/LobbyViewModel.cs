@@ -1,13 +1,8 @@
-﻿using Microsoft.Maui.Controls;
-using PokemonMasterminds.Model;
-using PokemonMasterminds.Model.Questions;
+﻿using PokemonMasterminds.Model;
 using PokemonMasterminds.Pages;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
 
 
@@ -15,7 +10,7 @@ namespace PokemonMasterminds.ViewModels
 {
     class LobbyViewModel : INotifyPropertyChanged
     {
-        public InputLobbyViewModel InputViewModel { get; }
+        //public InputLobbyViewModel InputViewModel { get; }
         public List<Player> PlayerList { get; set; }
 
         //StartGameCommand : ICommand
@@ -41,7 +36,6 @@ namespace PokemonMasterminds.ViewModels
 
         public LobbyViewModel(Game game)
         {
-            INavigation navigation = App.Current.MainPage.Navigation;
             StartGameCommand = new Command(StartGame);
             PlayerList = game.Lobby.Players.ToList();
         }
@@ -50,31 +44,11 @@ namespace PokemonMasterminds.ViewModels
         private async void StartGame()
         {
             INavigation navigation = App.Current.MainPage.Navigation;
-            // Start the game for all players in the same lobby
-
-            // Here, you can access the lobby code or any other identifier for the lobby
-            // and use it to determine the players in the same lobby
-
-            // Example: Starting the game for all players in the PlayerList
-            foreach (Player player in PlayerList)
-            {
-                // Start the game for the player
-                StartPlayerGame(player);
-                Debug.WriteLine(player.Name);
-            }
 
             Game game = new Game();
 
             await navigation.PushAsync(new GamePage(game));
         }
-
-        private void StartPlayerGame(Player player)
-        {
-            // Implement the logic to start the game for a specific player
-        }
-
-
-
         public ObservableCollection<Player> Players { get; private set; }
 
     }

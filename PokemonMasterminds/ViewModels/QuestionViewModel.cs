@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using Microsoft.Maui.Dispatching;
 using PokemonMasterminds.Model;
 using PokemonMasterminds.Pages;
-using Timer = System.Timers.Timer;
 using PokemonMasterminds.Model.Questions;
 
 namespace PokemonMasterminds.ViewModels
@@ -56,7 +54,7 @@ namespace PokemonMasterminds.ViewModels
         public ICommand OnAnswerSelectedCommand { private set; get; }
         public ICommand NextQuestionCommand { get; }
         public List<Player> PlayerList { get; set; }
-        public LobbyViewModel lobbyViewModel { get; set; }
+        public LobbyViewModel LobbyViewModel { get; set; }
 
         public QuestionViewModel()
         {

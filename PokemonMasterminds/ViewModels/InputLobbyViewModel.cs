@@ -1,12 +1,8 @@
 using PokemonMasterminds.Model;
 using PokemonMasterminds.Pages;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
@@ -48,13 +44,11 @@ namespace PokemonMasterminds.ViewModels
 
         private readonly INavigation navigation;
         public readonly Game game;
-        private readonly LobbyWebSocketClient webSocketClient;
 
         public InputLobbyViewModel(INavigation navigation)
         {
             this.navigation = navigation;
             game = new Game();
-            webSocketClient = new LobbyWebSocketClient();
         }
 
         public ICommand JoinLobbyCommand => joinLobbyCommand ?? (joinLobbyCommand = new Command<object>(JoinLobby));
@@ -113,20 +107,6 @@ namespace PokemonMasterminds.ViewModels
         {
             try
             {
-                // Connect to the WebSocket server
-                await webSocketClient.ConnectAsync(new Uri("ws://192.168.56.1:8000"), System.Threading.CancellationToken.None);
-                // Send a message to create the lobby with the lobby code
-                await webSocketClient.SendAsync($"create_lobby {lobbyCode}", System.Threading.CancellationToken.None);
-
-                // Send additional messages or perform other operations as needed
-                var message = "Your additional message";
-                await webSocketClient.SendAsync(message, System.Threading.CancellationToken.None);
-
-                // Wait for the server response or handle the response in the ReceiveLoopAsync method
-
-                // Disconnect from the WebSocket server
-                await webSocketClient.DisconnectAsync();
-
                 // Create the game object with the players
                 Game game = new Game();
                 foreach (var player in Players)
