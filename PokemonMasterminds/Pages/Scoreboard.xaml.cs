@@ -7,14 +7,16 @@ public partial class Scoreboard : ContentPage
 {
 	InputLobbyViewModel viewModel;
 
-    public Scoreboard(Game game)
+    public Scoreboard()
 	{
-		BindingContext = new ScoreboardViewModel(game);
+		BindingContext = new ScoreboardViewModel(Game.Instance);
 		InitializeComponent();
 	}
 
     async void OnStartPageClicked(object sender, EventArgs e)
-	{
+    {
+	    Game game = Game.Instance;
+	    game.GameIsActive = false;
         await Navigation.PushAsync(new Pages.InputLobby(viewModel));
     }
 }

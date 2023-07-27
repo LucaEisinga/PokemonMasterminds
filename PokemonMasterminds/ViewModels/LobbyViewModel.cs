@@ -45,11 +45,11 @@ namespace PokemonMasterminds.ViewModels
         {
             INavigation navigation = App.Current.MainPage.Navigation;
 
-            Game game = new Game();
+            Game game = Game.Instance;
+            game.GameIsActive = true;
 
-            await navigation.PushAsync(new GamePage(game));
+            await navigation.PushAsync(new GamePage());
         }
-        public ObservableCollection<Player> Players { get; private set; }
 
     }
 }

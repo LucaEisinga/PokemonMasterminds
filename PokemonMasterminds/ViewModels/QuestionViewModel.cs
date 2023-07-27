@@ -90,7 +90,7 @@ namespace PokemonMasterminds.ViewModels
 
             void NextQuestion()
             {
-                navigation.PushAsync(new GamePage(game));
+                navigation.PushAsync(new GamePage());
                 return;
             }
 
