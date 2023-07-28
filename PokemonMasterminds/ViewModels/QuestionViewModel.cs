@@ -78,19 +78,19 @@ namespace PokemonMasterminds.ViewModels
 
             INavigation navigation = App.Current.MainPage.Navigation;
 
-            PlayerList = game.Lobby.Players.ToList();
+           // PlayerList = game.Lobby.Players.ToList();
 
             OnAnswerSelectedCommand = new Command((isCorrect) =>
             {
                 if ((bool)isCorrect)
                 {
-                    game.Lobby.Players[0].Score++;
+                    game.Lobby.Player.Score++;
                 }
             });
 
             void NextQuestion()
             {
-                navigation.PushAsync(new GamePage(game));
+                navigation.PushAsync(new GamePage());
                 return;
             }
 

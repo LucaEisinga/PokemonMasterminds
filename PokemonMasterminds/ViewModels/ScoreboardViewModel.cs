@@ -1,11 +1,6 @@
 ﻿using PokemonMasterminds.Model;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
@@ -18,7 +13,7 @@ namespace PokemonMasterminds.ViewModels
         public ICommand GetScoreboardCommand { private set; get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public List<Player> PlayerList { get; set; }
+        //public List<Player> PlayerList { get; set; }
         
         private string _player1Text;
         private string _player2Text;
@@ -91,10 +86,10 @@ namespace PokemonMasterminds.ViewModels
             return true;
         }
 
-        public ScoreboardViewModel(Game game)
+        public ScoreboardViewModel()
         {
-            Player1Score = "4";
-            Player1Text = "henk"; //game.Lobby.Players[0].Name;
+            Player1Score = Game.Instance.Lobby.Player.Score.ToString();
+            Player1Text = Game.Instance.Lobby.Player.Name;
         }
         
     }

@@ -17,7 +17,7 @@
         Margin="20"
         Spacing="10"
         VerticalOptions="Center">
-        <CollectionView HorizontalOptions="Center" ItemsSource="{Binding PlayerList}">
+        <CollectionView HorizontalOptions="Center">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Player">
                     <HorizontalStackLayout>
@@ -269,14 +269,14 @@
 
         </Grid>
         <Button
-            x:Name="StartPageButton"
-            Clicked="OnStartPageClicked"
             BackgroundColor="DarkCyan"
             BorderColor="DarkCyan"
+            Clicked="OnStartPageClicked"
             HorizontalOptions="Center"
             SemanticProperties.Hint="Goes to input lobby"
             Text="StartPage"
             VerticalOptions="Center"
-            WidthRequest="200" />
+            WidthRequest="200"
+            x:Name="StartPageButton" />
     </VerticalStackLayout>
 </ContentPage>

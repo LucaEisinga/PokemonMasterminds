@@ -11,12 +11,10 @@ public partial class GamePage : ContentPage
     private readonly int duration = 16;
     private double progress;
     private int Count;
-    private Game game;
 
-   public GamePage(Game game)
+   public GamePage()
    {
-       this.game = game;
-        BindingContext = new QuestionViewModel(game);
+        BindingContext = new QuestionViewModel(Game.Instance);
         InitializeComponent();
 
         startTime = DateTime.Now;
@@ -28,7 +26,7 @@ public partial class GamePage : ContentPage
     {
         TimeSpan elapsedTime = DateTime.Now - startTime;
         
-        while(elapsedTime.TotalSeconds <= 16)
+        while(elapsedTime.TotalSeconds <= 16 && Game.Instance.GameIsActive)
         {
             elapsedTime = DateTime.Now - startTime;
             int secondsRemaining = (int)(duration - elapsedTime.TotalSeconds);
@@ -39,8 +37,7 @@ public partial class GamePage : ContentPage
             progress %= duration;
                 if (secondsRemaining == 0)
                 {
-                    Game game = new Game();
-                    await Navigation.PushAsync(new Pages.GamePage(game));
+                    await Navigation.PushAsync(new Pages.GamePage());
                     await Task.Delay(800);
                     Count++;
                     Debug.WriteLine(Count.ToString());
@@ -92,6 +89,6 @@ public partial class GamePage : ContentPage
     
     async void OnScoreBoardClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Pages.Scoreboard(game));
+        await Navigation.PushAsync(new Pages.Scoreboard());
     }
 }

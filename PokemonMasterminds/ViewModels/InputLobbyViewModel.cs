@@ -9,49 +9,49 @@ namespace PokemonMasterminds.ViewModels
 {
     public class InputLobbyViewModel : INotifyPropertyChanged
     {
-        private string lobbyCode;
-        private string playerName;
-        private Command createLobbyCommand;
-        private Command joinLobbyCommand;
-        private string fullLobbyText;
+        private string _lobbyCode;
+        private string _playerName;
+        private Command _createLobbyCommand;
+        private Command _joinLobbyCommand;
+        private string _fullLobbyText;
 
-        private ObservableCollection<Player> players = new ObservableCollection<Player>();
-        private Dictionary<string, ObservableCollection<Player>> lobbyPlayers = new Dictionary<string, ObservableCollection<Player>>();
+        private ObservableCollection<Player> _players = new ObservableCollection<Player>();
+        private Dictionary<string, ObservableCollection<Player>> _lobbyPlayers = new Dictionary<string, ObservableCollection<Player>>();
 
         public string LobbyCode
         {
-            get { return lobbyCode; }
-            set { SetProperty(ref lobbyCode, value); }
+            get { return _lobbyCode; }
+            set { SetProperty(ref _lobbyCode, value); }
         }
 
         public string PlayerName
         {
-            get { return playerName; }
-            set { SetProperty(ref playerName, value); }
+            get { return _playerName; }
+            set { SetProperty(ref _playerName, value); }
         }
 
         public ObservableCollection<Player> Players
         {
-            get { return players; }
-            set { SetProperty(ref players, value); }
+            get { return _players; }
+            set { SetProperty(ref _players, value); }
         }
 
         public string FullLobbyText
         {
-            get { return fullLobbyText; }
-            set { SetProperty(ref fullLobbyText, value); }
+            get { return _fullLobbyText; }
+            set { SetProperty(ref _fullLobbyText, value); }
         }
 
-        private readonly INavigation navigation;
-        public readonly Game game;
+        private readonly INavigation _navigation;
+        private Game _game;
 
         public InputLobbyViewModel(INavigation navigation)
         {
-            this.navigation = navigation;
-            game = new Game();
+            this._navigation = navigation;
+            _game = Game.Instance;
         }
 
-        public ICommand JoinLobbyCommand => joinLobbyCommand ?? (joinLobbyCommand = new Command<object>(JoinLobby));
+        public ICommand JoinLobbyCommand => _joinLobbyCommand ??= new Command<object>(JoinLobby);
         private async void JoinLobby(object parameter)
         {
             if (string.IsNullOrEmpty(PlayerName) || string.IsNullOrEmpty(LobbyCode))
@@ -59,9 +59,8 @@ namespace PokemonMasterminds.ViewModels
                 return;
             }
 
-            var filteredPlayers = lobbyPlayers.ContainsKey(LobbyCode) ? lobbyPlayers[LobbyCode] : new ObservableCollection<Player>();
-            Players = new ObservableCollection<Player>(filteredPlayers);
-
+            var filteredPlayers = _lobbyPlayers.ContainsKey(LobbyCode) ? _lobbyPlayers[LobbyCode] : new ObservableCollection<Player>();
+            
             if (filteredPlayers.Count > 3)
             {
                 FullLobbyText = "Deze lobby zit vol";
@@ -69,38 +68,38 @@ namespace PokemonMasterminds.ViewModels
             }
             else
             {
-                Players.Add(new Player(PlayerName));
+                _game.Lobby.AddPlayer(new Player(PlayerName));
             }
             
-            PlayerName = "";
+            PlayerName = "-";
 
             if (Players.Count == 0)
             {
                 return;
             }
 
-            game.Lobby.Players = new ObservableCollection<Player>(Players.ToList());
+            //_game.Lobby.Players = new ObservableCollection<Player>(Players.ToList());
 
-            if (!lobbyPlayers.ContainsKey(LobbyCode))
+            if (!_lobbyPlayers.ContainsKey(LobbyCode))
             {
-                lobbyPlayers[LobbyCode] = new ObservableCollection<Player>();
+                _lobbyPlayers[LobbyCode] = new ObservableCollection<Player>();
             }
-            lobbyPlayers[LobbyCode].Clear();
+            _lobbyPlayers[LobbyCode].Clear();
             foreach (var player in Players)
             {
-                lobbyPlayers[LobbyCode].Add(player);
+                _lobbyPlayers[LobbyCode].Add(player);
             }
 
             await CreateLobby(LobbyCode);
-            await navigation.PushAsync(new Lobby(game));
+            await _navigation.PushAsync(new Lobby(_game));
         }
 
-        public ICommand CreateLobbyCommand => createLobbyCommand ?? (createLobbyCommand = new Command<string>(async (code) =>
+        public ICommand CreateLobbyCommand => _createLobbyCommand ??= new Command<string>(async (code) =>
         {
             string lobbyCode = code;
 
             await CreateLobby(lobbyCode);
-        }));
+        });
 
 
         private async Task CreateLobby(string lobbyCode)
@@ -108,13 +107,11 @@ namespace PokemonMasterminds.ViewModels
             try
             {
                 // Create the game object with the players
-                Game game = new Game();
-                foreach (var player in Players)
-                {
-                    game.Lobby.Players.Add(player);
-                }
-
-                await navigation.PushAsync(new Lobby(game));
+                Player player = new Player(PlayerName);
+                
+                _game.Lobby.AddPlayer(player);
+                
+                await _navigation.PushAsync(new Lobby(_game));
             }
             catch (Exception ex)
             {
