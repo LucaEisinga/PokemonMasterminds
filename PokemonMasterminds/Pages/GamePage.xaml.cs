@@ -21,7 +21,23 @@ public partial class GamePage : ContentPage
 
         UpdateArc();
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        // Start the timer when the page appears on the screen
+        startTime = DateTime.Now;
+        cancellationTokenSource = new CancellationTokenSource();
+        UpdateArc();
+    }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        // Stop the timer when the page is removed from the screen
+        cancellationTokenSource.Cancel();
+    }
+
+    //Adding the timer and setting the rules applied to the timer
     private async void UpdateArc()
     {
         TimeSpan elapsedTime = DateTime.Now - startTime;
@@ -55,6 +71,7 @@ public partial class GamePage : ContentPage
         timerLabel.Text = duration.ToString();
     }
 
+    // Setting the awnsers for players
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
         AnswerOne.BackgroundColor = Colors.DarkGray;
