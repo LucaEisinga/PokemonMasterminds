@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using PokemonMasterminds.ViewModels;
 using PokemonMasterminds.Model;
+using System;
 
 namespace PokemonMasterminds.Pages;
 
@@ -8,11 +9,10 @@ public partial class GamePage : ContentPage
 {
     public IDispatcherTimer timer;
     private DateTime startTime;
-    private readonly int duration = 16;
+    private int duration;
     private double progress;
-    private int Count;
 
-   public GamePage()
+    public GamePage()
    {
         BindingContext = new QuestionViewModel(Game.Instance);
         InitializeComponent();
@@ -21,7 +21,8 @@ public partial class GamePage : ContentPage
 
         UpdateArc();
     }
-    protected override void OnAppearing()
+
+/*    protected override void OnAppearing()
     {
         base.OnAppearing();
         // Start the timer when the page appears on the screen
@@ -36,13 +37,32 @@ public partial class GamePage : ContentPage
         // Stop the timer when the page is removed from the screen
         cancellationTokenSource.Cancel();
     }
+*/
 
     //Adding the timer and setting the rules applied to the timer
     private async void UpdateArc()
     {
+        if (Game.Instance.Count >= 0 && Game.Instance.Count < 5)
+        {
+            duration = 16;
+        }
+        else if (Game.Instance.Count > 4 && Game.Instance.Count < 10)
+        {
+            duration = 11;
+        }
+        else if (Game.Instance.Count > 9 && Game.Instance.Count < 15)
+        {
+            duration = 6;
+        }
+        else if (Game.Instance.Count > 14)
+        {
+            
+            duration = 0;
+        }
+
         TimeSpan elapsedTime = DateTime.Now - startTime;
         
-        while(elapsedTime.TotalSeconds <= 16 && Game.Instance.GameIsActive)
+        while(elapsedTime.TotalSeconds <= duration && Game.Instance.GameIsActive)
         {
             elapsedTime = DateTime.Now - startTime;
             int secondsRemaining = (int)(duration - elapsedTime.TotalSeconds);
@@ -51,14 +71,25 @@ public partial class GamePage : ContentPage
 
             progress = Math.Ceiling(elapsedTime.TotalSeconds);
             progress %= duration;
-                if (secondsRemaining == 0)
+
+            if (secondsRemaining == 0)
                 {
-                    await Navigation.PushAsync(new Pages.GamePage());
-                    await Task.Delay(800);
-                    Count++;
-                    Debug.WriteLine(Count.ToString());
+                    Game.Instance.Count++;
+                    Debug.WriteLine(Game.Instance.Count.ToString());
+                    if (Game.Instance.Count >= 0 && Game.Instance.Count < 15)
+                    {
+                        await Navigation.PushAsync(new GamePage());
+                    }
+                    else if (Game.Instance.Count > 14)
+                    {
+                        await Navigation.PushAsync(new Scoreboard());
+                    }
+                    
+                    await Task.Delay(500);
+
                     return;
                 }
+
             await Task.Delay(500);
         }
             

@@ -7,6 +7,7 @@ namespace PokemonMasterminds.Model
 
         private static Game _instance;
         public static Game Instance => _instance ??= new Game();
+        public int Count = 0;
         
         public Game()
         {
