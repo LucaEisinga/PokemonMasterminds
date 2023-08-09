@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
-             x:Class="PokemonMasterminds.Pages.GamePage"
-             x:DataType="viewmodel:QuestionViewModel"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="GamePage">
+<ContentPage
+    Title="GamePage"
+    x:Class="PokemonMasterminds.Pages.GamePage"
+    x:DataType="viewmodel:QuestionViewModel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:PokemonMasterminds.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <ContentPage.BindingContext>
         <viewmodel:QuestionViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Color="LightBlue" Offset="0.1" />
             <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <toolkit:IntToBoolConverter x:Key="TimerToBoolConverter"/>
+            <toolkit:IntToBoolConverter x:Key="TimerToBoolConverter" />
             <toolkit:MultiConverter x:Key="TimerInvertedBoolConverter">
-                <toolkit:IntToBoolConverter/>
-                <toolkit:InvertedBoolConverter/>
+                <toolkit:IntToBoolConverter />
+                <toolkit:InvertedBoolConverter />
             </toolkit:MultiConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <VerticalStackLayout
         Margin="20"
         Spacing="10"
         VerticalOptions="Center">
-        <Button
-            x:Name="ScoreboardButton"
-            Clicked="OnScoreBoardClicked"
-            BackgroundColor="DarkCyan"
-            BorderColor="DarkCyan"
+        <Label
+            FontSize="42"
             HorizontalOptions="End"
-            SemanticProperties.Hint="Goes to score board"
-            Text="Scoreboard"
+            Text="{Binding _ScorePoints}"
+            TextColor="DarkRed"
             VerticalOptions="Center"
-            WidthRequest="200" />
+            WidthRequest="30"
+            x:Name="CurrentScore" />
         <Label
             FontFamily="Cascadia Code"
             FontSize="50"
@@ -50,15 +49,13 @@
             SemanticProperties.Description="Who is this pokemon text"
             SemanticProperties.HeadingLevel="Level2"
             Text="Who is this pokemon!" />
-        <Grid
-            HorizontalOptions="Center"
-            VerticalOptions="Center">
+        <Grid HorizontalOptions="Center" VerticalOptions="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="400" />
             </Grid.ColumnDefinitions>
 
             <Image
@@ -76,7 +73,7 @@
                 SemanticProperties.Description="Pokemon"
                 Source="{Binding PokeImage}" />
         </Grid>
-        
+
         <Grid HorizontalOptions="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />
@@ -132,10 +129,10 @@
                 x:Name="AnswerFour" />
         </Grid>
         <Label
-            x:Name="timerLabel"
-            Text=""
             FontSize="20"
             HorizontalOptions="Center"
-            VerticalOptions="Center"/>
+            Text=""
+            VerticalOptions="Center"
+            x:Name="timerLabel" />
     </VerticalStackLayout>
 </ContentPage>

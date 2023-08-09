@@ -55,9 +55,17 @@ namespace PokemonMasterminds.ViewModels
         public ICommand NextQuestionCommand { get; }
         public List<Player> PlayerList { get; set; }
         public LobbyViewModel LobbyViewModel { get; set; }
+        public string _ScorePoints { get; set; }
+
+        public string ScorePoints
+        {
+            get { return _ScorePoints; }
+            set { _ScorePoints = value; OnPropertyChanged(); }
+        }
 
         public QuestionViewModel()
         {
+            UpdateScore();
             LoadQuestionAsync(); //.Wait();
         }
 
@@ -124,6 +132,11 @@ namespace PokemonMasterminds.ViewModels
                 AnswerThreeText = "Default answer 3";
                 AnswerFourText = "Default answer 4";
             }
+        }
+
+        private async Task UpdateScore()
+        {
+            ScorePoints = Game.Instance.Lobby.Player.Score.ToString();
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
