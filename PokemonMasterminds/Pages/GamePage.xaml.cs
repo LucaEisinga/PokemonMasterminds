@@ -22,23 +22,6 @@ public partial class GamePage : ContentPage
         UpdateArc();
     }
 
-/*    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        // Start the timer when the page appears on the screen
-        startTime = DateTime.Now;
-        cancellationTokenSource = new CancellationTokenSource();
-        UpdateArc();
-    }
-
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
-        // Stop the timer when the page is removed from the screen
-        cancellationTokenSource.Cancel();
-    }
-*/
-
     //Adding the timer and setting the rules applied to the timer
     private async void UpdateArc()
     {
@@ -78,10 +61,12 @@ public partial class GamePage : ContentPage
                     Debug.WriteLine(Game.Instance.Count.ToString());
                     if (Game.Instance.Count >= 0 && Game.Instance.Count < 15)
                     {
+                        AddScorePointToPlayer();
                         await Navigation.PushAsync(new GamePage());
                     }
                     else if (Game.Instance.Count > 14)
                     {
+                        AddScorePointToPlayer();
                         await Navigation.PushAsync(new Scoreboard());
                     }
                     
@@ -96,6 +81,15 @@ public partial class GamePage : ContentPage
         ResetView();
     }
 
+    private void AddScorePointToPlayer()
+    {
+        if (Game.Instance.SelectedAnswer == Game.Instance.CurrentQuestion.getCorrectAnswer())
+        {
+            Game.Instance.Lobby.Player.Score++;
+            Game.Instance.SetToQuestionNull();
+        }
+    }
+
     private void ResetView()
     {
         progress = 0;
@@ -106,17 +100,23 @@ public partial class GamePage : ContentPage
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
         AnswerOne.BackgroundColor = Colors.DarkGray;
+        AnswerOne.TextColor = Colors.Black;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
+
+        Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[0];
     }
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkGray;
+        AnswerTwo.TextColor = Colors.Black;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
+        
+        Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[1];
     }
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)
@@ -124,7 +124,10 @@ public partial class GamePage : ContentPage
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkGray;
+        AnswerThree.TextColor = Colors.Black;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
+        
+        Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[2];
     }
 
     async void OnAnswerFourClicked(object sender, EventArgs e)
@@ -133,6 +136,9 @@ public partial class GamePage : ContentPage
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkGray;
+        AnswerFour.TextColor = Colors.Black;
+        
+        Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[3];
     }
     
     async void OnScoreBoardClicked(object sender, EventArgs e)

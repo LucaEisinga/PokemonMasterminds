@@ -26,5 +26,18 @@ public abstract class Question
             Answers[n] = value;
         }
     }
+
+    public Answer getCorrectAnswer()
+    {
+        foreach (var a in Answers)
+        {
+            if (a.CorrectAnswer)
+            {
+                return a;
+            }
+        }
+
+        return null;
+    }
     
 }

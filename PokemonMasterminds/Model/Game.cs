@@ -1,3 +1,5 @@
+using PokemonMasterminds.Model.Questions;
+
 namespace PokemonMasterminds.Model
 {
     public class Game
@@ -9,11 +11,20 @@ namespace PokemonMasterminds.Model
         public static Game Instance => _instance ??= new Game();
         public int Count = 0;
         
+        public Question CurrentQuestion = null;
+        public Answer SelectedAnswer = null;
+        
         public Game()
         {
             Lobby = new LobbyList();
             GameIsActive = false;
         }
-        
+
+        public void SetToQuestionNull()
+        {
+            this.CurrentQuestion = null;
+            this.SelectedAnswer = null;
+        }
+
     }
 }

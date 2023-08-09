@@ -78,16 +78,6 @@ namespace PokemonMasterminds.ViewModels
 
             INavigation navigation = App.Current.MainPage.Navigation;
 
-           // PlayerList = game.Lobby.Players.ToList();
-
-            OnAnswerSelectedCommand = new Command((isCorrect) =>
-            {
-                if ((bool)isCorrect)
-                {
-                    game.Lobby.Player.Score++;
-                }
-            });
-
             void NextQuestion()
             {
                 navigation.PushAsync(new GamePage());
@@ -111,6 +101,8 @@ namespace PokemonMasterminds.ViewModels
             
             if (question.Answers.Count >= 4)
             {
+                Game.Instance.CurrentQuestion = question;
+                
                 AnswerOneText = question.Answers[0].pokemon.name;
                 AnswerTwoText = question.Answers[1].pokemon.name;
                 AnswerThreeText = question.Answers[2].pokemon.name;
