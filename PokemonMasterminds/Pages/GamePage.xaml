@@ -33,14 +33,29 @@
         Margin="20"
         Spacing="10"
         VerticalOptions="Center">
-        <Label
-            FontSize="42"
-            HorizontalOptions="End"
-            Text="{Binding _ScorePoints}"
-            TextColor="DarkRed"
-            VerticalOptions="Center"
-            WidthRequest="30"
-            x:Name="CurrentScore" />
+
+        <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+
+            <Label
+                FontSize="32"
+                HorizontalOptions="End"
+                Text="Current Score: "
+                TextColor="DarkRed"
+                VerticalOptions="Center"
+                WidthRequest="230"
+                x:Name="CurrentScoreLabel" />
+
+            <Label
+                FontSize="42"
+                HorizontalOptions="End"
+                Text="{Binding _ScorePoints}"
+                TextColor="DarkRed"
+                VerticalOptions="Center"
+                WidthRequest="30"
+                x:Name="CurrentScore" />
+
+        </StackLayout>
+
         <Label
             FontFamily="Cascadia Code"
             FontSize="50"
