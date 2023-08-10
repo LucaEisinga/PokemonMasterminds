@@ -3,7 +3,7 @@ using PokemonMasterminds.ViewModels;
 using PokemonMasterminds.Model;
 
 namespace PokemonMasterminds.Pages;
-
+//defining the gamepage and setting the rules for it.
 public partial class GamePage : ContentPage
 {
     public IDispatcherTimer timer;
@@ -13,7 +13,7 @@ public partial class GamePage : ContentPage
     private CancellationTokenSource cancellationTokenSource = new();
     private int Count;
     private Game game;
-
+   
    public GamePage(Game game)
    {
        this.game = game;
