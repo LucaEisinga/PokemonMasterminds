@@ -12,11 +12,16 @@ public abstract class Question
     }
 
     public abstract Task CreateQuestion();
-    
-    public void ShuffleAnswers()
+
+    public void PrepareQuestion()
+    {
+        ShuffleAnswers();
+        AssignCorrect();
+    }
+    private void ShuffleAnswers()
     {
         var random = new Random();
-        int n = Math.Min(Answers.Count, 4);
+        int n = Math.Min(Answers.Count, 3);
         while (n > 1)
         {
             n--;
@@ -24,6 +29,18 @@ public abstract class Question
             Answer value = Answers[k];
             Answers[k] = Answers[n];
             Answers[n] = value;
+        }
+        
+    }
+
+    private void AssignCorrect()
+    {
+        if (getCorrectAnswer() == null)
+        {
+            var random = new Random();
+            int n = Math.Min(Answers.Count, 3);
+
+            Answers[n].CorrectAnswer = true;
         }
     }
 

@@ -26,5 +26,13 @@ namespace PokemonMasterminds.Model
             this.SelectedAnswer = null;
         }
 
+        public void ResetGame()
+        {
+            this.Count = 0;
+            GameIsActive = false;
+            SetToQuestionNull();
+            Lobby.Player.Score = 0;
+        }
+
     }
 }

@@ -17,6 +17,6 @@ public partial class Scoreboard : ContentPage
     {
 	    Game game = Game.Instance;
 	    game.GameIsActive = false;
-        await Navigation.PushAsync(new Pages.InputLobby(viewModel));
+        await Navigation.PushAsync(new Pages.Lobby(Game.Instance));
     }
 }

@@ -27,7 +27,12 @@ namespace PokemonMasterminds.Model.Questions
 
                     fetchedPokemon.Add(pokemon);
                     
-                    Answers.Add(new Answer(pokemon, i == 0));
+                    Answers.Add(new Answer(pokemon));
+
+                    //if (Answers.Count >= 4)
+                    //{
+                    //    break;
+                    //}
                 }
             }
         }

@@ -51,7 +51,7 @@
                 Text="{Binding _ScorePoints}"
                 TextColor="DarkRed"
                 VerticalOptions="Center"
-                WidthRequest="30"
+                WidthRequest="60"
                 x:Name="CurrentScore" />
 
         </StackLayout>

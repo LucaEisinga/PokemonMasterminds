@@ -105,7 +105,7 @@ namespace PokemonMasterminds.ViewModels
             Question question = new WhoIsThatPokemon();
             await question.CreateQuestion();
 
-            question.ShuffleAnswers();
+            question.PrepareQuestion();
             
             if (question.Answers.Count >= 4)
             {
@@ -116,14 +116,8 @@ namespace PokemonMasterminds.ViewModels
                 AnswerThreeText = question.Answers[2].pokemon.name;
                 AnswerFourText = question.Answers[3].pokemon.name;
 
-                foreach (Answer a in question.Answers)
-                {
-                    if (a.CorrectAnswer)
-                    {
-                        PokeImage = a.pokemon.sprites.front_default;
-                        break;
-                    }
-                }
+                PokeImage = question.getCorrectAnswer().pokemon.sprites.front_default;
+               
             }
             else
             {

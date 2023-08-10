@@ -40,7 +40,7 @@ public partial class GamePage : ContentPage
         else if (Game.Instance.Count > 14)
         {
             
-            duration = 0;
+            duration = 16;
         }
 
         TimeSpan elapsedTime = DateTime.Now - startTime;
@@ -68,6 +68,8 @@ public partial class GamePage : ContentPage
                     {
                         AddScorePointToPlayer();
                         await Navigation.PushAsync(new Scoreboard());
+                        Game.Instance.ResetGame();
+                        return;
                     }
                     
                     await Task.Delay(500);
