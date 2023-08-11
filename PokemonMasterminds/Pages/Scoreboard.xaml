@@ -99,12 +99,22 @@
                 BackgroundColor="Transparent"
                 FontFamily="Cascadia Code"
                 FontSize="25"
+                Grid.Column="0"
+                Grid.Row="2"
+                Padding="8"
+                SemanticProperties.Description="Percentage right text"
+                Text="Percentage right:" />
+
+            <Label
+                BackgroundColor="Transparent"
+                FontFamily="Cascadia Code"
+                FontSize="25"
                 Grid.Column="1"
                 Grid.Row="2"
                 HorizontalOptions="Center"
                 Padding="8"
-                SemanticProperties.Description="Percentage"
-                Text="80%" />
+                SemanticProperties.Description="Percentage of answers that were right"
+                Text="{Binding ScorePercentage}" />
 
         </Grid>
         <Button

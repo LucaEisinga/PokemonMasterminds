@@ -75,6 +75,7 @@ namespace PokemonMasterminds.ViewModels
 
         public QuestionViewModel()
         {
+            UpdateScore();
             LoadQuestionAsync();
         }
         
@@ -128,6 +129,11 @@ namespace PokemonMasterminds.ViewModels
             }
             
             return Task.CompletedTask;
+        }
+        
+        private async Task UpdateScore()
+        {
+            ScorePoints = Game.Instance.Lobby.Player.Score.ToString();
         }
 
         private async Task LoadQuestionAsync()

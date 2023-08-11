@@ -73,6 +73,14 @@ namespace PokemonMasterminds.ViewModels
             set { _player4Score = value; OnPropertyChanged(); }
         }
 
+        private string _scorePercentage { get; set; }
+        
+        public string ScorePercentage
+        {
+            get { return _scorePercentage; }
+            set { _scorePercentage = value; OnPropertyChanged(); }
+        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -106,6 +114,10 @@ namespace PokemonMasterminds.ViewModels
             {
                 Player1Text = Game.Instance.Lobby.Player.Name + ", Wow! Got 'Em All Right!";
             }
+
+            int percentage = (Game.Instance.Lobby.Player.Score * (100 / 15));
+
+            ScorePercentage = percentage + "%";
         }
         
     }
