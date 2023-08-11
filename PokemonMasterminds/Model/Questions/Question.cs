@@ -15,7 +15,7 @@ public abstract class Question
 
     public void PrepareQuestion()
     {
-        //ShuffleAnswers();
+        //ShuffleAnswers(); //shuffle is niet meer nodig
         AssignCorrect();
     }
     private void ShuffleAnswers()
@@ -36,7 +36,7 @@ public abstract class Question
         if (getCorrectAnswer() == null)
         {
             var random = new Random();
-            int n = random.Next(0, 3);
+            int n = random.Next(0, 4);
 
             Answers[n].CorrectAnswer = true;
         }
