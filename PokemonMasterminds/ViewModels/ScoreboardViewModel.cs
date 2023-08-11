@@ -96,7 +96,7 @@ namespace PokemonMasterminds.ViewModels
 
         public ScoreboardViewModel()
         {
-            Player1Score = Game.Instance.Lobby.Player.Score.ToString();
+            Player1Score = Game.Instance.Lobby.Player.Score.ToString() + " out of 15";
 
             if (Game.Instance.Lobby.Player.Score <= 5)
             {
@@ -115,9 +115,9 @@ namespace PokemonMasterminds.ViewModels
                 Player1Text = Game.Instance.Lobby.Player.Name + ", Wow! Got 'Em All Right!";
             }
 
-            int percentage = (Game.Instance.Lobby.Player.Score * (100 / 15));
-
-            ScorePercentage = percentage + "%";
+            float percentage = Game.Instance.Lobby.Player.Score * (100f / 15f);
+            
+            ScorePercentage = Math.Round(percentage, 2) + "%";
         }
         
     }
