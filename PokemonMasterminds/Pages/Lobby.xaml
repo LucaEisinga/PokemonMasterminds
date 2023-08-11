@@ -28,7 +28,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="30"
                 HorizontalOptions="Center"
-                Text="Waiting for players" />
+                Text="Gotta Guess 'Em All!" />
             <Label
                 FontFamily="Cascadia Code"
                 FontSize="20"
@@ -36,7 +36,7 @@
                 HorizontalOptions="Center"
                 SemanticProperties.Description="Masterminds text"
                 SemanticProperties.HeadingLevel="Level3"
-                Text="Players" />
+                Text="" />
 
             <CollectionView HorizontalOptions="Center">
                 <CollectionView.ItemTemplate>

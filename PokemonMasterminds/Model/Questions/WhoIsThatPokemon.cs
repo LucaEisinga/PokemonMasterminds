@@ -29,10 +29,10 @@ namespace PokemonMasterminds.Model.Questions
                     
                     Answers.Add(new Answer(pokemon));
 
-                    //if (Answers.Count >= 4)
-                    //{
-                    //    break;
-                    //}
+                    if (Answers.Count == 4)
+                    {
+                        return;
+                    }
                 }
             }
         }

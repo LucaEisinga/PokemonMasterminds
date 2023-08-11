@@ -89,7 +89,23 @@ namespace PokemonMasterminds.ViewModels
         public ScoreboardViewModel()
         {
             Player1Score = Game.Instance.Lobby.Player.Score.ToString();
-            Player1Text = Game.Instance.Lobby.Player.Name;
+
+            if (Game.Instance.Lobby.Player.Score <= 5)
+            {
+                Player1Text = Game.Instance.Lobby.Player.Name + ", Better luck next time!";
+            }
+            else if (Game.Instance.Lobby.Player.Score <= 11)
+            {
+                Player1Text = Game.Instance.Lobby.Player.Name + ", Not bad!";
+            }
+            else if (Game.Instance.Lobby.Player.Score <= 14)
+            {
+                Player1Text = Game.Instance.Lobby.Player.Name + ", Almost a perfect score!";
+            }
+            else if (Game.Instance.Lobby.Player.Score == 15)
+            {
+                Player1Text = Game.Instance.Lobby.Player.Name + ", Wow! Got 'Em All Right!";
+            }
         }
         
     }

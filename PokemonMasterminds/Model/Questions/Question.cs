@@ -15,20 +15,18 @@ public abstract class Question
 
     public void PrepareQuestion()
     {
-        ShuffleAnswers();
+        //ShuffleAnswers();
         AssignCorrect();
     }
     private void ShuffleAnswers()
     {
         var random = new Random();
-        int n = Math.Min(Answers.Count, 3);
+        int n = Math.Min(Answers.Count, 4);
         while (n > 1)
         {
             n--;
             int k = random.Next(n + 1);
-            Answer value = Answers[k];
-            Answers[k] = Answers[n];
-            Answers[n] = value;
+            (Answers[k], Answers[n]) = (Answers[n], Answers[k]);
         }
         
     }
@@ -38,7 +36,7 @@ public abstract class Question
         if (getCorrectAnswer() == null)
         {
             var random = new Random();
-            int n = Math.Min(Answers.Count, 3);
+            int n = random.Next(0, 3);
 
             Answers[n].CorrectAnswer = true;
         }

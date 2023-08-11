@@ -63,13 +63,6 @@ namespace PokemonMasterminds.ViewModels
             set { _ScorePoints = value; OnPropertyChanged(); }
         }
 
-        public QuestionViewModel()
-        {
-            UpdateScore();
-            LoadQuestionAsync(); //.Wait();
-        }
-
-
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
@@ -80,6 +73,11 @@ namespace PokemonMasterminds.ViewModels
 
         private string MyPlayerName;
 
+        public QuestionViewModel()
+        {
+            LoadQuestionAsync();
+        }
+        
         public QuestionViewModel(Game game)
         {
             LoadQuestionAsync();
@@ -97,26 +95,28 @@ namespace PokemonMasterminds.ViewModels
                 NextQuestion();
             });
         }
-        
-        
 
-        private async Task LoadQuestionAsync()
+        private async Task<Task> LoadQuestion()
         {
-            Question question = new WhoIsThatPokemon();
-            await question.CreateQuestion();
-
-            question.PrepareQuestion();
+            Game.Instance.CurrentQuestion = null;
+            Game.Instance.CurrentQuestion = new WhoIsThatPokemon();
             
-            if (question.Answers.Count >= 4)
-            {
-                Game.Instance.CurrentQuestion = question;
-                
-                AnswerOneText = question.Answers[0].pokemon.name;
-                AnswerTwoText = question.Answers[1].pokemon.name;
-                AnswerThreeText = question.Answers[2].pokemon.name;
-                AnswerFourText = question.Answers[3].pokemon.name;
+            await Game.Instance.CurrentQuestion.CreateQuestion();
+            
+            Game.Instance.CurrentQuestion.PrepareQuestion();
+            
+            Question currentQuestion = Game.Instance.CurrentQuestion;
 
-                PokeImage = question.getCorrectAnswer().pokemon.sprites.front_default;
+            if (Game.Instance.CurrentQuestion.Answers.Count >= 4)
+            {
+                Game.Instance.CurrentQuestion = currentQuestion;
+                
+                AnswerOneText = Game.Instance.CurrentQuestion.Answers[0].pokemon.name;
+                AnswerTwoText = Game.Instance.CurrentQuestion.Answers[1].pokemon.name;
+                AnswerThreeText = Game.Instance.CurrentQuestion.Answers[2].pokemon.name;
+                AnswerFourText = Game.Instance.CurrentQuestion.Answers[3].pokemon.name;
+
+                PokeImage = Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.sprites.front_default;
                
             }
             else
@@ -126,11 +126,13 @@ namespace PokemonMasterminds.ViewModels
                 AnswerThreeText = "Default answer 3";
                 AnswerFourText = "Default answer 4";
             }
+            
+            return Task.CompletedTask;
         }
 
-        private async Task UpdateScore()
+        private async Task LoadQuestionAsync()
         {
-            ScorePoints = Game.Instance.Lobby.Player.Score.ToString();
+            await LoadQuestion();
         }
         
         public event PropertyChangedEventHandler PropertyChanged;

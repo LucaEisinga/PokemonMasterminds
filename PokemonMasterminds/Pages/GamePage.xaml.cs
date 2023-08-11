@@ -7,17 +7,17 @@ namespace PokemonMasterminds.Pages;
 
 public partial class GamePage : ContentPage
 {
-    public IDispatcherTimer timer;
-    private DateTime startTime;
-    private int duration;
-    private double progress;
+    public IDispatcherTimer Timer;
+    private DateTime _startTime;
+    private int _duration;
+    private double _progress;
 
     public GamePage()
    {
         BindingContext = new QuestionViewModel(Game.Instance);
         InitializeComponent();
 
-        startTime = DateTime.Now;
+        _startTime = DateTime.Now;
 
         UpdateArc();
     }
@@ -27,55 +27,55 @@ public partial class GamePage : ContentPage
     {
         if (Game.Instance.Count >= 0 && Game.Instance.Count < 5)
         {
-            duration = 16;
+            _duration = 16;
         }
         else if (Game.Instance.Count > 4 && Game.Instance.Count < 10)
         {
-            duration = 11;
+            _duration = 11;
         }
         else if (Game.Instance.Count > 9 && Game.Instance.Count < 15)
         {
-            duration = 6;
+            _duration = 6;
         }
         else if (Game.Instance.Count > 14)
         {
             
-            duration = 16;
+            _duration = 16;
         }
 
-        TimeSpan elapsedTime = DateTime.Now - startTime;
+        TimeSpan elapsedTime = DateTime.Now - _startTime;
         
-        while(elapsedTime.TotalSeconds <= duration && Game.Instance.GameIsActive)
+        while(elapsedTime.TotalSeconds <= _duration && Game.Instance.GameIsActive)
         {
-            elapsedTime = DateTime.Now - startTime;
-            int secondsRemaining = (int)(duration - elapsedTime.TotalSeconds);
+            elapsedTime = DateTime.Now - _startTime;
+            int secondsRemaining = (int)(_duration - elapsedTime.TotalSeconds);
 
             timerLabel.Text = $"{secondsRemaining}";
 
-            progress = Math.Ceiling(elapsedTime.TotalSeconds);
-            progress %= duration;
+            _progress = Math.Ceiling(elapsedTime.TotalSeconds);
+            _progress %= _duration;
 
             if (secondsRemaining == 0)
+            {
+                Game.Instance.Count++;
+                
+                if (Game.Instance.Count >= 0 && Game.Instance.Count < 15)
                 {
-                    Game.Instance.Count++;
-                    Debug.WriteLine(Game.Instance.Count.ToString());
-                    if (Game.Instance.Count >= 0 && Game.Instance.Count < 15)
-                    {
-                        AddScorePointToPlayer();
-                        await Navigation.PushAsync(new GamePage());
-                    }
-                    else if (Game.Instance.Count > 14)
-                    {
-                        AddScorePointToPlayer();
-                        await Navigation.PushAsync(new Scoreboard());
-                        Game.Instance.ResetGame();
-                        return;
-                    }
-                    
-                    await Task.Delay(500);
-
+                    AddScorePointToPlayer();
+                    await Navigation.PushAsync(new GamePage());
+                }
+                else if (Game.Instance.Count > 14)
+                {
+                    AddScorePointToPlayer();
+                    await Navigation.PushAsync(new Scoreboard());
+                    Game.Instance.ResetGame();
                     return;
                 }
+                    
+                await Task.Delay(500);
+
+                return;
+            }
 
             await Task.Delay(500);
         }
@@ -85,7 +85,7 @@ public partial class GamePage : ContentPage
 
     private void AddScorePointToPlayer()
     {
-        if (Game.Instance.SelectedAnswer == Game.Instance.CurrentQuestion.getCorrectAnswer())
+    if (Game.Instance.SelectedAnswer == Game.Instance.CurrentQuestion.getCorrectAnswer())
         {
             Game.Instance.Lobby.Player.Score++;
             Game.Instance.SetToQuestionNull();
@@ -94,18 +94,22 @@ public partial class GamePage : ContentPage
 
     private void ResetView()
     {
-        progress = 0;
-        timerLabel.Text = duration.ToString();
+        _progress = 0;
+        timerLabel.Text = _duration.ToString();
     }
 
     // Setting the awnsers for players
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
         AnswerOne.BackgroundColor = Colors.DarkGray;
-        AnswerOne.TextColor = Colors.Black;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
+        
+        AnswerOne.TextColor = Colors.Black;
+        AnswerTwo.TextColor = Colors.White;
+        AnswerThree.TextColor = Colors.White;
+        AnswerFour.TextColor = Colors.White;
 
         Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[0];
     }
@@ -114,9 +118,13 @@ public partial class GamePage : ContentPage
     {
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkGray;
-        AnswerTwo.TextColor = Colors.Black;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
+        
+        AnswerOne.TextColor = Colors.White;
+        AnswerTwo.TextColor = Colors.Black;
+        AnswerThree.TextColor = Colors.White;
+        AnswerFour.TextColor = Colors.White;
         
         Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[1];
     }
@@ -126,8 +134,12 @@ public partial class GamePage : ContentPage
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkGray;
-        AnswerThree.TextColor = Colors.Black;
         AnswerFour.BackgroundColor = Colors.DarkCyan;
+        
+        AnswerOne.TextColor = Colors.White;
+        AnswerTwo.TextColor = Colors.White;
+        AnswerThree.TextColor = Colors.Black;
+        AnswerFour.TextColor = Colors.White;
         
         Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[2];
     }
@@ -138,6 +150,10 @@ public partial class GamePage : ContentPage
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
         AnswerFour.BackgroundColor = Colors.DarkGray;
+        
+        AnswerOne.TextColor = Colors.White;
+        AnswerTwo.TextColor = Colors.White;
+        AnswerThree.TextColor = Colors.White;
         AnswerFour.TextColor = Colors.Black;
         
         Game.Instance.SelectedAnswer = Game.Instance.CurrentQuestion.Answers[3];
