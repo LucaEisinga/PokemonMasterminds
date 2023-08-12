@@ -15,6 +15,8 @@ public partial class Scoreboard : ContentPage
 
     async void OnStartPageClicked(object sender, EventArgs e)
     {
+	    SoundPlayer.Instance.PlayPlinkSound();
+	    
 	    Game game = Game.Instance;
 	    game.GameIsActive = false;
         await Navigation.PushAsync(new Pages.Lobby(Game.Instance));

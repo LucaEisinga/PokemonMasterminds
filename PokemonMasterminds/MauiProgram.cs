@@ -2,6 +2,7 @@
 using PokemonMasterminds.Pages;
 using PokemonMasterminds.ViewModels;
 using CommunityToolkit.Maui;
+using Plugin.Maui.Audio;
 
 namespace PokemonMasterminds
 {
@@ -24,6 +25,9 @@ namespace PokemonMasterminds
 
         builder.Services.AddTransient<InputLobby>();
         builder.Services.AddTransient<InputLobbyViewModel>();
+
+        builder.Services.AddSingleton((AudioManager.Current));
+        builder.Services.AddTransient<MainPage>();
 
         return builder.Build();
 

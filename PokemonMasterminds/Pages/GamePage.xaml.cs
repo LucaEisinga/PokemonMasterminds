@@ -101,6 +101,8 @@ public partial class GamePage : ContentPage
     // Setting the awnsers for players
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
+        SoundPlayer.Instance.PlayPlinkSound();
+        
         AnswerOne.BackgroundColor = Colors.DarkGray;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
@@ -116,6 +118,8 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerTwoClicked(object sender, EventArgs e)
     {
+        SoundPlayer.Instance.PlayPlinkSound();
+        
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkGray;
         AnswerThree.BackgroundColor = Colors.DarkCyan;
@@ -131,6 +135,8 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerThreeClicked(object sender, EventArgs e)
     {
+        SoundPlayer.Instance.PlayPlinkSound();
+        
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkGray;
@@ -146,6 +152,8 @@ public partial class GamePage : ContentPage
 
     async void OnAnswerFourClicked(object sender, EventArgs e)
     {
+        SoundPlayer.Instance.PlayPlinkSound();
+        
         AnswerOne.BackgroundColor = Colors.DarkCyan;
         AnswerTwo.BackgroundColor = Colors.DarkCyan;
         AnswerThree.BackgroundColor = Colors.DarkCyan;

@@ -42,6 +42,8 @@ namespace PokemonMasterminds.ViewModels
        
         private async void StartGame()
         {
+            SoundPlayer.Instance.PlayPlinkSound();
+            
             INavigation navigation = App.Current.MainPage.Navigation;
 
             Game game = Game.Instance;

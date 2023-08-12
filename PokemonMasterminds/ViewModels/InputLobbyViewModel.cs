@@ -52,47 +52,46 @@ namespace PokemonMasterminds.ViewModels
         }
 
         public ICommand JoinLobbyCommand => _joinLobbyCommand ??= new Command<object>(JoinLobby);
-        private async void JoinLobby(object parameter)
-        {
-            if (string.IsNullOrEmpty(PlayerName) || string.IsNullOrEmpty(LobbyCode))
-            {
-                return;
-            }
+        
+       private async void JoinLobby(object parameter)
+       {
+           if (string.IsNullOrEmpty(PlayerName) || string.IsNullOrEmpty(LobbyCode))
+           {
+               return;
+           }
 
-            var filteredPlayers = _lobbyPlayers.ContainsKey(LobbyCode) ? _lobbyPlayers[LobbyCode] : new ObservableCollection<Player>();
-            
-            if (filteredPlayers.Count > 3)
-            {
-                FullLobbyText = "Deze lobby zit vol";
-                return;
-            }
-            else
-            {
-                _game.Lobby.AddPlayer(new Player(PlayerName));
-            }
-            
-            PlayerName = "-";
+           var filteredPlayers = _lobbyPlayers.ContainsKey(LobbyCode) ? _lobbyPlayers[LobbyCode] : new ObservableCollection<Player>();
+           
+           if (filteredPlayers.Count > 3)
+           {
+               FullLobbyText = "Deze lobby zit vol";
+               return;
+           }
+           else
+           {
+               _game.Lobby.AddPlayer(new Player(PlayerName));
+           }
+           
+           PlayerName = "-";
 
-            if (Players.Count == 0)
-            {
-                return;
-            }
+           if (Players.Count == 0)
+           {
+               return;
+           }
 
-            //_game.Lobby.Players = new ObservableCollection<Player>(Players.ToList());
+           if (!_lobbyPlayers.ContainsKey(LobbyCode))
+           {
+               _lobbyPlayers[LobbyCode] = new ObservableCollection<Player>();
+           }
+           _lobbyPlayers[LobbyCode].Clear();
+           foreach (var player in Players)
+           {
+               _lobbyPlayers[LobbyCode].Add(player);
+           }
 
-            if (!_lobbyPlayers.ContainsKey(LobbyCode))
-            {
-                _lobbyPlayers[LobbyCode] = new ObservableCollection<Player>();
-            }
-            _lobbyPlayers[LobbyCode].Clear();
-            foreach (var player in Players)
-            {
-                _lobbyPlayers[LobbyCode].Add(player);
-            }
-
-            await CreateLobby(LobbyCode);
-            await _navigation.PushAsync(new Lobby(_game));
-        }
+           await CreateLobby(LobbyCode);
+           await _navigation.PushAsync(new Lobby(_game));
+       }
 
         public ICommand CreateLobbyCommand => _createLobbyCommand ??= new Command<string>(async (code) =>
         {
@@ -104,6 +103,8 @@ namespace PokemonMasterminds.ViewModels
 
         private async Task CreateLobby(string lobbyCode)
         {
+            SoundPlayer.Instance.PlayPlinkSound();
+            
             try
             {
                 // Create the game object with the players
