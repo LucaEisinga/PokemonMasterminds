@@ -10,6 +10,7 @@ namespace PokemonMasterminds.Pages
         private DateTime startTime;
         private int duration;
         private double progress;
+        private bool isImageVisible = false; // Flag to track image visibility
 
         public GamePage()
         {
@@ -17,30 +18,34 @@ namespace PokemonMasterminds.Pages
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            // Simulate asynchronous image loading
-            await SimulateImageLoadingAsync();
-
-            // Once the image is "loaded," start the timer
-            StartTimer();
+            StartTimerIfImageVisible();
         }
 
-        private async Task SimulateImageLoadingAsync()
+        protected override void OnSizeAllocated(double width, double height)
         {
-            // Simulate image loading delay
-            await Task.Delay(2000); // Adjust the delay time as needed
+            base.OnSizeAllocated(width, height);
+
+            // Check if the image is visible on the screen based on layout changes
+            if (width > 0 && height > 0 && !isImageVisible)
+            {
+                isImageVisible = true;
+                StartTimerIfImageVisible();
+            }
         }
 
-        private async void StartTimer()
+        private async void StartTimerIfImageVisible()
         {
-            startTime = DateTime.Now;
-
-            UpdateArc();
+            // Start the timer only if the image is visible
+            if (isImageVisible)
+            {
+                await Task.Delay(1000);
+                startTime = DateTime.Now;
+                UpdateArc();
+            }
         }
-
 
         //Adding the timer and setting the rules applied to the timer
         private async void UpdateArc()
@@ -97,6 +102,8 @@ namespace PokemonMasterminds.Pages
             }
 
             ResetView();
+
+            
         }
 
         private void ResetView()

@@ -12,5 +12,6 @@ namespace PokemonMasterminds.Pages
             LobbyViewModel viewModel = new LobbyViewModel(game);
             BindingContext = viewModel;
         }
+
     }
 }
