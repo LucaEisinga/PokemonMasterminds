@@ -29,6 +29,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
+
     <VerticalStackLayout
         Margin="20"
         Spacing="10"
