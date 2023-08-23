@@ -18,7 +18,7 @@ public class SoundPlayer
 
     public async void PlayPlinkSound()
     {
-        var player = _audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("PlinkPokemonSound.wav"));
+        var player = _audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("PlinkPokemonSound2.mp3"));
 
         player.Play();
     }
