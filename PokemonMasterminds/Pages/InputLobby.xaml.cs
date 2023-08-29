@@ -12,7 +12,5 @@ namespace PokemonMasterminds.Pages
         }
 
         public InputLobbyViewModel ViewModel => (InputLobbyViewModel)BindingContext;
-
-        public ICommand JoinLobbyCommand => ViewModel?.JoinLobbyCommand;
     }
 }
