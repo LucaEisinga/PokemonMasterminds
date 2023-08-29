@@ -47,6 +47,7 @@ namespace PokemonMasterminds.Model
             {
                 Question Q = new WhoIsThatPokemon();
                 await Q.CreateQuestion();
+                Q.PrepareQuestion();
                 
                 Questions.Add(Q);
             }

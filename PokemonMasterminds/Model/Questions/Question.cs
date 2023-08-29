@@ -41,6 +41,7 @@ public abstract class Question
             int n = random.Next(0, 4);
 
             Answers[n].CorrectAnswer = true;
+            Answers[n].pokemon.sprites.SetImage();
         }
     }
 

@@ -102,7 +102,7 @@ namespace PokemonMasterminds.ViewModels
             Game.Instance.CurrentQuestion = null;
             Game.Instance.CurrentQuestion = Game.Instance.GetQuestionFromList();
 
-            Game.Instance.CurrentQuestion.PrepareQuestion();
+            //Game.Instance.CurrentQuestion.PrepareQuestion();
             
             Question currentQuestion = Game.Instance.CurrentQuestion;
 
@@ -114,8 +114,8 @@ namespace PokemonMasterminds.ViewModels
                 AnswerTwoText = Game.Instance.CurrentQuestion.Answers[1].pokemon.name;
                 AnswerThreeText = Game.Instance.CurrentQuestion.Answers[2].pokemon.name;
                 AnswerFourText = Game.Instance.CurrentQuestion.Answers[3].pokemon.name;
-
-                PokeImage = Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.sprites.front_default;
+                
+                PokeImage = Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.sprites.pokemonSprite;
                
             }
             else
