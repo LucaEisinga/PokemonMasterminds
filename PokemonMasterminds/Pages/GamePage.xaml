@@ -30,7 +30,7 @@
     </ContentPage.Resources>
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
     </Shell.BackButtonBehavior>
 
     <VerticalStackLayout

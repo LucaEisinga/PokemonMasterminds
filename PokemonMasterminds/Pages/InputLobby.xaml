@@ -15,6 +15,11 @@
             <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
     <VerticalStackLayout
         Margin="20"
         Spacing="10"
@@ -45,8 +50,8 @@
             TextColor="PaleVioletRed"
             VerticalOptions="Center"
             WidthRequest="200"
-            x:Name="NoName"/>
-        
+            x:Name="NoName" />
+
         <Grid
             ColumnSpacing="5"
             HorizontalOptions="Center"

@@ -13,6 +13,11 @@
             <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
     <ScrollView>
         <VerticalStackLayout
             Margin="20"

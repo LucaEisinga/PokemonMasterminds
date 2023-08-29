@@ -1,57 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PokemonMasterminds.MainPage">
+<ContentPage
+    x:Class="PokemonMasterminds.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Color="LightBlue"
-                          Offset="0.1"/>
-            <GradientStop Color="LightGreen"
-                          Offset="1.0"/>
+            <GradientStop Color="LightBlue" Offset="0.1" />
+            <GradientStop Color="LightGreen" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
-    <Grid
-         Padding="15,0">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid Padding="15,0">
         <Image
-                Source="pokeball.png"
-                SemanticProperties.Description="pokeball"
-                Aspect="AspectFit"
-                Opacity="0.5"/>
+            Aspect="AspectFit"
+            Opacity="0.5"
+            SemanticProperties.Description="pokeball"
+            Source="pokeball.png" />
         <ScrollView>
             <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+                Padding="30,0"
+                Spacing="25"
+                VerticalOptions="Center">
 
                 <Image
-                Source="pokemon.png"
-                SemanticProperties.Description="Pokemon"
-                HeightRequest="80"
-                HorizontalOptions="Center" />
+                    HeightRequest="80"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Pokemon"
+                    Source="pokemon.png" />
 
                 <Label
-                Text="masterminds"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Masterminds text"
-                FontSize="50"
-                FontFamily="Cascadia Code"
-                HorizontalOptions="Center" />
+                    FontFamily="Cascadia Code"
+                    FontSize="50"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Masterminds text"
+                    SemanticProperties.HeadingLevel="Level2"
+                    Text="masterminds" />
 
                 <Image
-                Source="pikachublack.png"
-                SemanticProperties.Description="Pokemon"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+                    HeightRequest="200"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Pokemon"
+                    Source="pikachublack.png" />
 
                 <Button
-                x:Name="RedirectBtn"
-                Text="Play game"
-                SemanticProperties.Hint="Redirects to the lobby page"
-                Clicked="OnButtonClicked"
-                HorizontalOptions="Center"
-                BorderColor="DarkCyan"
-                BackgroundColor="DarkCyan"
-                WidthRequest="200"/>
+                    BackgroundColor="DarkCyan"
+                    BorderColor="DarkCyan"
+                    Clicked="OnButtonClicked"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Hint="Redirects to the lobby page"
+                    Text="Play game"
+                    WidthRequest="200"
+                    x:Name="RedirectBtn" />
 
             </VerticalStackLayout>
         </ScrollView>
