@@ -1,7 +1,6 @@
 ﻿using PokemonMasterminds.Model;
 using PokemonMasterminds.Pages;
 using PokemonMasterminds.ViewModels;
-using Plugin.Maui.Audio;
 
 namespace PokemonMasterminds
 {

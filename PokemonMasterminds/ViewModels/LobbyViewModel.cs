@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
+    //viewmodel voor de lobby, vanaf hieruit wordt de game geladen en kan er op start worden gedrukt
     class LobbyViewModel : INotifyPropertyChanged
     {
         //StartGameCommand : ICommand

@@ -1,5 +1,6 @@
 namespace PokemonMasterminds.Model.Questions;
 
+//dit is basis class voor alle verschillende question classes
 public abstract class Question
 {
     public List<Answer> Answers { get; set; }
@@ -13,10 +14,13 @@ public abstract class Question
 
     public abstract Task CreateQuestion();
 
+    // deze methode bevat alle stappen welke moeten gebeuren om een question gereed te maken
     public void PrepareQuestion()
     {
         AssignCorrect();
     }
+    
+    //deze methode werdt gebruikt om antwoorden door elkaar te husselen, (echter is dit overbodig geworden en dus niet geimplementeerd)
     private void ShuffleAnswers()
     {
         var random = new Random();
@@ -30,7 +34,7 @@ public abstract class Question
         
     }
 
-    // Als er nog geen correct antwoord bestaat, wordt die hier aangemaakt. Er wordt 1 correct antwoord gepakt uit de 4 opties.
+    // Als er nog geen correct antwoord bestaat, wordt die met deze methode aangemaakt. Er wordt 1 correct antwoord gepakt uit de 4 opties.
     private void AssignCorrect()
     {
         if (getCorrectAnswer() == null)
@@ -42,6 +46,7 @@ public abstract class Question
         }
     }
 
+    //deze methode geeft het correcte antwoord op de vraag
     public Answer getCorrectAnswer()
     {
         foreach (var a in Answers)

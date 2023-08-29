@@ -2,6 +2,7 @@ using PokemonMasterminds.Model.Questions;
 
 namespace PokemonMasterminds.Model
 {
+    //dit is de game class, hierin wordt alle informatie bijgehouden om het spel te laten verlopen
     public class Game
     {
         public LobbyList Lobby { get; set; }
@@ -20,12 +21,14 @@ namespace PokemonMasterminds.Model
             GameIsActive = false;
         }
 
+        //methode om de huidige vraag weer uit de game class te halen
         public void SetToQuestionNull()
         {
             this.CurrentQuestion = null;
             this.SelectedAnswer = null;
         }
 
+        //methode om de game weer te resetten zodat er een nieuw spel gespeeld kan worden
         public void ResetGame()
         {
             this.Count = 0;

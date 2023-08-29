@@ -7,6 +7,8 @@ using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
+    
+    //viewmodel class voor de input lobby, hier wordt de naam van speler ingevoerd
     public class InputLobbyViewModel : INotifyPropertyChanged
     {
         private string _lobbyCode;

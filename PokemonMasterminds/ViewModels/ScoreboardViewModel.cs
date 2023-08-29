@@ -1,19 +1,15 @@
 ﻿using PokemonMasterminds.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
+    
+    //viewmodel voor het scoreboard. hier wordt de score van speler weergegeven
     class ScoreboardViewModel: INotifyPropertyChanged
 
     {
-        public LobbyViewModel Lobby { get; }
-        //GetScoreboardCommand : ICommand
-        public ICommand GetScoreboardCommand { private set; get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
-        //public List<Player> PlayerList { get; set; }
         
         private string _player1Text;
         private string _player2Text;
@@ -26,28 +22,7 @@ namespace PokemonMasterminds.ViewModels
             set { _player1Text = value; OnPropertyChanged(); }
         }
         
-        public string Player2Text
-        {
-            get { return _player2Text; }
-            set { _player2Text = value; OnPropertyChanged(); }
-        }
-        
-        public string Player3Text
-        {
-            get { return _player3Text; }
-            set { _player3Text = value; OnPropertyChanged(); }
-        }
-        
-        public string Player4Text
-        {
-            get { return _player4Text; }
-            set { _player4Text = value; OnPropertyChanged(); }
-        }
-        
         private string _player1Score;
-        private string _player2Score;
-        private string _player3Score;
-        private string _player4Score;
         
         public string Player1Score
         {
@@ -55,24 +30,6 @@ namespace PokemonMasterminds.ViewModels
             set { _player1Score = value; OnPropertyChanged(); }
         }
         
-        public string Player2Score
-        {
-            get { return _player2Score; }
-            set { _player2Score = value; OnPropertyChanged(); }
-        }
-        
-        public string Player3Score
-        {
-            get { return _player3Score; }
-            set { _player3Score = value; OnPropertyChanged(); }
-        }
-        
-        public string Player4Score
-        {
-            get { return _player4Score; }
-            set { _player4Score = value; OnPropertyChanged(); }
-        }
-
         private string _scorePercentage { get; set; }
         
         public string ScorePercentage
@@ -93,11 +50,13 @@ namespace PokemonMasterminds.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
+        
         public ScoreboardViewModel()
         {
+            
+            // hier de logica van het weergegeven van het scoreboard met bijhoorende tekst
             Player1Score = Game.Instance.Lobby.Player.Score.ToString() + " out of 15";
-
+            
             if (Game.Instance.Lobby.Player.Score <= 5)
             {
                 Player1Text = Game.Instance.Lobby.Player.Name + ", Better luck next time!";
@@ -115,6 +74,7 @@ namespace PokemonMasterminds.ViewModels
                 Player1Text = Game.Instance.Lobby.Player.Name + ", Wow! Got 'Em All Right!";
             }
 
+            //berekenen van percentage goed geantwoorde vragen
             float percentage = Game.Instance.Lobby.Player.Score * (100f / 15f);
             
             ScorePercentage = Math.Round(percentage, 2) + "%";

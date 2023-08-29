@@ -1,5 +1,7 @@
 namespace PokemonMasterminds.Model.Questions
 {
+    
+    //dit is de class voor de Who is that pokemon vraag
     public class WhoIsThatPokemon : Question
     {
         public override async Task CreateQuestion()

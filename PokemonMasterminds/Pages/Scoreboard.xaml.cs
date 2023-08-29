@@ -13,6 +13,7 @@ public partial class Scoreboard : ContentPage
 		InitializeComponent();
 	}
 
+    //verwijs speler terug naar startscherm vanaf scoreboard scherm
     async void OnStartPageClicked(object sender, EventArgs e)
     {
 	    SoundPlayer.Instance.PlayPlinkSound();

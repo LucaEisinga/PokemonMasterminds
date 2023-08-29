@@ -1,7 +1,5 @@
-using System.Diagnostics;
 using PokemonMasterminds.ViewModels;
 using PokemonMasterminds.Model;
-using System;
 
 namespace PokemonMasterminds.Pages;
 
@@ -59,11 +57,13 @@ public partial class GamePage : ContentPage
             {
                 Game.Instance.Count++;
                 
+                //doorgaan zolang de hoeveelheid gestelde vragen tussen 0 en 15 is
                 if (Game.Instance.Count >= 0 && Game.Instance.Count < 15)
                 {
                     AddScorePointToPlayer();
                     await Navigation.PushAsync(new GamePage());
                 }
+                //stoppen zodra vraag 15 gesteld is, en naar het scoreboard navigeren
                 else if (Game.Instance.Count > 14)
                 {
                     AddScorePointToPlayer();
@@ -83,6 +83,7 @@ public partial class GamePage : ContentPage
         ResetView();
     }
 
+    //methode voor het toevoegen van een score punt aan de speler, indien juist geantwoord
     private void AddScorePointToPlayer()
     {
     if (Game.Instance.SelectedAnswer == Game.Instance.CurrentQuestion.getCorrectAnswer())

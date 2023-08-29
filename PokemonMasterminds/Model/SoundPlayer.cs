@@ -2,6 +2,7 @@ using Plugin.Maui.Audio;
 
 namespace PokemonMasterminds.Model;
 
+//dit is de soundplayer class, met behulp van deze class kunnen geluiden worden afgespeeld
 public class SoundPlayer
 {
     private readonly AudioManager _audioManager;
@@ -16,6 +17,7 @@ public class SoundPlayer
     
     public static SoundPlayer Instance => _instance ??= new SoundPlayer();
 
+    //hiermee wordt een plink geluid afgespeeld
     public async void PlayPlinkSound()
     {
         var player = _audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("PlinkPokemonSound2.mp3"));
@@ -23,6 +25,7 @@ public class SoundPlayer
         player.Play();
     }
     
+    // dit is de methode voor het afspelen van het achtergrond geluid
      public async void PlayBackgroundSound() 
      { 
          _backgroundMusic = _audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("EndingTheme.mp3"));

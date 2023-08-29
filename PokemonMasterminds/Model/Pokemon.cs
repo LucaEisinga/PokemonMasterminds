@@ -1,5 +1,6 @@
 namespace PokemonMasterminds.Model;
 
+//dit is de pokemon class, hierin wordt alle benodigde info over de pokemon bijgehouden
 public class Pokemon
 {
     public int id { get; set; }

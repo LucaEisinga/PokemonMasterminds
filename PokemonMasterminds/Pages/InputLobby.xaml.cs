@@ -1,5 +1,4 @@
 using PokemonMasterminds.ViewModels;
-using System.Windows.Input;
 
 namespace PokemonMasterminds.Pages
 {
