@@ -15,7 +15,7 @@
     </ContentPage.Background>
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+        <BackButtonBehavior IsEnabled="True" IsVisible="True" />
     </Shell.BackButtonBehavior>
 
     <ScrollView>
