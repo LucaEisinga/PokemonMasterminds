@@ -1,7 +1,5 @@
-using System.Diagnostics;
 using PokemonMasterminds.ViewModels;
 using PokemonMasterminds.Model;
-using System;
 
 namespace PokemonMasterminds.Pages;
 

@@ -100,10 +100,8 @@ namespace PokemonMasterminds.ViewModels
         private async Task<Task> LoadQuestion()
         {
             Game.Instance.CurrentQuestion = null;
-            Game.Instance.CurrentQuestion = new WhoIsThatPokemon();
-            
-            await Game.Instance.CurrentQuestion.CreateQuestion();
-            
+            Game.Instance.CurrentQuestion = Game.Instance.GetQuestionFromList();
+
             Game.Instance.CurrentQuestion.PrepareQuestion();
             
             Question currentQuestion = Game.Instance.CurrentQuestion;

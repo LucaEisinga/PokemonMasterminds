@@ -16,9 +16,6 @@ namespace PokemonMasterminds.ViewModels
         //public List<Player> PlayerList { get; set; }
         
         private string _player1Text;
-        private string _player2Text;
-        private string _player3Text;
-        private string _player4Text;
         
         public string Player1Text
         {
@@ -26,28 +23,8 @@ namespace PokemonMasterminds.ViewModels
             set { _player1Text = value; OnPropertyChanged(); }
         }
         
-        public string Player2Text
-        {
-            get { return _player2Text; }
-            set { _player2Text = value; OnPropertyChanged(); }
-        }
-        
-        public string Player3Text
-        {
-            get { return _player3Text; }
-            set { _player3Text = value; OnPropertyChanged(); }
-        }
-        
-        public string Player4Text
-        {
-            get { return _player4Text; }
-            set { _player4Text = value; OnPropertyChanged(); }
-        }
         
         private string _player1Score;
-        private string _player2Score;
-        private string _player3Score;
-        private string _player4Score;
         
         public string Player1Score
         {
@@ -55,24 +32,7 @@ namespace PokemonMasterminds.ViewModels
             set { _player1Score = value; OnPropertyChanged(); }
         }
         
-        public string Player2Score
-        {
-            get { return _player2Score; }
-            set { _player2Score = value; OnPropertyChanged(); }
-        }
-        
-        public string Player3Score
-        {
-            get { return _player3Score; }
-            set { _player3Score = value; OnPropertyChanged(); }
-        }
-        
-        public string Player4Score
-        {
-            get { return _player4Score; }
-            set { _player4Score = value; OnPropertyChanged(); }
-        }
-
+       
         private string _scorePercentage { get; set; }
         
         public string ScorePercentage

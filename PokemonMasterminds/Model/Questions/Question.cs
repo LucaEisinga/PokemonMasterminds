@@ -4,9 +4,11 @@ public abstract class Question
 {
     public List<Answer> Answers { get; set; }
     public string Text { get; set;  }
+    public bool HasBeenUsed { get; set; }
 
     public Question()
     {
+        HasBeenUsed = false;
         Answers = new List<Answer>(); 
         CreateQuestion();
     }

@@ -17,6 +17,8 @@ namespace PokemonMasterminds.ViewModels
 
         //LeaveLobbyCommand : ICommand
         public ICommand LeaveLobbyCommand { private set; get; }
+        
+       // public ICommand LoadGameQuestionsCommand { private set; get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -36,20 +38,47 @@ namespace PokemonMasterminds.ViewModels
         public LobbyViewModel(Game game)
         {
             StartGameCommand = new Command(StartGame);
-            //PlayerList = game.Lobby.Player.ToList();
+            //LoadGameQuestionsCommand = new Command(LoadGameQuestions);
+            ButtonText = "Questions are loading...";
+            Task.Run(async () => await LoadGameQuestions());
+
+        }
+        
+        public ICommand LoadGameQuestionsCommand
+        {
+            get
+            {
+                return new Command(async () => await LoadGameQuestions());
+            }
         }
 
-       
+        public string _buttonText { get; set; }
+
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set { _buttonText = value; OnPropertyChanged(); }
+        }
+
+        private async Task LoadGameQuestions() {
+            await Game.Instance.FillQuestionList();
+            ButtonText = "Start Game!";
+        }
+
         private async void StartGame()
         {
             SoundPlayer.Instance.PlayPlinkSound();
+
+            if (Game.Instance.IsQuestionsListFilled())
+            {
+                INavigation navigation = App.Current.MainPage.Navigation;
+
+                Game game = Game.Instance;
+                game.GameIsActive = true;
+
+                await navigation.PushAsync(new GamePage());
+            }
             
-            INavigation navigation = App.Current.MainPage.Navigation;
-
-            Game game = Game.Instance;
-            game.GameIsActive = true;
-
-            await navigation.PushAsync(new GamePage());
         }
 
     }

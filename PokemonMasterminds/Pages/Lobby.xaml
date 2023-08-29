@@ -65,7 +65,7 @@
                 HorizontalOptions="Center"
                 SemanticProperties.HeadingLevel="Level5"
                 SemanticProperties.Hint="Goes to start of the game"
-                Text="Start game"
+                Text="{Binding ButtonText}"
                 WidthRequest="200"
                 x:Name="RedirectBtn" />
         </VerticalStackLayout>
