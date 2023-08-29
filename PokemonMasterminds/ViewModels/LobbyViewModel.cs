@@ -9,9 +9,6 @@ namespace PokemonMasterminds.ViewModels
 {
     class LobbyViewModel : INotifyPropertyChanged
     {
-        //public InputLobbyViewModel InputViewModel { get; }
-       // public List<Player> PlayerList { get; set; }
-
         //StartGameCommand : ICommand
         public ICommand StartGameCommand { private set; get; }
 
@@ -36,7 +33,6 @@ namespace PokemonMasterminds.ViewModels
         public LobbyViewModel(Game game)
         {
             StartGameCommand = new Command(StartGame);
-            //PlayerList = game.Lobby.Player.ToList();
         }
 
        

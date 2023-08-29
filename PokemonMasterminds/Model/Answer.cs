@@ -8,6 +8,5 @@ public class Answer
 	public Answer(Pokemon pokemon)
 	{
 		this.pokemon = pokemon;
-		//this.CorrectAnswer = correctAnswer;
 	}
 }

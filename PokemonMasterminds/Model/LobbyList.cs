@@ -10,13 +10,11 @@ public class LobbyList
 
 	public LobbyList()
 	{
-		//Players = new ObservableCollection<Player>();
 		
 	}
 
 	public void AddPlayer(Player player)
 	{
-		//Players.Add(player);
 		this.Player = player;
 	}
 }

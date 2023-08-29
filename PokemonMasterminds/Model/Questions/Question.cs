@@ -15,7 +15,6 @@ public abstract class Question
 
     public void PrepareQuestion()
     {
-        //ShuffleAnswers(); //shuffle is niet meer nodig
         AssignCorrect();
     }
     private void ShuffleAnswers()
@@ -31,6 +30,7 @@ public abstract class Question
         
     }
 
+    // Als er nog geen correct antwoord bestaat, wordt die hier aangemaakt. Er wordt 1 correct antwoord gepakt uit de 4 opties.
     private void AssignCorrect()
     {
         if (getCorrectAnswer() == null)
