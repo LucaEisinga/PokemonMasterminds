@@ -1,19 +1,15 @@
 ﻿using PokemonMasterminds.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
+    
+    //viewmodel voor het scoreboard. hier wordt de score van speler weergegeven
     class ScoreboardViewModel: INotifyPropertyChanged
 
     {
-        public LobbyViewModel Lobby { get; }
-        //GetScoreboardCommand : ICommand
-        public ICommand GetScoreboardCommand { private set; get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
-        //public List<Player> PlayerList { get; set; }
         
         private string _player1Text;
         
@@ -22,8 +18,7 @@ namespace PokemonMasterminds.ViewModels
             get { return _player1Text; }
             set { _player1Text = value; OnPropertyChanged(); }
         }
-        
-        
+
         private string _player1Score;
         
         public string Player1Score
@@ -31,8 +26,7 @@ namespace PokemonMasterminds.ViewModels
             get { return _player1Score; }
             set { _player1Score = value; OnPropertyChanged(); }
         }
-        
-       
+
         private string _scorePercentage { get; set; }
         
         public string ScorePercentage
@@ -53,11 +47,13 @@ namespace PokemonMasterminds.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
+        
         public ScoreboardViewModel()
         {
+            
+            // hier de logica van het weergegeven van het scoreboard met bijhoorende tekst
             Player1Score = Game.Instance.Lobby.Player.Score.ToString() + " out of 15";
-
+            
             if (Game.Instance.Lobby.Player.Score <= 5)
             {
                 Player1Text = Game.Instance.Lobby.Player.Name + ", Better luck next time!";
@@ -75,6 +71,7 @@ namespace PokemonMasterminds.ViewModels
                 Player1Text = Game.Instance.Lobby.Player.Name + ", Wow! Got 'Em All Right!";
             }
 
+            //berekenen van percentage goed geantwoorde vragen
             float percentage = Game.Instance.Lobby.Player.Score * (100f / 15f);
             
             ScorePercentage = Math.Round(percentage, 2) + "%";

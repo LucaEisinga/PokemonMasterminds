@@ -4,8 +4,12 @@ using System.Text.Json;
 
 namespace PokemonMasterminds.Model
 {
+    
+    // dit is de api class, welke de pokeapi gebruikt om de data voor de vragen op te halen.
     public class Api : IDisposable
     {
+        
+        //een http client voor het verbinden met de pokeapi
         private readonly HttpClient Client;
         JsonSerializerOptions SerializerOptions;
         private const string BaseUrl = "https://pokeapi.co/api/v2/";
@@ -17,7 +21,7 @@ namespace PokemonMasterminds.Model
         public static Api Instance => _instance ??= new Api();
         public Api()
         {
-            
+            //aanmaken van http client
             Client = new HttpClient();
             SerializerOptions = new JsonSerializerOptions
             {
@@ -26,6 +30,7 @@ namespace PokemonMasterminds.Model
             };
         }
 
+        //methode voor het verkrijgen van de pokemon data vanuit de pokeapi, deze methode returnt een pokemon
         public async Task<Pokemon> FetchPokemonData(int id)
         {
             string apiUrl = $"{BaseUrl}pokemon/{id}";

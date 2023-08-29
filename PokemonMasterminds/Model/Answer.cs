@@ -1,5 +1,6 @@
 namespace PokemonMasterminds.Model;
 
+//dit is de answer class, elk mogelijke antwoord heeft verscheidene data nodig welk opgeslagen moet worden
 public class Answer
 {
 	public Pokemon pokemon { get; private set; }
@@ -8,6 +9,5 @@ public class Answer
 	public Answer(Pokemon pokemon)
 	{
 		this.pokemon = pokemon;
-		//this.CorrectAnswer = correctAnswer;
 	}
 }

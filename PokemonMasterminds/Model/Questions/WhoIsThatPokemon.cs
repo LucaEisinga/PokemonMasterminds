@@ -1,5 +1,7 @@
 namespace PokemonMasterminds.Model.Questions
 {
+    
+    //dit is de class voor de Who is that pokemon vraag
     public class WhoIsThatPokemon : Question
     {
         public override async Task CreateQuestion()
@@ -13,6 +15,7 @@ namespace PokemonMasterminds.Model.Questions
                 Random random = new Random();
                 List<Pokemon> fetchedPokemon = new List<Pokemon>();
 
+                // Er worden 4 antwoorden opgehaald per vraag, met een check dat hij niet over de 4 heen gaat.
                 for (int i = 0; i < numberOfOptions; i++)
                 {
                     Pokemon pokemon = null;

@@ -1,8 +1,8 @@
-using System.Runtime.CompilerServices;
 using PokemonMasterminds.Model.Questions;
 
 namespace PokemonMasterminds.Model
 {
+    //dit is de game class, hierin wordt alle informatie bijgehouden om het spel te laten verlopen
     public class Game
     {
         public LobbyList Lobby { get; set; }
@@ -23,22 +23,23 @@ namespace PokemonMasterminds.Model
             GameIsActive = false;
         }
 
+        //methode om de huidige vraag weer uit de game class te halen
         public void SetToQuestionNull()
         {
             this.CurrentQuestion = null;
             this.SelectedAnswer = null;
         }
-
-        public async Task ResetGame()
+        
+        //methode om de game weer te resetten zodat er een nieuw spel gespeeld kan worden
+        public void ResetGame()
         {
             this.Count = 0;
             GameIsActive = false;
             SetToQuestionNull();
             Lobby.Player.Score = 0;
-
-            //await FillQuestionList();
         }
 
+        //methode voor het vullen van list met questions
         public async Task FillQuestionList()
         {
             Questions = new List<Question>();
@@ -52,23 +53,16 @@ namespace PokemonMasterminds.Model
                 Questions.Add(Q);
             }
         }
-    
-
-        public void DisableQuestionFromList(Question question)
-        {
-            question.HasBeenUsed = true;
-            // Questions.Remove(question);
-        }
-
+        
+        //methode voor het verkrijgen van de volgende question uit de list
         public Question GetQuestionFromList()
         {
             Question Q = Questions[Count];
-
-           // DisableQuestionFromList(Q);
             
             return Q;
         }
 
+        // methode voor het controleren of the list gevuld is, zodat het spel kan beginnen
         public bool IsQuestionsListFilled()
         {
             if (Questions.Count == 15)

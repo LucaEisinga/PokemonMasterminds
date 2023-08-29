@@ -7,6 +7,7 @@ using PokemonMasterminds.Model.Questions;
 
 namespace PokemonMasterminds.ViewModels
 {
+    //viewmodel voor de questions, hier wordt geregeld dat de vragen en antwoorden juist worden weergegeven
     class QuestionViewModel: INotifyPropertyChanged
     {
         private string _answerOneText;
@@ -46,15 +47,7 @@ namespace PokemonMasterminds.ViewModels
             set { _pokeImage = value; OnPropertyChanged(); }
         }
 
-        //GetQuestionCommand : ICommand
-        public ICommand GetQuestionCommand { private set; get; }
-
-        //OnAnswerSelectedCommand : ICommand
-
-        public ICommand OnAnswerSelectedCommand { private set; get; }
         public ICommand NextQuestionCommand { get; }
-        public List<Player> PlayerList { get; set; }
-        public LobbyViewModel LobbyViewModel { get; set; }
         public string _ScorePoints { get; set; }
 
         public string ScorePoints
@@ -97,6 +90,7 @@ namespace PokemonMasterminds.ViewModels
             });
         }
 
+        //methode voor het inladen van de vraag op het scherm
         private async Task<Task> LoadQuestion()
         {
             Game.Instance.CurrentQuestion = null;
@@ -129,6 +123,7 @@ namespace PokemonMasterminds.ViewModels
             return Task.CompletedTask;
         }
         
+        //methode om de huidige score te updaten
         private async Task UpdateScore()
         {
             ScorePoints = Game.Instance.Lobby.Player.Score.ToString();

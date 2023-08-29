@@ -7,13 +7,14 @@ using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
+    
+    //viewmodel class voor de input lobby, hier wordt de naam van speler ingevoerd
     public class InputLobbyViewModel : INotifyPropertyChanged
     {
         private string _lobbyCode;
         private string _playerName;
         private Command _createLobbyCommand;
-        private Command _joinLobbyCommand;
-        private string _fullLobbyText;
+        private string _noNameText;
 
         private ObservableCollection<Player> _players = new ObservableCollection<Player>();
         private Dictionary<string, ObservableCollection<Player>> _lobbyPlayers = new Dictionary<string, ObservableCollection<Player>>();
@@ -36,10 +37,10 @@ namespace PokemonMasterminds.ViewModels
             set { SetProperty(ref _players, value); }
         }
 
-        public string FullLobbyText
+        public string NoNameText
         {
-            get { return _fullLobbyText; }
-            set { SetProperty(ref _fullLobbyText, value); }
+            get { return _noNameText; }
+            set { SetProperty(ref _noNameText, value); }
         }
 
         private readonly INavigation _navigation;
@@ -51,48 +52,6 @@ namespace PokemonMasterminds.ViewModels
             _game = Game.Instance;
         }
 
-        public ICommand JoinLobbyCommand => _joinLobbyCommand ??= new Command<object>(JoinLobby);
-        
-       private async void JoinLobby(object parameter)
-       {
-           if (string.IsNullOrEmpty(PlayerName) || string.IsNullOrEmpty(LobbyCode))
-           {
-               return;
-           }
-
-           var filteredPlayers = _lobbyPlayers.ContainsKey(LobbyCode) ? _lobbyPlayers[LobbyCode] : new ObservableCollection<Player>();
-           
-           if (filteredPlayers.Count > 3)
-           {
-               FullLobbyText = "Deze lobby zit vol";
-               return;
-           }
-           else
-           {
-               _game.Lobby.AddPlayer(new Player(PlayerName));
-           }
-           
-           PlayerName = "-";
-
-           if (Players.Count == 0)
-           {
-               return;
-           }
-
-           if (!_lobbyPlayers.ContainsKey(LobbyCode))
-           {
-               _lobbyPlayers[LobbyCode] = new ObservableCollection<Player>();
-           }
-           _lobbyPlayers[LobbyCode].Clear();
-           foreach (var player in Players)
-           {
-               _lobbyPlayers[LobbyCode].Add(player);
-           }
-
-           await CreateLobby(LobbyCode);
-           await _navigation.PushAsync(new Lobby(_game));
-       }
-
         public ICommand CreateLobbyCommand => _createLobbyCommand ??= new Command<string>(async (code) =>
         {
             string lobbyCode = code;
@@ -100,11 +59,20 @@ namespace PokemonMasterminds.ViewModels
             await CreateLobby(lobbyCode);
         });
 
-
+        //Er wordt gecheckt of de speler zijn naam wel heeft ingevuld, zo niet komt er een melding.
+        //Als zijn naam is ingevuld, wordt er een lobby aangemaakt met de speler en wordt de speler doorgestuurd naar zijn lobby.
         private async Task CreateLobby(string lobbyCode)
         {
             SoundPlayer.Instance.PlayPlinkSound();
-            
+
+            if (string.IsNullOrEmpty(PlayerName))
+            {
+                NoNameText = "Geen naam ingevuld";
+                return;
+            }
+
+            NoNameText = string.Empty;
+
             try
             {
                 // Create the game object with the players

@@ -38,13 +38,15 @@
             PlaceholderColor="Black"
             Text="{Binding PlayerName}"
             WidthRequest="200" />
+
         <Label
             HorizontalOptions="Center"
-            Text="{Binding FullLobbyText}"
+            Text="{Binding NoNameText}"
             TextColor="PaleVioletRed"
             VerticalOptions="Center"
             WidthRequest="200"
-            x:Name="LobbyFull" />
+            x:Name="NoName"/>
+        
         <Grid
             ColumnSpacing="5"
             HorizontalOptions="Center"

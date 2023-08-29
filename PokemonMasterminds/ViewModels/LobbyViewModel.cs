@@ -7,18 +7,12 @@ using System.Windows.Input;
 
 namespace PokemonMasterminds.ViewModels
 {
+    //viewmodel voor de lobby, vanaf hieruit wordt de game geladen en kan er op start worden gedrukt
     class LobbyViewModel : INotifyPropertyChanged
     {
-        //public InputLobbyViewModel InputViewModel { get; }
-       // public List<Player> PlayerList { get; set; }
-
-        //StartGameCommand : ICommand
         public ICommand StartGameCommand { private set; get; }
 
-        //LeaveLobbyCommand : ICommand
         public ICommand LeaveLobbyCommand { private set; get; }
-        
-       // public ICommand LoadGameQuestionsCommand { private set; get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -38,10 +32,9 @@ namespace PokemonMasterminds.ViewModels
         public LobbyViewModel(Game game)
         {
             StartGameCommand = new Command(StartGame);
-            //LoadGameQuestionsCommand = new Command(LoadGameQuestions);
+
             ButtonText = "Questions are loading...";
             Task.Run(async () => await LoadGameQuestions());
-
         }
         
         public ICommand LoadGameQuestionsCommand
@@ -65,6 +58,8 @@ namespace PokemonMasterminds.ViewModels
             ButtonText = "Start Game!";
         }
 
+        //methode voor starten van de Game,
+        //hierbij wordt gekeken of de questions al zijn ingeladen, zo ja begint spel na drukken van de start game knop
         private async void StartGame()
         {
             SoundPlayer.Instance.PlayPlinkSound();
