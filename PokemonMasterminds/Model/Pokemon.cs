@@ -1,5 +1,3 @@
-using Microsoft.Maui.Storage;
-
 namespace PokemonMasterminds.Model;
 
 //dit is de pokemon class, hierin wordt alle benodigde info over de pokemon bijgehouden
@@ -17,16 +15,6 @@ public class Pokemon
         
         public string pokemonSprite { get; set; }
 
-      //public void SetImage()
-      //{
-      //    Image image = new Image();
-      //    image.Source = ImageSource.FromUri(new Uri(front_default));
-      //    
-
-      //    pokemonSprite = image;
-      //}
-        
-        
       public async Task SetImage()
       {
           using (HttpClient client = new HttpClient())
@@ -35,25 +23,24 @@ public class Pokemon
               {
                   byte[] imageData = await client.GetByteArrayAsync(front_default);
 
-                  // Generate a random filename
+                  // genereer een random file name
                   string randomFileName = Path.GetRandomFileName();
                   string fileExtension = ".svg"; // Change to the appropriate image format
 
-                  // Combine the random filename and extension
+                  // combineer de file name + extensie van file
                   string fileName = $"{randomFileName}{fileExtension}";
 
-                  // Get the file path for saving the image
+                  // file path halen voor het opslaan van de image
                   string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
 
-                  // Save the image data to the local file
+                  // image data opslaan in het lokale bestand
                   File.WriteAllBytes(filePath, imageData);
 
-                  // Set the path to the downloaded image
+                  // path naar de image opslaan in variable
                   pokemonSprite = filePath;
               }
               catch (Exception ex)
               {
-                  // Handle any exceptions that might occur during image fetching or saving
                   Console.WriteLine($"Error: {ex.Message}");
               }
           }

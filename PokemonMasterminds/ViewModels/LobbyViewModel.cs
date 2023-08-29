@@ -36,15 +36,6 @@ namespace PokemonMasterminds.ViewModels
             ButtonText = "Questions are loading...";
             Task.Run(async () => await LoadGameQuestions());
         }
-        
-        public ICommand LoadGameQuestionsCommand
-        {
-            get
-            {
-                return new Command(async () => await LoadGameQuestions());
-            }
-        }
-
         public string _buttonText { get; set; }
 
         public string ButtonText
