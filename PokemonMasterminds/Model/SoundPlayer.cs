@@ -30,7 +30,7 @@ public class SoundPlayer
      { 
          _backgroundMusic = _audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("EndingTheme.mp3"));
 
-         _backgroundMusic.Volume = 0.05;
+         _backgroundMusic.Volume = 0.08;
          _backgroundMusic.Loop = true;
          _backgroundMusic.Play();
      }

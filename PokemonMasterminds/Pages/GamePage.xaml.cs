@@ -60,17 +60,15 @@ public partial class GamePage : ContentPage
                 //doorgaan zolang de hoeveelheid gestelde vragen tussen 0 en 15 is
                 if (Game.Instance.Count >= 0 && Game.Instance.Count < 15)
                 {
-                    AddColorToAnswer();
                     AddScorePointToPlayer();
-                    await Task.Delay(500);
+                    await Task.Delay(1500);
                     await Navigation.PushAsync(new GamePage());
                 }
                 //stoppen zodra vraag 15 gesteld is, en naar het scoreboard navigeren
                 else if (Game.Instance.Count > 14)
                 {
-                    AddColorToAnswer();
                     AddScorePointToPlayer();
-                    await Task.Delay(500);
+                    await Task.Delay(1500);
                     await Navigation.PushAsync(new Scoreboard());
                     Game.Instance.ResetGame();
                     return;
@@ -90,51 +88,76 @@ public partial class GamePage : ContentPage
     //methode voor het toevoegen van een score punt aan de speler, indien juist geantwoord
     private void AddScorePointToPlayer()
     {
+        //gegeven antwoord weergeven
+        AddColorToAnswer();
+        
         if (Game.Instance.SelectedAnswer == Game.Instance.CurrentQuestion.getCorrectAnswer())
         {
             Game.Instance.Lobby.Player.Score++;
-            Game.Instance.SetToQuestionNull();
         }
+        Game.Instance.SetToQuestionNull();
     }
 
     private void AddColorToAnswer()
     {
-        if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerOne.Text)
-        {
-            AnswerOne.BackgroundColor = Colors.Green;
-        }
-        else if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerTwo.Text)
-        {
-            AnswerTwo.BackgroundColor = Colors.Green;
-        }
-        else if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerThree.Text)
-        {
-            AnswerThree.BackgroundColor = Colors.Green;
-        }
-        else if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerFour.Text)
-        {
-            AnswerFour.BackgroundColor = Colors.Green;
-        }
+        Answer selectedAnswer = Game.Instance.SelectedAnswer;
+        Answer correctAnswer = Game.Instance.CurrentQuestion.getCorrectAnswer();
+        
+        //voor het tonen van of antwoord goed is in groen
 
-        if (Game.Instance.SelectedAnswer != Game.Instance.CurrentQuestion.getCorrectAnswer() && Game.Instance.SelectedAnswer != null)
+        
+         if (correctAnswer == Game.Instance.CurrentQuestion.Answers[0])
+         {
+             AnswerOne.BackgroundColor = Colors.Green;
+         }
+         else if (correctAnswer == Game.Instance.CurrentQuestion.Answers[1])
+         {
+             AnswerTwo.BackgroundColor = Colors.Green;
+         }
+         else if (correctAnswer == Game.Instance.CurrentQuestion.Answers[2])
+         {
+             AnswerThree.BackgroundColor = Colors.Green;
+         }
+         else if (correctAnswer == Game.Instance.CurrentQuestion.Answers[3])
+         {
+             AnswerFour.BackgroundColor = Colors.Green;
+         }
+        
+
+        //voor het tonen van of antwoord fout is in rood
+        if (selectedAnswer != correctAnswer)
         {
-            if (Game.Instance.SelectedAnswer.pokemon.name == AnswerOne.Text)
+            if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[0])
             {
                 AnswerOne.BackgroundColor = Colors.Red;
             }
-            else if (Game.Instance.SelectedAnswer.pokemon.name == AnswerTwo.Text)
+            else if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[1])
             {
                 AnswerTwo.BackgroundColor = Colors.Red;
             }
-            else if (Game.Instance.SelectedAnswer.pokemon.name == AnswerThree.Text)
+            else if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[2])
             {
                 AnswerThree.BackgroundColor = Colors.Red;
             }
-            else if (Game.Instance.SelectedAnswer.pokemon.name == AnswerFour.Text)
+            else if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[3])
             {
                 AnswerFour.BackgroundColor = Colors.Red;
             }
+            
+            timerLabel.Text = "Too bad! that's the wrong answer!";
         }
+        else
+        {
+            timerLabel.Text = "Guessed 'em right!";
+        }
+
+        //voor wanneer er geen antwoord geselecteerd is
+        if (selectedAnswer == null)
+        {
+            timerLabel.Text = "No answer selected! Times up!";
+        }
+
+
     }
 
     private void ResetView()
