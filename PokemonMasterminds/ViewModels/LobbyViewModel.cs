@@ -13,6 +13,8 @@ namespace PokemonMasterminds.ViewModels
         public ICommand StartGameCommand { private set; get; }
 
         public ICommand LeaveLobbyCommand { private set; get; }
+        
+        private string[] loadingGifs = { "waitingcharmander.gif", "ghastlyevocircle.gif", "delivierypikachu.gif", "circlingmew.gif" };
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -34,6 +36,12 @@ namespace PokemonMasterminds.ViewModels
             StartGameCommand = new Command(StartGame);
 
             ButtonText = "Questions are loading...";
+            
+            //weergeef 1 random gif uit de lijst als loading icon
+            Random random = new Random();
+            int randomIndex = random.Next(loadingGifs.Length);
+            LoadingGif = loadingGifs[randomIndex];
+            
             Task.Run(async () => await LoadGameQuestions());
         }
         public string _buttonText { get; set; }
@@ -44,9 +52,18 @@ namespace PokemonMasterminds.ViewModels
             set { _buttonText = value; OnPropertyChanged(); }
         }
 
+        public string _loadingGif { get; set; }
+
+        public string LoadingGif
+        {
+            get { return _loadingGif; }
+            set { _loadingGif = value; OnPropertyChanged(); }
+        }
+
         private async Task LoadGameQuestions() {
             await Game.Instance.FillQuestionList();
             ButtonText = "Start Game!";
+            LoadingGif = "-";
         }
 
         //methode voor starten van de Game,

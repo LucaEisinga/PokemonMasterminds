@@ -63,6 +63,15 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <Image
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                Margin="0,0,0,10"
+                Scale="2"
+                SemanticProperties.Description="gif while loading"
+                Source="{Binding LoadingGif}" />
+
             <Button
                 BackgroundColor="DarkCyan"
                 BorderColor="DarkCyan"
