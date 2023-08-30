@@ -15,7 +15,6 @@ namespace PokemonMasterminds.ViewModels
         private string _answerThreeText;
         private string _answerFourText;
         private string _pokeImage;
-        public int Count { get; set; }
         
         public string AnswerOneText
         {
@@ -63,8 +62,6 @@ namespace PokemonMasterminds.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
-        private string MyPlayerName;
 
         public QuestionViewModel()
         {

@@ -17,7 +17,6 @@ namespace PokemonMasterminds.ViewModels
         private string _noNameText;
 
         private ObservableCollection<Player> _players = new ObservableCollection<Player>();
-        private Dictionary<string, ObservableCollection<Player>> _lobbyPlayers = new Dictionary<string, ObservableCollection<Player>>();
 
         public string LobbyCode
         {
@@ -67,7 +66,7 @@ namespace PokemonMasterminds.ViewModels
 
             if (string.IsNullOrEmpty(PlayerName))
             {
-                NoNameText = "Geen naam ingevuld";
+                NoNameText = "Please fill in a name!";
                 return;
             }
 
