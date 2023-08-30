@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    Title="Lobby"
+    Shell.NavBarIsVisible="False"
+    Title="Pokémon Masterminds"
     x:Class="PokemonMasterminds.Pages.Lobby"
     x:DataType="viewmodel:LobbyViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
