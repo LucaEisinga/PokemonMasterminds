@@ -69,6 +69,11 @@ namespace PokemonMasterminds.ViewModels
                 NoNameText = "Please fill in a name!";
                 return;
             }
+            else if (PlayerName.Length > 15)
+            {
+                NoNameText = "Max name size is 15 characters!";
+                return;
+            }
 
             NoNameText = string.Empty;
 

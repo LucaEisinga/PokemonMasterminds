@@ -104,9 +104,7 @@ public partial class GamePage : ContentPage
         Answer correctAnswer = Game.Instance.CurrentQuestion.getCorrectAnswer();
         
         //voor het tonen van of antwoord goed is in groen
-
-        
-         if (correctAnswer == Game.Instance.CurrentQuestion.Answers[0])
+        if (correctAnswer == Game.Instance.CurrentQuestion.Answers[0])
          {
              AnswerOne.BackgroundColor = Colors.Green;
          }
