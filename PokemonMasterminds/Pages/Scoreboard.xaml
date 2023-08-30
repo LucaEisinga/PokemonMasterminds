@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    Title="Scoreboard"
+    Shell.NavBarIsVisible="False"
+    Title="Pokémon Masterminds"
     x:Class="PokemonMasterminds.Pages.Scoreboard"
     x:DataType="viewmodel:ScoreboardViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
