@@ -128,18 +128,22 @@ public partial class GamePage : ContentPage
             if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[0])
             {
                 AnswerOne.BackgroundColor = Colors.Red;
+                AnswerOne.TextColor = Colors.Black;
             }
             else if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[1])
             {
                 AnswerTwo.BackgroundColor = Colors.Red;
+                AnswerTwo.TextColor = Colors.Black;
             }
             else if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[2])
             {
                 AnswerThree.BackgroundColor = Colors.Red;
+                AnswerThree.TextColor = Colors.Black;
             }
             else if (selectedAnswer == Game.Instance.CurrentQuestion.Answers[3])
             {
                 AnswerFour.BackgroundColor = Colors.Red;
+                AnswerFour.TextColor = Colors.Black;
             }
             
             timerLabel.Text = "Too bad! that's the wrong answer!";
