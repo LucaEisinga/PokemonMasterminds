@@ -89,6 +89,53 @@ public partial class GamePage : ContentPage
     if (Game.Instance.SelectedAnswer == Game.Instance.CurrentQuestion.getCorrectAnswer())
         {
             Game.Instance.Lobby.Player.Score++;
+            
+            if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerOne.Text)
+            {
+                AnswerOne.BackgroundColor = Colors.Green;
+            }
+            else if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerTwo.Text)
+            {
+                AnswerTwo.BackgroundColor = Colors.Green;
+            }
+            else if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerThree.Text)
+            {
+                AnswerThree.BackgroundColor = Colors.Green;
+            }
+            else if (Game.Instance.CurrentQuestion.getCorrectAnswer().pokemon.name == AnswerFour.Text)
+            {
+                AnswerFour.BackgroundColor = Colors.Green;
+            }
+            else
+            {
+                
+            }
+            
+            Game.Instance.SetToQuestionNull();
+        }
+    else
+        {
+            if (Game.Instance.SelectedAnswer.pokemon.name == AnswerOne.Text)
+            {
+                AnswerOne.BackgroundColor = Colors.Red;
+            }
+            else if (Game.Instance.SelectedAnswer.pokemon.name == AnswerTwo.Text)
+            {
+                AnswerTwo.BackgroundColor = Colors.Red;
+            }
+            else if (Game.Instance.SelectedAnswer.pokemon.name == AnswerThree.Text)
+            {
+                AnswerThree.BackgroundColor = Colors.Red;
+            }
+            else if (Game.Instance.SelectedAnswer.pokemon.name == AnswerFour.Text)
+            {
+                AnswerFour.BackgroundColor = Colors.Red;
+            }
+            else
+            { 
+
+            }
+
             Game.Instance.SetToQuestionNull();
         }
     }
