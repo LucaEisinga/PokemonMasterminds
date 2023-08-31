@@ -70,3 +70,9 @@ De applicatie maakt gebruik van de PokeAPI om alle Pokémon data op te halen, di
 - Er is gebruik gemaakt van .Net Maui om de applicatie te ontwikkelen
 - C#11.0 is gebruikt
 - .Net versie 7.0.302 is gebruikt
+
+
+## Made By
+- Peter Bos
+- Esmee Kajuiter
+- Yaëll Kuipers
