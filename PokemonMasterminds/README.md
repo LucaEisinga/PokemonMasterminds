@@ -71,6 +71,11 @@ De applicatie maakt gebruik van de PokeAPI om alle Pokémon data op te halen, di
 - C#11.0 is gebruikt
 - .Net versie 7.0.302 is gebruikt
 
+# punten voor verdere ontwikkeling
+- hoeveelheid vragen dynamisch maken (optie toevoegen waarbij er ipv 15 vragen een willekeurig aantal vragen kan worden gesteld)
+- Pauze knop voor de background music
+- Multiplayer modes
+- Meerdere soorten vragen toevoegen
 
 ## Made By
 - Peter Bos
