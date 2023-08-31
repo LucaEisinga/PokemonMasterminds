@@ -62,7 +62,7 @@ namespace PokemonMasterminds.Model
             return Q;
         }
 
-        // methode voor het controleren of the list gevuld is, zodat het spel kan beginnen
+        //methode voor het controleren of the list gevuld is, zodat het spel kan beginnen
         public bool IsQuestionsListFilled()
         {
             if (Questions.Count == 15)

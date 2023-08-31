@@ -51,7 +51,7 @@ namespace PokemonMasterminds.ViewModels
         public ScoreboardViewModel()
         {
             
-            // hier de logica van het weergegeven van het scoreboard met bijhoorende tekst
+            //hier de logica van het weergegeven van het scoreboard met bijhoorende tekst
             Player1Score = Game.Instance.Lobby.Player.Score.ToString() + " out of 15";
             
             if (Game.Instance.Lobby.Player.Score <= 5)

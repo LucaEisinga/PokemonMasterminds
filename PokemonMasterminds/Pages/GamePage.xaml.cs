@@ -20,7 +20,7 @@ public partial class GamePage : ContentPage
         UpdateArc();
     }
 
-    //Adding the timer and setting the rules applied to the timer
+    //in deze methode wordt de timer toegevoegd en worden er regels gesteld aan de timer
     private async void UpdateArc()
     {
         if (Game.Instance.Count >= 0 && Game.Instance.Count < 5)
@@ -168,7 +168,7 @@ public partial class GamePage : ContentPage
         timerLabel.Text = _duration.ToString();
     }
 
-    // Setting the awnsers for players
+    //in deze methode worden de antwoorden laten zien en de interactie verandert voor de speler
     async void OnAnswerOneClicked(object sender, EventArgs e)
     {
         SoundPlayer.Instance.PlayPlinkSound();

@@ -92,8 +92,6 @@ namespace PokemonMasterminds.ViewModels
         {
             Game.Instance.CurrentQuestion = null;
             Game.Instance.CurrentQuestion = Game.Instance.GetQuestionFromList();
-
-            //Game.Instance.CurrentQuestion.PrepareQuestion();
             
             Question currentQuestion = Game.Instance.CurrentQuestion;
 
